@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link rel="stylesheet" type="text/css" href="style/base.css" >
+<style>
+ul{list-style:none;}
+body{background:#9a68f4;color:#fff;}
+.navul{margin-top:10px;}
+.navul li{padding:0;margin-bottom:10px;background:url(images/ico1.gif) no-repeat left center;text-indent:20px;cursor:pointer;}
+.navul li.bg2{background-image:url(images/ico2.gif);}
+</style>
+
+<script type="text/javascript">
+window.onload = function(){
+	var nav = document.getElementById('nav');
+	var li = nav.getElementsByTagName('li');
+	/*
+	var i = 0;
+	for(i = 0;i < li.length;i++){
+		li[i].onclick = function(){
+			if(this.className !== 'bg2'){
+				this.className = 'bg2'
+			}else{
+				this.className = ''
+			}
+		}
+	}
+	*/
+    var i = 0;
+	for(i = 0;i < li.length;i++){
+		li[i].onclick = function(){
+			if(this.className !== 'bg2'){
+				for(i = 0;i < li.length;i++){
+					li[i].className = ''
+				}
+				this.className = 'bg2'
+			}else{
+				this.className = ''
+			}
+		}
+	}
+
+
+}
+</script>
+</head>
+
+<body>
+<div style="margin:100px 0 0 100px;">
+你的兴趣
+<ul class="navul" id="nav">
+<li>打篮球</li>
+<li>上网</li>
+<li>看电影</li>
+<li>逛街</li>
+<li>打街机</li>
+<li>打游击</li>
+<li>上购物网站</li>
+<li>听音乐</li>
+<li>评书</li>
+<li>拳击</li>
+</ul>
+</div>
+
+</body>
+</html>
+
+
+
+
+

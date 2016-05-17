@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link rel="stylesheet" type="text/css" href="style/base.css" >
+<style>
+*{margin:0;padding:0;}
+ul{list-style:none;}
+body{}
+#box{width:100px;height:100px;background:red;position:absolute;left:60px;top:30px;z-index: 2;}
+#box2{width:100px;height:100px;background:yellow;position:absolute;left:350px;top:200px;z-index: 1;}
+
+</style>
+
+<script type="text/javascript" src="move.js"></script>
+<script type="text/javascript">
+window.onload = function(){
+	Tz('box');
+}
+
+function Tz(obj){
+	var oBox = document.getElementById(obj);
+	var oBox2 = document.getElementById('box2');
+	oBox.onmousedown = function(evt){
+		var oEvent = evt || event;
+		var iCliX = oEvent.clientX - oBox.offsetLeft;
+		var iCliY = oEvent.clientY - oBox.offsetTop;
+		document.onmousemove = function(evt){
+			var oEvent = evt || event;
+			var l = oEvent.clientX - iCliX;
+			var t = oEvent.clientY - iCliY;
+			if(l < 10){
+				l = 0;
+			}else if(l > document.documentElement.clientWidth - oBox.offsetWidth - 10){
+
+				l = document.documentElement.clientWidth - oBox.offsetWidth;
+			}
+			if(t < 10){
+				t = 0;
+			}else if(t > document.documentElement.clientHeight - oBox.offsetHeight - 10){
+
+				t = document.documentElement.clientHeight - oBox.offsetHeight;
+			}
+			oBox.style.left = l + 'px';
+			oBox.style.top = t + 'px';
+			if(oBox.setCapture) oBox.setCapture();
+
+			//碰撞检测
+			
+			var oBoxl = oBox.offsetLeft;
+			var oBoxr = oBox.offsetLeft + oBox.offsetWidth;
+			var oBoxt = oBox.offsetTop;
+			var oBoxb = oBox.offsetTop + oBox.offsetHeight;
+
+			var oBox2l = oBox2.offsetLeft;
+			var oBox2r = oBox2.offsetLeft + oBox2.offsetWidth;
+			var oBox2t = oBox2.offsetTop;
+			var oBox2b = oBox2.offsetTop + oBox2.offsetHeight;
+			//条件
+			if(oBoxr<oBox2l || oBoxl>oBox2r || oBoxb<oBox2t || oBoxt>oBox2b ){
+				oBox2.style.background = 'yellow';
+			}else{
+				oBox2.style.background = 'green';
+			}
+
+		}
+		document.onmouseup = function(){
+			document.onmousemove = null;
+			document.onmouseup = null;
+			if(oBox.releaseCapture) oBox.releaseCapture();
+		}
+		return false;
+	}
+}
+</script>
+
+</head>
+
+<body>
+<p>好撒花花是否坏事</p>
+<div id="box"></div>
+<div id="box2"></div>
+
+</body>
+</html>
+
+
+
+
+

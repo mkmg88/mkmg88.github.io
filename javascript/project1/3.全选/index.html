@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+.ttbox{
+	height:28px;
+	width:200px;
+	line-height:28px;
+	font-size:12px;
+	font-weight:bold;
+	text-indent:5px;
+	background:#9CF url(ico67.gif) no-repeat 180px center;
+    position:relative;
+	}
+.bbbox{position:absolute;left:0;top:28px;background:#C93;color:#fff;height:100px;width:200px;display:none;}
+</style>
+<script type="text/javascript">
+window.onload = function(){
+	
+    var pbox = document.getElementById('pbox');
+	var input = document.getElementsByTagName('input');
+	
+	pbox.onclick = function(){
+		var i = 0;
+		if( input[0].checked !== true ){
+			for(i = 0;i < input.length;i++)
+		    {
+			input[i].checked = true;
+		    }
+		}else{
+			for(i = 0;i < input.length;i++)
+		    {
+			input[i].checked = false;
+		    }
+		}
+	}
+	
+	
+}
+</script>
+</head>
+
+<body>
+
+<p id="pbox">点击全选</p>
+<input type="checkbox" />
+<input type="checkbox" />
+<input type="checkbox" />
+<input type="checkbox" />
+<input type="checkbox" />
+<input type="checkbox" />
+<input type="checkbox" />
+<input type="checkbox" />
+<input type="checkbox" />
+<input type="checkbox" />
+<input type="checkbox" />
+<input type="checkbox" />
+
+</body>
+</html>
+
+
+
+
+

@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link rel="stylesheet" type="text/css" href="style/base.css" >
+<style>
+.bigboss{width:150px;margin:100px;}
+.p1{color:#dfd207;line-height:30px;text-indent:10px;background:#5307df url(images/ico1.gif) no-repeat 125px center;}
+.p2{color:#dfd207;line-height:30px;text-indent:10px;background:#df0786 url(images/ico2.gif) no-repeat 125px center;}
+.navul li{background:#7bdff4;padding:0;width:150px;text-align:center;line-height:60px;position:relative;margin-bottom:1px;}
+.outbox{width:300px;height:200px;position:absolute;left:150px;top:0px;background:yellow;display:none;}
+</style>
+<script type="text/javascript">
+window.onload = function(){
+   var clickup = document.getElementById('clickup');
+   var nav = document.getElementById('nav');
+   var li = nav.getElementsByTagName('li');
+   
+   //点击下拉
+   clickup.onclick = function(){
+	   if( clickup.className !== 'p2' ){
+	       clickup.className = 'p2';
+		   nav.style.display = 'block';
+	   }else{
+		   clickup.className = 'p1';
+		   nav.style.display = 'none';
+	   }
+   }
+   
+   //移入出现右菜单，移出消失
+   var i = 0;
+   for(i = 0;i < li.length;i++){
+	   li[i].onmouseover = function(){
+		   this.children[1].style.display = 'block'; 
+		   this.style.backgroundColor = 'yellow';
+	   }
+	   li[i].onmouseout = function(){
+		   this.children[1].style.display = 'none'; 
+		   this.style.backgroundColor = '#7bdff4';
+	   }
+   }
+   
+   
+   
+}
+</script>
+</head>
+
+<body>
+
+
+<div class="bigboss">
+<p id="clickup" class="p1">所有商品</p>
+<ul class="navul" id="nav" style="display:none;">
+<li><a href="#">菜单1</a><div class="outbox">1</div></li>
+<li><a href="#">菜单一</a><div class="outbox">2</div></li>
+<li><a href="#">菜单一</a><div class="outbox">3</div></li>
+<li><a href="#">菜单一</a><div class="outbox">4</div></li>
+<li><a href="#">菜单一</a><div class="outbox">5</div></li>
+<li><a href="#">菜单一</a><div class="outbox">6</div></li>
+<li><a href="#">菜单一</a><div class="outbox">7</div></li>
+</ul>
+</div>
+
+
+
+</body>
+</html>
+
+
+
+
+

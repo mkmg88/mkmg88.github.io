@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+*{margin:0;padding:0;}
+#img1{filter:alpha(opacity:30);opacity:0.3;}
+</style>
+
+<script type="text/javascript">
+window.onload = function(){
+   var obj = document.getElementById('img1');
+   obj.onmouseover = function(){
+      starMove('img1',100);
+   }
+   obj.onmouseout = function(){
+      starMove('img1',30);
+   }
+}
+
+var timer = null;
+var alpha = 30;   //用变量储存透明度，相当于offsetLeft
+
+
+function starMove(id,iTarger){
+   var obj = document.getElementById(id);
+   
+   var iSpeen = 0;
+
+   clearInterval(timer);
+   timer = setInterval(function(){
+      var iSpeed = 0;
+      if(alpha < iTarger){    
+         iSpeed = 10;
+      }else{
+         iSpeed = -10;
+      }
+
+      if(obj.style.opacity == iTarger * 0.01){
+         clearInterval(timer);
+      }else{
+         alpha += iSpeed;    //相当于：obj.style.left = offsetLeft + iSpeen  
+         obj.style.opacity = alpha*0.01;
+         obj.style.filter = 'alpha(opacity:'+ alpha + ')';    //用字符串连接的方法
+      }
+   },30);
+}
+
+</script>
+</head>
+
+<body>
+
+
+
+<img src="CAPCOM.jpg" id="img1" >
+
+
+</body>
+</html>
+
+
+
+
+

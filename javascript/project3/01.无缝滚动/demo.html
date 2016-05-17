@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<title>demo</title>
+	<style>
+		* { margin: 0; padding: 0; }
+		.clearfix:after { content: ''; display: table; clear: both; }
+		.clearfix { *zoom: 1; }
+		ul ,li { list-style: none; }
+	
+		.box {
+			width: 186px;
+			height: 500px;
+			border: 1px solid #000;
+			margin: 50px;
+			overflow: hidden;
+			position: relative;
+		}
+		.heng { 
+			width: 500px; 
+			height: 116px;
+		}
+		.box ul {
+			position: absolute;
+		}
+
+		.box ul li {
+			padding-bottom: 10px;
+		}
+		.heng ul li { 
+			float: left; 
+			padding-right: 10px; 
+			padding-bottom: 0; 
+		}
+		.box img {
+			width: 186px;
+			height: 116px;
+			display: block;
+		}
+	</style>
+	<script>
+		window.onload = function(){
+			picMove('gd1','left');
+			picMove('gd2','right');
+			picMove('gd3','top');
+			picMove('gd4','bottom');
+		}
+
+		function getStyle(obj,attr){
+			if(window.getComputedStyle){
+				return window.getComputedStyle(obj,null)[attr];
+			}else{
+				return obj.currentStyle[attr];
+			}
+		}
+
+		function picMove(id,path) {
+			var iSpeend = 2;
+			var iPath = '';
+			var ml = 0;
+
+			var obj = document.getElementById(id);
+
+			var oUl = obj.getElementsByTagName('ul')[0];
+			oUl.innerHTML += oUl.innerHTML;
+			var aLi = oUl.getElementsByTagName('li');
+
+			if(path == 'left'){
+				iSpeend *= -1;
+				iPath = 'left';
+				oUl.style.width = aLi.length * aLi[0].offsetWidth + 'px';
+			}else if( path == 'right' ){
+				iPath = 'left';
+				oUl.style.left = -oUl.offsetWidth/2 + 'px';
+				oUl.style.width = aLi.length * aLi[0].offsetWidth + 'px';
+			}else if( path == 'top' ){
+				iSpeend *= -1;
+				iPath = 'top';
+			}else if( path == 'bottom' ){
+				iPath = 'top';
+				oUl.style.top = -oUl.offsetHeight/2 + 'px';
+			}
+
+			var picInte = function (){
+
+				ml =  (getStyle(oUl,iPath) == 'auto') ? 0 : parseInt( getStyle(oUl,iPath) );
+
+				if( iPath == 'left' ){
+					if( ml < -oUl.offsetWidth/2 ){
+						ml = 0;
+					}
+					if( ml > 0 ){
+						ml = -oUl.offsetWidth/2;
+					}
+				}else{
+					if( ml < -oUl.offsetHeight/2 ){
+						ml = 0;
+					}
+					if( ml > 0 ){
+						ml = -oUl.offsetHeight/2;
+					}
+				}
+
+				oUl.style[iPath] = ml + iSpeend + 'px' ;
+			}
+
+			obj.timer = setInterval(picInte,30);
+			oUl.onmouseover = function(){
+				clearInterval(obj.timer);
+			}
+			oUl.onmouseout = function(){
+				obj.timer = setInterval(picInte,30);
+			}
+		}
+
+</script>
+</head>
+<body>
+	<div class="box clearfix heng" id="gd1">
+		<ul>
+			<li><img src="img/1.jpg" alt=""></li>
+			<li><img src="img/2.jpg" alt=""></li>
+			<li><img src="img/3.jpg" alt=""></li>
+			<li><img src="img/4.jpg" alt=""></li>
+			<li><img src="img/5.jpg" alt=""></li>
+		</ul>
+	</div>
+
+	<div class="box clearfix heng" id="gd2">
+		<ul>
+			<li><img src="img/1.jpg" alt=""></li>
+			<li><img src="img/2.jpg" alt=""></li>
+			<li><img src="img/3.jpg" alt=""></li>
+			<li><img src="img/4.jpg" alt=""></li>
+			<li><img src="img/5.jpg" alt=""></li>
+		</ul>
+	</div>
+
+
+	<div class="box clearfix" id="gd3">
+		<ul>
+			<li><img src="img/1.jpg" alt=""></li>
+			<li><img src="img/2.jpg" alt=""></li>
+			<li><img src="img/3.jpg" alt=""></li>
+			<li><img src="img/4.jpg" alt=""></li>
+			<li><img src="img/5.jpg" alt=""></li>
+		</ul>
+	</div>
+
+	<div class="box clearfix" id="gd4">
+		<ul>
+			<li><img src="img/1.jpg" alt=""></li>
+			<li><img src="img/2.jpg" alt=""></li>
+			<li><img src="img/3.jpg" alt=""></li>
+			<li><img src="img/4.jpg" alt=""></li>
+			<li><img src="img/5.jpg" alt=""></li>
+		</ul>
+	</div>
+
+</body>
+</html>

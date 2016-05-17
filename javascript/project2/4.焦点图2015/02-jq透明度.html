@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>1</title>
+<link rel="stylesheet" href="style/base.css" />
+<style>
+#banner{width:600px;height:228px;margin:20px auto;}
+.picbox{width:600px;height:228px;position:relative;}
+.picbox .bigpic_ul li{display:none;position: absolute;left:0;top:0;filter:alpha(opacity=0);opacity:0;}
+.picbox .bigpic_ul li img{width:600px;height:228px;display:block;}
+.picbox .picbtn{width:30px;height:30px;background:yellow;position:absolute;top:50%;margin-top:-15px;display:none;cursor:pointer;}
+.picbox .next{right:10px;}
+.picbox .prev{left:10px;}
+.pic-bottom{position: absolute;bottom:0px;z-index:4;width:100%;height:40px;background:black;filter:alpha(opacity=60);opacity:0.6;}
+.pic-list{position: absolute;right:0;bottom:10px;z-index:5;}
+.pic-list li{float:left;width:20px;height:20px;line-height:20px;text-align:center;margin-right:5px;background:yellow;cursor:pointer;}
+.pic-list li.hover{background:orange;}
+.pic-text{position: absolute;z-index:5;left:10px;bottom:10px;line-height: 20px;color: #fff;}
+</style>
+<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	//初始化
+	var aLi = $('#banner .bigpic_ul li');
+	var aListUl = $('#banner .pic-list');
+	aLi.each(function(){
+		aListUl.append('<li>'+ ($(this).index() + 1) + '</li>');
+	});
+	$('#banner .pic-text').append( aLi.eq(0).find('img').attr('title') );
+	aListUl.find('li').eq(0).addClass('hover');
+	
+	(function(){
+		//移入移出
+		$('#banner .picbox').hover(function(){
+			$('#banner .picbtn').show();
+			clearInterval(timer);
+		},function(){
+			$('#banner .picbtn').hide();
+			timer = setInterval(iNowAdd,2000);
+		});
+		//动画
+		var iNow = 0;
+		function tab(iTar){
+			aListUl.find('li').removeClass('hover');
+			$('#banner .bigpic_ul li:visible').animate({opacity:0},function(){
+				$(this).hide();
+			});
+			$('#banner .pic-text').html( aLi.eq(iTar).find('img').attr('title') );
+			aListUl.find('li').eq(iTar).addClass('hover');
+			aLi.eq(iTar).show().animate({opacity:1});
+		}
+		//控制
+		aListUl.find('li').click(function(){
+			tab($(this).index());
+			iNow = $(this).index();
+		});
+		function iNowAdd(){
+			iNow++;
+			if(iNow >= aLi.size()){
+				iNow = 0;
+			}
+			tab(iNow);
+		}
+		function iNowLess(){
+			iNow--;
+			if(iNow < 0){
+				iNow = aLi.size()-1;
+			}
+			tab(iNow);
+		}
+		var timer = setInterval(iNowAdd,2000);
+		$('#banner .next').click(iNowAdd);
+		$('#banner .prev').click(iNowLess);
+
+	})();
+});
+</script>
+</head>
+<body>
+
+<div id="banner">
+	<div class="picbox">
+		<ul class="bigpic_ul">	
+			<li style="display:block;filter:alpha(opacity=100);opacity:1;"><img src="images/1.jpg" title="银魂"></li>
+			<li><img src="images/2.jpg" title="命运石之门"></li>
+			<li><img src="images/3.jpg" title="机动战士高达UC"></li>
+			<li><img src="images/4.jpg" title="夏日大作战"></li>
+			<li><img src="images/5.jpg" title="新世纪福音战士"></li>
+		</ul>
+
+		<div class="prev picbtn">prev</div>
+		<div class="next picbtn">next</div>
+		
+		<div class="pic-text"></div>
+		<ul class="pic-list">
+		</ul>
+		<div class="pic-bottom"></div>
+	</div>
+</div>
+
+
+</body>
+</html>
+
+
+
+
+

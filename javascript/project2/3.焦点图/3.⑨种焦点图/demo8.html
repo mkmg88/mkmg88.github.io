@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>8.手风琴效果</title>
+<style>
+body,ul,ol{margin:0;padding:0;}
+li{ list-style:none;}
+img{ border:none; vertical-align:top;width:600px;height:228px; }
+#box{width:600px;height:228px; position:relative; margin:30px auto; overflow:hidden;}
+ul{ width:600px;z-index:1;}
+ul li{width:600px;position:absolute;}
+</style>
+<script type="text/javascript" src="move.js"></script>
+<script>
+window.onload = function(){
+	var oUl = document.getElementsByTagName('ul')[0];
+	var aPicli = oUl.getElementsByTagName('li');
+	var i = 0;
+	var iPosition = oUl.offsetWidth - (aPicli.length - 1) * 30;
+	
+	//初始位置
+	for(i = 1; i < aPicli.length; i++){
+		aPicli[i].style.left = iPosition + (i-1)*30 + 'px';     //初始位置
+	};
+
+	for(i = 0; i < aPicli.length; i++){
+		aPicli[i].index = i;
+		aPicli[i].onmouseover = function(){
+			for(i = 0; i <= this.index; i++){
+				starMove(aPicli[i],{left:i*30});
+			};
+			for(i = this.index + 1; i < aPicli.length; i++){
+				starMove(aPicli[i],{left:iPosition + (i-1)*30});
+			};
+		}
+	};
+	
+	
+}
+</script>
+</head>
+<body>
+<div id="box">
+	<ul>
+    	<li><img src="images/1.jpg" alt=""/></li>
+        <li><img src="images/2.jpg" alt=""/></li>
+        <li><img src="images/3.jpg" alt=""/></li>
+        <li><img src="images/4.jpg" alt=""/></li>
+        <li><img src="images/5.jpg" alt=""/></li>
+    </ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>导航菜单</title>
+	<style>
+		#div1{position: absolute;left: 0;right: 0;bottom:0;text-align: center;}
+	</style>
+	<script>
+	function offsetTop(element){
+		var top = element.offsetTop;  //第一个top
+		var parent = element.offsetParent;  //获取定位的父元素
+		while(parent != null){   //定位的父元存在的话就循环执行
+			top += parent.offsetTop;   //top累加
+			parent = parent.offsetParent;   //再次获取定位的父元素
+		}
+		return top;
+	}
+
+	document.onmousemove = function(evt){
+		var aInput = document.getElementsByTagName('input');
+		var aImg = document.getElementsByTagName('img');
+		var e= evt || window.event;
+
+		for(var i = 0; i < aImg.length; i++){    
+			//1，求出图片中心点的距离
+			var x = aImg[i].offsetLeft + aImg[i].offsetWidth/2;
+			var y = offsetTop(aImg[i]) + aImg[i].offsetHeight/2;
+			//2，求出鼠标距图片中心点的距离
+			var a = x - e.clientX;    //三角形横向a的长度
+			var b = y - e.clientY;    //三角形纵向b的长度
+			var dis = Math.sqrt(a*a + b*b);  //三角形斜边c的长度：a*a + b*b = c*c，求方：Math.pow(a,2)
+			//3，算出比例，求出图片的大小
+			var scale = 1 - dis/300;  //越靠近比例越高，300参数修改敏感度
+			if(scale < 0.5){   //限制比例
+				scale = 0.5
+			}
+			aImg[i].style.width = scale*128 + 'px';  //比例*图片最大宽度（图片宽改变高也会改变）
+			
+			aInput[i].value = scale.toFixed(2);
+		}
+	}
+	
+	</script>
+</head>
+<body>
+	<input type="text">
+	<input type="text">
+	<input type="text">
+	<input type="text">
+	<input type="text">
+
+	<div id="div1">
+		<img src="images/1.png" alt="" width="64">
+		<img src="images/2.png" alt="" width="64">
+		<img src="images/3.png" alt="" width="64">
+		<img src="images/4.png" alt="" width="64">
+		<img src="images/5.png" alt="" width="64">
+	</div>
+</body>
+</html>

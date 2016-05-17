@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+#box{width:100px;height:100px;background:red;position:absolute;left:0;top:50px;}
+.bt1-p{background:#ccc;color:#000;text-align:center;}
+</style>
+
+<script type="text/javascript">
+//设定初始速度
+var iSpeedX = 6;
+var iSpeedY = 8;
+window.onload = function(){
+   var btn = document.getElementById('btn');
+   var box = document.getElementById('box');
+   btn.onclick = function(){
+      setInterval(function(){
+         //判断是否到达边界
+         var l = box.offsetLeft + iSpeedX;
+         var t = box.offsetTop + iSpeedY;
+
+         if(t >= document.documentElement.clientHeight - box.offsetHeight ){
+            t = document.documentElement.clientHeight - box.offsetHeight;
+            iSpeedY *= -1;
+            
+         }else if(t <= 0){
+            iSpeedY *= -1;
+         }
+
+         if(l >= document.documentElement.clientWidth - box.offsetWidth){
+            l = document.documentElement.clientWidth - box.offsetWidth;
+            iSpeedX *= -1;
+            
+         }else if(l <= 0){
+            iSpeedX *= -1;
+         }
+
+         box.style.top = t + 'px';
+         box.style.left = l + 'px';
+      },30)
+   }
+}
+</script>
+</head>
+
+<body>
+<input type="button" value="开始运动" id="btn">
+<div id="box" value="菜单"><p class="bt1-p">TNT</p></div>
+
+</body>
+</html>
+
+
+
+
+

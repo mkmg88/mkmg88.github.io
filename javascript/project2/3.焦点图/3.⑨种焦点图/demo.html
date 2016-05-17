@@ -1,0 +1,56 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>1.切换</title>
+<style>
+body,ul,ol{margin:0;padding:0;}
+li{ list-style:none;}
+img{ border:none; vertical-align:top;width:600px;height:228px; }
+#box{width:600px;height:228px; position:relative; margin:30px auto; overflow:hidden;}
+ul{ width:600px; position:absolute;left:0; top:0; z-index:1;}
+ul li{width:600px; display:none;}
+ol{z-index:2; width:120px; position:absolute;right:10px; bottom:10px;}
+ol li{ width:20px;height:20px; float:left;margin:0 2px; display:inline; background:#fff; color:#f60; line-height:20px; text-align:center;}
+ol .active{ background:#f60; color:#fff;}
+</style>
+<script>
+window.onload = function(){
+	var oUl = document.getElementsByTagName('ul')[0];
+	var aPicli = oUl.getElementsByTagName('li');
+	var oOl = document.getElementsByTagName('ol')[0];
+	var aList = oOl.getElementsByTagName('li');
+	var i = 0;
+	for(i = 0; i < aList.length; i++){
+		aList[i].index = i;
+		aList[i].onmouseover = function(){
+			for(i = 0; i < aList.length; i++){
+				aPicli[i].style.display = 'none';
+				aList[i].className = '';
+			}
+			aPicli[this.index].style.display = 'block';
+			aList[this.index].className = 'active';
+		}
+	}
+}
+</script>
+</head>
+<body>
+<div id="box">
+	<ul>
+    	<li style="display:block"><img src="images/1.jpg" alt=""/></li>
+        <li><img src="images/2.jpg" alt=""/></li>
+        <li><img src="images/3.jpg" alt=""/></li>
+        <li><img src="images/4.jpg" alt=""/></li>
+        <li><img src="images/5.jpg" alt=""/></li>
+    </ul>
+    <ol>
+    	<li class="active">1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+    </ol>
+</div>
+</body>
+</html>

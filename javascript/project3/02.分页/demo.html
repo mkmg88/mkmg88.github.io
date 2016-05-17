@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<title>demo</title>
+	<style>
+		#page {
+			margin: 50px 0;
+		}
+		#page a {
+			margin: 0 5px;
+		}
+
+	</style>
+	<script>
+		window.onload = function(){
+			page({
+				id: 'page',  
+				nowNum: 1,   //当前页
+				allNum: 10, //总页数
+				callback: function(now,all){  //回调函数
+					console.log('当前页：' + now + ' 总页数：' + all);
+				}
+			});
+
+		}
+		function page(option){
+			if(!option.id){ return false; };
+			//1.获取对象
+			var obj = document.getElementById(option.id);
+			var nowNum = option.nowNum || 1;
+			var allNum = option.allNum || 5;
+			var callback = option.callback || function(){};
+
+			//3.添加首页
+			if(nowNum > 3 && allNum > 5){
+				var fa = document.createElement('a');
+				fa.href = '#' + 1;
+				fa.innerHTML = '首页';
+				obj.appendChild(fa);
+			}
+			//4.添加上一页
+			if(nowNum != 1){
+				var pa = document.createElement('a');
+				pa.href = '#' + ( nowNum - 1 );
+				pa.innerHTML = '上一页';
+				obj.appendChild(pa);
+			}
+
+			//2.添加页码
+			if( allNum <= 5 ){
+				//当页码总数小于5，所有页都显示
+				for(var i=1; i<=allNum; i++){
+					var aA = document.createElement('a');
+					aA.href = '#' + i;
+					if(i == nowNum){
+						aA.innerHTML = i;
+					}else{
+						aA.innerHTML = '[' + i + ']';
+					}
+					obj.appendChild(aA);
+				}
+			}else {
+				//当页码总数大于5
+				for(var i=1; i<=5;i++){
+					
+					var aA = document.createElement('a');
+
+					if( nowNum < 3 ){        //页码小于3，不能放中间的情况，i从1开始
+						aA.href = '#' + i;   
+						if(i == nowNum){
+							aA.innerHTML = i;
+						}else{
+							aA.innerHTML = '[' + i + ']';
+						}
+
+					}else if( allNum - nowNum < 3){    //页码在最后3位，不能放中间的情况，i从倒数第5位开始
+						aA.href = '#' + ( allNum -5 + i );   
+						if(( allNum -5 + i ) == nowNum){
+							aA.innerHTML = ( allNum -5 + i );
+						}else{
+							aA.innerHTML = '[' + ( allNum -5 + i ) + ']';
+						}
+
+					}else{
+						aA.href = '#' + ( nowNum -3 + i );   //页码可以放在中间，i从当前页的前两位开始
+						if(i == 3){                        
+							aA.innerHTML = ( nowNum -3 + i );  
+						}else{
+							aA.innerHTML = '[' + ( nowNum -3 + i ) + ']';
+						}
+					}
+
+					obj.appendChild(aA);
+				}
+			}
+
+			//5.添加下一页
+			if(nowNum != allNum){
+				var na = document.createElement('a');
+				na.href = '#' + (nowNum + 1);
+				na.innerHTML = '下一页';
+				obj.appendChild(na);
+			}
+			//6.添加尾页
+			if( allNum - nowNum >= 3 && allNum > 5 ){
+				var la = document.createElement('a');
+				la.href = '#' + allNum;
+				la.innerHTML = '尾页';
+				obj.appendChild(la);
+			}
+
+			//8.调用回调函数
+			callback(nowNum,allNum);
+
+			//7.添加点击事件
+			var aA = obj.getElementsByTagName('a');
+			for(var i=0; i<aA.length; i++){
+				aA[i].onclick = function(){
+					var nowNum = parseInt(this.getAttribute('href').substr(1));
+					obj.innerHTML = '';
+					page({
+						id: option.id,  
+						nowNum: nowNum,     //当前页
+						allNum: allNum,     //总页数
+						callback: callback  //回调函数
+					});
+					return false; //阻止地址栏后生成页码
+				}
+			}
+		}
+	</script>
+</head>
+<body>
+	
+
+
+	<div id="page">
+	</div>
+
+	<p>
+		要求：<br>
+		1.最多显示5页<br>
+		2.在第一页时，上一页隐藏。在最后一页时，下一页隐藏。<br>
+		3.当第一页的页码看得见的时候，'首页'隐藏。当最后一页的页码看得见时，'最后一页'隐藏。<br>
+		4.页数足够时，当前页码显示在中间，左右数目相同。
+	</p>
+	<p>
+		规则：<br>
+		<strong>1.添加页码：</strong><br>
+		当页码总数小于等于5，所有页都显示<br>
+		当页码总数大于5时：<br>
+		--&gt;页码在前面2位，不能放中间，i从1开始<br>
+		--&gt;页码在最后2位，不能放中间，i从倒数第5位开始<br>
+		--&gt;其他情况，页码可以放在中间，i从当前页的前两位开始<br>
+		<strong>2.首页出现的条件：</strong>当前页面大于3，并且总页数大于5<br>
+		<strong>3.上一页出现的条件：</strong>当前页不在第一页；<br>
+		<strong>4.下一页出现的条件：</strong>当前页不在最后一页；<br>
+		<strong>5.尾页出现的条件：</strong>当前页距尾页大于3，并且总页数大于5<br>
+		<strong>6.添加点击事件：</strong>跳转到对应页，重新调用函数排列
+	</p>
+</body>
+</html>

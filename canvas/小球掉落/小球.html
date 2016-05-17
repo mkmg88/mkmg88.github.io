@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>jquery</title>
+</head>
+<style>
+	* {
+		margin: 0;
+		padding: 0;
+	}
+	#canvas {
+		width: 600px;
+		height: 500px;
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		border: 1px solid #ccc;
+	}
+</style>
+<script>
+	var canvas_width = 824;
+	var canvas_height = 600;
+
+	window.onload = function(){
+		var canvas = document.getElementById('canvas');
+		canvas.width = canvas_width;
+		canvas.height = canvas_height;
+		var context = canvas.getContext('2d');
+
+		//1.小球数据
+		var ball = { x:300, y:100, r:20, g:3, vX:-12, vY:0, color:'red' };  
+
+		//4.定时器
+		setInterval(function(){
+			update(ball);    //刷新数据
+			render(ball,context);   //不断渲染小球
+		},50);
+		
+	}
+
+	//3.小球运动
+	function update(ball){ 
+		ball.x += ball.vX;    //x轴速度值
+		ball.y += ball.vY;	  //y轴速度值
+		ball.vY += ball.g;    //重力
+		
+		if(ball.y + ball.r >= canvas_height){    //底边碰撞检测
+			ball.y = canvas_height - ball.r;	
+			ball.vY *= -0.6;
+			ball.vX *= 0.6;
+		}
+	}
+
+	//2.绘制小球
+	function render(ball,ctx){
+		ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+		ctx.fillStyle = ball.color;
+		ctx.beginPath();
+		ctx.arc(ball.x, ball.y, ball.r, 0, 2*Math.PI);
+		ctx.closePath();
+
+		ctx.fill();
+	}
+</script>
+<body>
+	<canvas id="canvas"></canvas>
+</body>
+</html>

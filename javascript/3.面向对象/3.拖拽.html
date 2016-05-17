@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+*{margin: 0;padding: 0;}
+#box{width:100px;height:100px;background:#ccc;position:absolute;left:100px;top:100px;}
+#box2{width:100px;height:100px;background:red;position:absolute;left:100px;top:300px;}
+</style>
+<script>
+window.onload = function(){
+	var tz = new Tz('box');
+	
+}
+//var _this = null;    
+
+
+
+var Tz = function (obj){
+	this.box = document.getElementById(obj);
+	this.ckinboxX = 0;
+	this.ckinboxY = 0;
+	var _this = this;
+	this.box.onmousedown = function(evt){
+		var oEvent = evt||window.event;
+		_this.down(oEvent);
+	}
+}
+
+
+
+Tz.prototype.down = function(oEvent){
+	this.ckinboxX = oEvent.clientX - this.box.offsetLeft;
+	this.ckinboxY = oEvent.clientY - this.box.offsetTop;
+
+	//方法里的this也指的是对象
+	var _this = this;
+	
+	document.onmousemove = function(evt){
+		var oEvent = evt||window.event;
+		_this.move(oEvent);
+	}
+	document.onmouseup = function(){
+		_this.up();
+	}
+	return false;
+}
+
+Tz.prototype.move = function(oEvent){
+	this.box.style.left = oEvent.clientX - this.ckinboxX + 'px';
+	this.box.style.top = oEvent.clientY - this.ckinboxY + 'px';
+
+}
+Tz.prototype.up = function(){
+	document.onmousemove = null;
+	document.onmouseup = null;
+}
+
+
+</script>
+
+</head>
+<body style="height:2000px;">
+
+<div id="box">
+tht
+</div>
+
+<div id="box2">
+tht
+</div>
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link rel="stylesheet" type="text/css" href="style/base.css">
+<style>
+*{margin:0;padding:0;}
+#box{width:100px;height:30px;background:red;float:left;position:absolute;}
+.cc{background:yellow;display:none;position:absolute;top:30px;width:200px;height:100px;}
+.login{float:right;background:red;width:100px;height:30px;cursor:pointer;}
+.loginbox{width:400px;height:250px;background:green;position:absolute;display:none;z-index:9999;}
+.logintop{background:yellow;height:30px;width:100%;cursor:move;}
+.close{cursor:pointer;float:right;margin-right:10px;}
+.screen{position:absolute;background:#000;left:0;top:0;filter:alpha(opacity=0);opacity:0;display:none;z-index:9998;}
+.vx{position:absolute;width:100px;height:100px;}
+#button{width:80px;margin:0 auto;}
+.anim{width:100px;height:100px;background:yellow;position:absolute;top:100px;left:0;filter:alpha(opacity=30);opacity:0.3;}
+.anim2{width:100px;height:100px;background:yellow;position:absolute;top:210px;left:0;}
+.anim3{width:100px;height:100px;background:yellow;position:absolute;top:320px;left:0;}
+.fenxiang{height:200px;width:200px;background:blue;position:fixed;right:-160px;}
+</style>
+<script type="text/javascript" src="js/base.js"></script>
+<script type="text/javascript" src="js/tool.js"></script>
+<script type="text/javascript" src="js/base_drag.js"></script>
+<script type="text/javascript" src="js/base_move.js"></script>
+<script type="text/javascript">
+
+$(function(){
+	//下拉菜单
+	$('#box').hover(function(){
+		$(this).css('background','blue');
+		$('.cc').show();
+	},function(){
+		$(this).css('background','red');
+		$('.cc').hide();
+	});
+
+	//弹出框/锁屏遮罩
+	var loginbox = $('.loginbox');
+	var screen = $('.screen');
+	screen.lock();        //全屏大小
+	loginbox.center(400,250).drag('logintop').resize(function(){     //居中,拖拽，窗口大小改变
+		screen.lock();    //窗口大小改变时重新计算遮罩层大小，并且会判断element的距离,超过就拉回到可视区
+	});  
+	$('.login').click(function(){
+		screen.show().starMove({'opacity':30});
+		loginbox.show().center(400,250);
+		document.documentElement.style.overflow = 'hidden'; 
+	});
+	$('.close').click(function(){
+		screen.starMove({'opacity':0},function(){
+			screen.hide();
+		});
+		loginbox.hide();
+		document.documentElement.style.overflow = 'auto'; 
+	});
+
+	//拖拽
+	$('.vx').css('background','pink').drag();
+
+	//运动
+	$('#button').click(function(){
+		$('.anim').starMove({'left':500,'top':0}).css('background','red');
+		$('.anim2').starMove({'left':400},function(){
+			$('.anim2').starMove({'top':0},function(){
+				$('.anim2').starMove({'height':320});
+			});
+		});
+		$('.anim3').animate('left',500);
+	});
+
+	$('.anim').hover(function(){
+		$(this).starMove({'opacity':100});
+	},function(){
+		$(this).starMove({'opacity':30});
+	})
+		
+	//分享侧边栏
+	$('.fenxiang').hover(function(){
+		$(this).starMove({'right':0});
+	},function(){
+		$(this).starMove({'right':-160});
+	}).css('color','#fff').click(function(){
+		$("html,body").starMove({scrollTop: 0});
+	})
+
+	//位置固定
+	$('.fenxiang').css('top',(getInner().height - parseInt(getStyle($('.fenxiang').first(),'height')))/2 + 'px');
+	//IE6兼容
+	if(sys.ie && sys.ie < 7){
+		$('.fenxiang').css('position','absolute');
+		addEvent(window,'resize',function(){
+			$('.fenxiang').css('top',(getInner().height - parseInt(getStyle($('.fenxiang').first(),'height')))/2 + getScroll().top + 'px');
+		});
+		addEvent(window,'scroll',function(){
+			$('.fenxiang').css('top',(getInner().height - parseInt(getStyle($('.fenxiang').first(),'height')))/2 + getScroll().top + 'px');
+		});
+	}
+	
+	$('#button2').toggle(function(){
+		alert(this);
+	});
+
+
+});	
+	
+
+
+
+</script>
+</head>
+<body style="height:2000px;overflow-x:hidden;">
+
+<div style="width:800px;margin:0 auto;">
+
+    <div id="box">下拉菜单</div>
+    <p class="cc">3</p>
+	
+	<p class="login">登陆</p>
+    <div class="loginbox"><p class="logintop"><span class="close">关闭</span></p><input type="text" ></div>
+
+    <div class="screen"></div>
+    
+	<div class="vx" style="top:50px;">
+		
+	</div>
+	<div class="vx" style="top:170px;"></div>
+	<div class="vx" style="top:300px;"></div>
+    
+</div>
+
+<div class="anim"></div>
+<div class="anim2"></div>
+<div class="anim3"></div>
+<span style="width:1px;height:600px;position:absolute;left:500px;background:#000;"></span>
+<input type="button" value="移动" id="button" >
+<input type="button" value="颜色切换" id="button2" >
+<div class="fenxiang">分</div>
+</body>
+</html>
+
+
+
+
+

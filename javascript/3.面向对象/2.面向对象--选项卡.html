@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+*{margin: 0;padding: 0;}
+#box,#box2{width:400px;height:200px;background:#ccc;margin:20px auto;border:1px solid #000;}
+.topul{list-style:none;}
+.topul li{line-height:30px;width:99px;text-align:center;border-right:1px solid #000;float:left;border-bottom: 1px solid #000;}
+.topul li.hover{width:99px;background:#fff;}
+
+.botdiv{width:400px;clear:both;}
+.botdiv .botbox{display:none;background:#fff;width:400px;height:169px;}
+</style>
+<script>
+window.onload = function(){
+	var tab = new Tab('box');
+	var tab2 = new Tab('box2');
+}
+
+
+function Tab(obj){
+	var box = document.getElementById(obj);
+	this.aBtn = box.getElementsByTagName('ul')[0].getElementsByTagName('li');
+	this.aDiv = box.getElementsByTagName('div')[0].getElementsByTagName('div');
+	var i = 0;
+	var _this = this;
+	for(i = 0;i < this.aBtn.length;i ++){
+		this.aBtn[i].index = i;
+		this.aBtn[i].onclick = function(){
+			_this.changetab(this);
+		}
+	}
+}
+Tab.prototype.changetab = function(oBtn){
+	for(i=0;i<this.aBtn.length;i++){
+		this.aBtn[i].className = '';
+		this.aDiv[i].style.display = 'none';
+	}
+	this.aBtn[oBtn.index].className = 'hover';
+	this.aDiv[oBtn.index].style.display = 'block';
+}
+</script>
+
+</head>
+<body >
+
+<div id="box">
+	<ul class="topul">
+		<li class="hover">第一</li>
+		<li>第二</li>
+		<li>第三</li>
+		<li>第四</li>
+	</ul>
+	<div class="botdiv">
+		<div class="botbox" style="display:block">1</div>
+		<div class="botbox">2</div>
+		<div class="botbox">3</div>
+		<div class="botbox">4</div>
+	</div>	
+</div>
+<div id="box2">
+	<ul class="topul">
+		<li class="hover">第一</li>
+		<li>第二</li>
+		<li>第三</li>
+		<li>第四</li>
+	</ul>
+	<div class="botdiv">
+		<div class="botbox" style="display:block">1</div>
+		<div class="botbox">2</div>
+		<div class="botbox">3</div>
+		<div class="botbox">4</div>
+	</div>	
+</div>
+
+
+
+</body>
+</html>

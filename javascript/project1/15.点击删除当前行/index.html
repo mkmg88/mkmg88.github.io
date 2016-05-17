@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+#box{list-type:none;}
+</style>
+
+<script type="text/javascript">
+window.onload = function(){
+   var btn = document.getElementById('btn');
+   var box = document.getElementById('box'); 
+   var a = document.getElementsByTagName('a');
+   var oli = box.children;
+   var i = 0;
+   var x = oli.length;
+   
+   //点击全部删除
+   btn.onclick = function(){
+	 if(oli.length != 0){
+		for(i=0;i<x;i++){
+			box.removeChild(oli[0])
+		}
+	  }
+	}
+	
+	//点击a删除当前行，事件函数中的this指的是事件对象
+	for(i=0;i<a.length;i++){
+		a[i].onclick = function(){
+			box.removeChild(this.parentNode);
+		}
+	}
+   
+}
+</script>
+</head>
+
+<body>
+
+<input type="button" value="全部删除" id="btn">
+<ul id="box">
+
+<li>1<a href="javascript:;">删除</a></li>
+<li>2<a href="javascript:;">删除</a></li>
+<li>3<a href="javascript:;">删除</a></li>
+<li>4<a href="javascript:;">删除</a></li>
+<li>5<a href="javascript:;">删除</a></li>
+<li>6<a href="javascript:;">删除</a></li>
+<li>7<a href="javascript:;">删除</a></li>
+<li>8<a href="javascript:;">删除</a></li>
+</ul>
+
+</div>
+</body>
+</html>
+
+
+
+
+

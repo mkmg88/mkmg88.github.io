@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+*{margin:0;padding:0;}
+body{}
+div{margin-bottom:5px;margin-right:10px;width:100px;height:100px;background:red;}
+.div3{filter:alpha(opacity:30);opacity:0.3;}
+</style>
+
+<script type="text/javascript">
+window.onload = function(){
+	var aDiv = document.getElementsByTagName('div');
+	aDiv[0].timer = null;
+	aDiv[0].onmouseover = function(){
+		starMove(this,'width',300);
+	}
+	aDiv[0].onmouseout = function(){
+		starMove(this,'width',100);
+	}
+	aDiv[2].timer = null;
+	aDiv[2].onmouseover = function(){
+		starMove(this,'opacity',100);
+	}
+	aDiv[2].onmouseout = function(){
+		starMove(this,'opacity',30);
+	}
+}
+
+
+function getByClass(oParent,oClass){
+	var aEle = document.getElementById(oParent).getElementsByTagName('*');
+	var aBox = [];
+	var i = 0;
+	for(i=0;i<aEle.length;i++){
+		if(aEle[i].className == oClass) aBox.push(aEle[i]);
+	}
+	return aBox;
+};
+//获取计算后的样式
+function getStyle(obj, attr)
+{
+	if(obj.currentStyle)
+	{
+		return obj.currentStyle[attr];
+	}
+	else
+	{
+		return getComputedStyle(obj, false)[attr];
+	}
+}
+
+//运动代码
+function starMove(obj,attr,iTarget){
+	clearInterval(obj.timer);
+    obj.timer = setInterval(function(){
+       var objw = 0;
+       attr == 'opacity' ?  objw = parseInt(parseFloat(getStyle(obj, attr))*100): objw = parseInt(getStyle(obj,attr));
+ 
+        var iSpeed = (iTarget - objw)/8;
+        iSpeed = iSpeed > 0 ? Math.ceil(iSpeed) : Math.floor(iSpeed);
+ 		
+        if(objw == iTarget){
+            clearInterval(obj.timer);
+        }else{
+            if(attr == 'opacity'){     //是透明度
+                obj.style.filter = 'alpha(opacity:' + (objw + iSpeed) +')';  
+                obj.style.opacity = (objw + iSpeed)/100;
+            }else{                   //不是透明度
+                obj.style[attr] = objw + iSpeed + 'px';
+            }
+        }
+    },30)
+}
+
+
+</script>
+</head>
+
+<body style="overflow-x:hidden">
+	<div class="div1" class="div1"></div>
+	<div class="div2" class="div1"></div>
+	<div class="div3"></div>
+
+</body>
+</html>
+
+
+
+
+

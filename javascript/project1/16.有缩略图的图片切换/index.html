@@ -1,0 +1,199 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link rel="stylesheet" type="text/css" href="style/base.css" >
+<style>
+
+ul{list-style:none;}
+body{color:#fff;}
+#box{width:400px;height:500px;background:#ccc;margin:0 auto;position:relative;}
+.bigpicbox{width:600px;height:400px;overflow:hidden;}
+.bigpic{width:400px;}
+.bigpic li{}
+.bigpic img{height:400px;max-width:400px;display:block;}
+.leftbox{height:400px;width:200px;background:red;position:absolute;left:0;top:0;filter:alpha(opacity:0);opacity:0;}
+.rightbox{height:400px;width:200px;background:green;position:absolute;right:0;top:0;filter:alpha(opacity:0);opacity:0;}
+.leftbtn{width:60px;height:60px;background:url(images/btn.gif) no-repeat left top;position:absolute;left:10px;top:170px;filter:alpha(opacity:0);opacity:0;}
+.rightbtn{width:60px;height:60px;background:url(images/btn.gif) no-repeat left -60px;position:absolute;right:10px;top:170px;filter:alpha(opacity:0);opacity:0;}
+.pictext{position:absolute;bottom:100px;width:400px;background:#000;line-height:24px;filter:alpha(opacity:50);opacity:0.5;}
+.pictext .p1{float:left;margin-left:10px;}
+.pictext .p2{float:right;margin-right:10px;}
+.smallpicbox{height:100;width:400px;overflow:hidden;}
+.smallpicbox ul{}
+.smallpicbox ul li{float:left;width: 100px;height:100px;filter:alpha(opacity:50);opacity:0.5;}
+.smallpicbox ul li img{height:100px;height:100px;}
+</style>
+
+<script type="text/javascript" src="move.js"></script>
+<script type="text/javascript">
+function getByClass(oParent,oClass){
+	var aEle = document.getElementById(oParent).getElementsByTagName('*');
+	var aBox = [];
+	var i = 0;
+	for(i=0;i<aEle.length;i++){
+		if(aEle[i].className == oClass) aBox.push(aEle[i]);
+	}
+	return aBox;
+};
+
+window.onload = function(){
+	//鼠标移入显示 
+	var leftbox = getByClass('box','leftbox')[0];
+	var rightbox = getByClass('box','rightbox')[0]
+	var leftbtn = getByClass('box','leftbtn')[0];
+	var rightbtn = getByClass('box','rightbtn')[0];
+	
+	leftbtn.onmouseover = leftbox.onmouseover = function(){
+		starMove(leftbtn,'opacity',100);
+	}
+	leftbox.onmouseout = function(){
+		starMove(leftbtn,'opacity',0);
+	}
+	rightbtn.onmouseover = rightbox.onmouseover = function(){
+		starMove(rightbtn,'opacity',100);
+	}
+	rightbox.onmouseout = function(){
+		starMove(rightbtn,'opacity',0);
+	}
+
+	//点击小图显示大图
+	var bigpic = getByClass('box','bigpic')[0];
+	var aLibig = bigpic.getElementsByTagName('li');
+	var smallpic = getByClass('box','smallpic')[0];
+	var aLismall = smallpic.getElementsByTagName('li');
+	var pictext = getByClass('box','pictext')[0];
+	//获取文本
+	var p1 = getByClass('box','pictext')[0].children[0];
+	var p2 = getByClass('box','pictext')[0].children[1];
+	var pictext = ['第一','第二','第三','第四','第五','第六','第七','第八'];
+
+	//设置下面宽度
+	smallpic.style.width = aLismall.length*aLismall[0].offsetWidth + 'px';
+	//设置默认文本
+	p1.innerHTML = pictext[0];
+	p2.innerHTML = (1) + '/' + aLismall.length;
+
+	var iNow = 0;
+	var i = 0;
+
+
+	for(i=0;i<aLismall.length;i++){
+		aLismall[i].index = i;
+		
+		//小图淡入淡出
+		aLismall[i].onmouseover = function(){
+			starMove(this,'opacity',100)
+		}
+		aLismall[i].onmouseout = function(){
+			if(this.index != iNow)starMove(this,'opacity',50);
+		}
+		
+		starMove(aLismall[0],'opacity',100);
+
+		aLismall[i].onclick = function(){
+			iNow = this.index;
+
+			tab();
+		}
+	}
+		
+	function tab(){
+		//点击大图移动
+		starMove(bigpic,'marginTop',-(iNow*400));
+
+		//小图淡入淡出
+		for(i=0;i<aLismall.length;i++){
+			starMove(aLismall[i],'opacity',50);
+		}
+		starMove(aLismall[iNow],'opacity',100);
+		
+
+		//设置文本
+		p1.innerHTML = pictext[iNow];
+		p2.innerHTML = (iNow + 1) + '/' + aLismall.length;
+
+		//小图移动
+		if(iNow > 0 && iNow < aLismall.length-2 ){
+			starMove(smallpic,'marginLeft',-((iNow-1)*100));
+		}
+
+	}
+
+
+
+	//点击左右按钮
+	leftbtn.onclick = function(){
+		
+		if(iNow!=0)
+			{
+				iNow--;
+			}
+		tab();
+	}
+
+	rightbtn.onclick = function(){
+		
+		if(iNow!= aLismall.length-1)
+			{
+				iNow++;
+			}
+		tab();
+	}
+
+
+
+}
+
+</script>
+
+</head>
+
+<body>
+
+<div id="box">
+	<div class="bigpicbox">
+		<ul class="bigpic">	
+			<li><img src="images/1.jpg"></li>
+			<li><img src="images/2.jpg"></li>
+			<li><img src="images/3.jpg"></li>
+			<li><img src="images/4.jpg"></li>
+			<li><img src="images/5.jpg"></li>
+			<li><img src="images/1.jpg"></li>
+			<li><img src="images/2.jpg"></li>
+			<li><img src="images/3.jpg"></li>
+		</ul>
+	</div>
+	<div class="leftbox"></div>
+	<div class="rightbox"></div>
+
+	<div class="leftbtn"></div>
+	<div class="rightbtn"></div>
+
+	<div class="pictext"><p class="p1">第一</p><span class="p2"></span></div>
+
+
+	<div class="smallpicbox">
+		<ul class="smallpic">	
+			<li><img src="images/1.jpg"></li>
+			<li><img src="images/2.jpg"></li>
+			<li><img src="images/3.jpg"></li>
+			<li><img src="images/4.jpg"></li>
+			<li><img src="images/5.jpg"></li>
+			<li><img src="images/1.jpg"></li>
+			<li><img src="images/2.jpg"></li>
+			<li><img src="images/3.jpg"></li>
+		</ul>
+	</div>
+
+</div>
+
+
+</body>
+</html>
+
+
+
+
+

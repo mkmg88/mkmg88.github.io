@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+*{margin:0;padding:0;}
+body{position: relative;}
+.div1{position: fixed;right: 0;bottom:0;background:#475a65;width:40px;height:40px;z-index:10;z-index:20002;}
+.div2{position: fixed;width: 150px;height:30px;right:-100px;bottom:5px;background:#b61d1d;z-index:20001;}
+.div3{position: absolute;left: 0;top:0;width:190px;background:#13b861;height:200px;opacity:0.3;z-index:2000;display:none;}
+</style>
+<script type="text/javascript" src="move.js"></script>
+<script type="text/javascript">
+window.onload = function(){
+	var box1 = document.getElementById('box1');
+	var box2 = document.getElementById('box2');
+	var box3 = document.getElementById('box3');
+
+	box1.onclick = function(){
+		starMove(box2,'right',40,function(){
+			box3.style.display='block';
+			starMove(box3,'top',-170)
+		});
+	}
+	box3.onclick = function(){
+		starMove(box3,'top',0,function(){
+			box3.style.display='none';
+			starMove(box2,'right',-100)
+		})
+	}
+}
+</script>
+</head>
+
+<body style="overflow-x:hidden">
+	<div id="box1" class="div1"></div>
+	<div id="box2"class="div2"><div id="box3"class="div3">123123</div></div>
+	
+</body>
+</html>
+
+
+
+
+

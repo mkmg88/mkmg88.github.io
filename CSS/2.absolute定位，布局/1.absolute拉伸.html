@@ -1,0 +1,32 @@
+
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>浮动与两侧皆自适应的流体布局</title>
+<style>
+
+html,body {height:100%;overflow: :hidden;margin:0;}
+
+.head{position:absolute;top:0;left:0;right:0;height:100px;background:yellow;}
+
+.left{position:absolute;left:0;width:100px;top:100px;bottom:100px;background:blue;}
+.content{position:absolute;left:100px;right:0;top:100px;bottom:100px;background:red;overflow: auto;}
+
+.bottom{position:absolute;left:0;right:0;bottom:0;height:100px;background:orange;}
+</style>
+</head>
+
+<body>
+<div class="head"></div>
+<div class="left"></div>
+<div class="content">
+    <img src="00.jpg" width="500"><br />
+    <img src="00.jpg" width="500"><br />
+    <img src="00.jpg" width="500"><br />
+    <img src="00.jpg" width="500"><br />
+    <img src="00.jpg" width="500"><br />
+</div>
+<div class="bottom"></div>
+</body>
+</html>

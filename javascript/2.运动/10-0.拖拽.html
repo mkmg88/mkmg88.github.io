@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+#box{width:50px;height:50px;background:red;position:absolute;left:0;top:0px;}
+.bt1-p{background:#ccc;color:#000;text-align:center;}
+</style>
+
+<script type="text/javascript">
+var iClickX  = 0;
+var iClickY = 0;
+window.onload = function(){
+   var obox = document.getElementById('box');
+   obox.onmousedown = function(evt){
+      var e = evt || event;
+      iClickX = e.clientX - obox.offsetLeft;
+      iClickY = e.clientY - obox.offsetTop;
+
+      document.onmousemove = function(evt){
+         var e = evt || event;
+         obox.style.left = e.clientX - iClickX + 'px';
+         obox.style.top = e.clientY - iClickX + 'px';
+         
+         //判断是否越过边界
+         if(obox.offsetLeft < 0){
+            obox.style.left = '0px';
+         }else if(obox.offsetTop < 0){
+            obox.style.top = '0px';
+         }else if(obox.offsetLeft > document.documentElement.clientWidth - obox.offsetWidth){
+            obox.style.left = document.documentElement.clientWidth - obox.offsetWidth + 'px';
+         }else if(obox.offsetTop > document.documentElement.clientHeight - obox.offsetHeight){
+            obox.style.top = document.documentElement.clientHeight - obox.offsetHeight + 'px';
+         }
+
+         document.onmouseup = function(){
+            document.onmousemove = null;
+            document.onmouseup = null;
+         }
+      }
+      return false;  //阻止默认事件，清除火狐低版本的bug
+   }
+}
+</script>
+</head>
+
+<body>
+
+<div id="box" value="菜单"><p class="bt1-p">TNT</p></div>
+
+</body>
+</html>
+
+
+
+
+

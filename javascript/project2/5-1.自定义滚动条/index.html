@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>自定义滚动条</title>
+<link rel="stylesheet" type="text/css" href="style/base.css" >
+<style>
+#box{width:450px;height:400px;border:1px solid black;margin:30px auto 0;padding:10px;}
+.textbox{float:left;height:400px;width:440px;background:yellow;position:relative;overflow:hidden;}
+.text{position:absolute;left:0;top:0;}
+.scrollbox{float:right;width:10px;background:#ccc;height:400px;position:relative;}
+.scroll{position:absolute;left:0;top:0;background:red;width:10px;height:10px;}
+</style>
+
+<script type="text/javascript" src="move.js"></script>
+<script type="text/javascript">
+function addEvent(obj,type,fn){
+	if(obj.attachEvent){
+		obj.attachEvent('on' + type,fn);
+	}else{
+		obj.addEventListener(type,fn,false);
+	}
+}
+
+function getByClass(id,className){
+	var arr1 = document.getElementById(id).getElementsByTagName('*');
+	var arr2 = [];
+	for(var i=0;i<arr1.length;i++){
+		if(arr1[i].className == className) arr2.push(arr1[i]);
+	}
+	return arr2;
+}
+
+addEvent(window,'load',function(){
+	var scrollbox = getByClass('box','scrollbox')[0];
+	var scroll = getByClass('box','scroll')[0];
+	var textbox = getByClass('box','textbox')[0];
+	var text = getByClass('box','text')[0];
+	//滚动条高度判断
+	if(textbox.offsetHeight > text.offsetHeight){
+		scroll.style.height = 0 + 'px';
+	}else{
+		scroll.style.height = textbox.offsetHeight/text.offsetHeight * 300 + 'px';
+	}
+	//滚动条拖拽
+	scroll.onmousedown = function(evt){
+		var e = evt || event;
+		var icliY = e.clientY - this.offsetTop;
+		document.onmousemove = function(evt){
+			var e = evt || event;
+			var l = e.clientY - icliY;
+			scrmove(l);
+			if(this.setCapture) this.setCapture();
+		};
+		document.onmouseup = function(){
+			document.onmousemove = null;
+			document.onmouseup = null;
+		}
+		if(this.releaseCapture) this.releaseCapture();
+		return false;
+	};
+	//滚动函数
+	function scrmove(l){
+		if(l<0){
+		l=0;
+		}else if(l>scrollbox.offsetHeight - scroll.offsetHeight){
+			l = scrollbox.offsetHeight - scroll.offsetHeight;
+		}
+		scroll.style.top = l + 'px';
+		
+		var bfen = l/(scrollbox.offsetHeight - scroll.offsetHeight);
+		var itextTop = parseInt(-bfen * (text.offsetHeight - textbox.offsetHeight));
+		//text.style.top = -bfen * (text.offsetHeight - textbox.offsetHeight) + 'px';
+		starMove(text,{top:itextTop});
+	}
+	//鼠标滚轮事件
+	addEvent(text,'mousewheel',sheel);
+	addEvent(text,'DOMMouseScroll',sheel);
+	function sheel(evt){
+		var e = evt || event;
+		var bDown = true;
+		bDown = e.wheelDelta ? e.wheelDelta < 0 : e.detail >0 ;
+		if(bDown){
+			//往下
+			var l = scroll.offsetTop + 10;
+			scrmove(l);
+		}else{
+			//往上
+			var l = scroll.offsetTop - 10;
+			scrmove(l);
+		}
+		if(e.preventDefault){
+			 e.preventDefault();   //阻止默认滚动条事件FF
+		}else{
+			e.returnValue = false; //阻止默认滚动条事件IE
+		}                
+	}
+
+});
+
+
+
+
+
+</script>
+
+</head>
+<body>
+<div id="box">
+	<div class="textbox">
+		<div class="text">
+			PSP32ソフト『ダンガンロンパ 希望の学園と絶望の高校生』の楽曲、全63曲を収録したサウンドアルバム<br/><br/>
+			「ダンガンロンパ オリジナルサウンドトラック』です。<br/><br/>
+			殺人事件の真相を暴くため学級裁判でアクションを駆使して相手を論破する、<br/>
+			ハイスピード推理アクション『ダンガンロンパ 希望の学園と絶望の高校生』から、
+			PSP32ソフト『ダンガンロンパ 希望の学園と絶望の高校生』の楽曲、全63曲を収録したサウンドアルバム<br/>
+			「ダンガンロンパ オリジナルサウンドトラック』です。<br/><br/>
+			<img src="images/1.jpg">
+			殺人事件の真相を暴くため学級裁判でアクションを駆使して相手を論破する、<br/><br/>
+			ハイスピード推理アクション『ダンガンロンパ 希望の学園と絶望の高校生』から、<br/>
+			PSP32ソフト『ダンガンロンパ 希望の学園と絶望の高校生』の楽曲、全63曲を収録したサウンドアルバム<br/><br/>
+			「ダンガンロンパ オリジナルサウンドトラック』です。<br/><br/>
+			殺人事件の真相を暴くため学級裁判でアクションを駆使して相手を論破する、<br/>
+			ハイスピード推理アクション『ダンガンロンパ 希望の学園と絶望の高校生』から、
+			PSP32ソフト『ダンガンロンパ 希望の学園と絶望の高校生』の楽曲、全63曲を収録したサウンドアルバム<br/>
+			「ダンガンロンパ オリジナルサウンドトラック』です。<br/>
+			殺人事件の真相を暴くため学級裁判でアクションを駆使して相手を論破する、<br/><br/>
+			ハイスピード推理アクション『ダンガンロンパ 希望の学園と絶望の高校生』から、<br/>
+			PSP32ソフト『ダンガンロンパ 希望の学園と絶望の高校生』の楽曲、全63曲を収録したサウンドアルバム<br/><br/>
+			「ダンガンロンパ オリジナルサウンドトラック』です。<br/><br/>
+			殺人事件の真相を暴くため学級裁判でアクションを駆使して相手を論破する、<br/>
+			ハイスピード推理アクション『ダンガンロンパ 希望の学園と絶望の高校生』から、
+			PSP32ソフト『ダンガンロンパ 希望の学園と絶望の高校生』の楽曲、全63曲を収録したサウンドアルバム<br/>
+			「ダンガンロンパ オリジナルサウンドトラック』です。<br/>
+			殺人事件の真相を暴くため学級裁判でアクションを駆使して相手を論破する、<br/><br/>
+			ハイスピード推理アクション『ダンガンロンパ 希望の学園と絶望の高校生』から、<br/>
+			PSP32ソフト『ダンガンロンパ 希望の学園と絶望の高校生』の楽曲、全63曲を収録したサウンドアルバム<br/><br/>
+			「ダンガンロンパ オリジナルサウンドトラック』です。<br/><br/>
+			殺人事件の真相を暴くため学級裁判でアクションを駆使して相手を論破する、<br/>
+			ハイスピード推理アクション『ダンガンロンパ 希望の学園と絶望の高校生』から、
+			PSP32ソフト『ダンガンロンパ 希望の学園と絶望の高校生』の楽曲、全63曲を収録したサウンドアルバム<br/>
+			「ダンガンロンパ オリジナルサウンドトラック』です。<br/>
+			殺人事件の真相を暴くため学級裁判でアクションを駆使して相手を論破する、<br/><br/>
+			ハイスピード推理アクション『ダンガンロンパ 希望の学園と絶望の高校生』から、<br/>
+		</div>
+	</div>
+	<div class="scrollbox">
+		<div class="scroll"></div>
+	<div>
+</div>
+</body>
+</html>
+
+
+
+
+

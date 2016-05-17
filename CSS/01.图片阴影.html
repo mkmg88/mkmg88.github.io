@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<title>CSS曲线阴影和翘边阴影</title>
+</head>
+<style>
+.wrap {
+	width:600px;
+	margin-right: auto;
+	margin-left: auto;
+	text-align: center;
+	font-family: 微软雅黑;
+}
+.effect {
+	position: relative;
+	margin-top: 80px;
+	margin-bottom: 80px;
+	line-height: 180px;
+	background: #fff;
+	-webkit-box-shadow: 0 1px 4px rgba(0,0,0,0.3),0 0 40px rgba(0,0,0,0.1) inset;
+	   -moz-box-shadow: 0 1px 4px rgba(0,0,0,0.3),0 0 40px rgba(0,0,0,0.1) inset;
+	        box-shadow: 0 1px 4px rgba(0,0,0,0.3),0 0 40px rgba(0,0,0,0.1) inset;
+}
+
+.effect::after {
+	content: '';
+	background: #fff;
+	position: absolute;
+	left: 10px;
+	right: 10px;
+	top:50%;
+	z-index: -1;
+	bottom: 0px;
+	-webkit-border-radius: 100px/10px;
+	   -moz-border-radius: 100px/10px;
+	        border-radius: 100px/10px;
+	-webkit-box-shadow: 0 0 20px rgba(0,0,0,0.8);
+	   -moz-box-shadow: 0 0 20px rgba(0,0,0,0.8);
+	        box-shadow: 0 0 20px rgba(0,0,0,0.8);
+}
+
+.effect2 {
+	padding:20px;
+	background:#fff;
+	position: relative;
+	-webkit-box-shadow: 0 1px 10px rgba(0,0,0,0.4),0 0 40px rgba(0,0,0,0.1) inset;
+	-moz-box-shadow: 0 1px 10px rgba(0,0,0,0.4),0 0 40px rgba(0,0,0,0.1) inset;
+	box-shadow: 0 1px 10px rgba(0,0,0,0.4),0 0 40px rgba(0,0,0,0.1) inset;
+}
+
+.effect2::before,.effect2::after {
+	content: '';
+	position: absolute;
+	width: 91%;
+	height: 76%;
+	left:28px;
+	bottom:22px;
+	z-index: -1;
+	-webkit-box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+	-moz-box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+	box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+	-webkit-transform: rotate(-4deg) skew(-12deg);
+	-moz-transform: rotate(-3deg) skew(-12deg);
+	-ms-transform: rotate(-3deg) skew(-12deg);
+	-o-transform: rotate(-3deg) skew(-12deg);
+	transform: rotate(-3deg) skew(-12deg);
+}
+.effect2::after {
+	-webkit-transform: rotate(3deg) skew(12deg);
+	-moz-transform: rotate(3deg) skew(12deg);
+	-ms-transform: rotate(3deg) skew(12deg);
+	-o-transform: rotate(3deg) skew(12deg);
+	transform: rotate(3deg) skew(12deg);
+}
+
+</style>
+<body>
+	<div class="wrap effect">
+		<h2>azusa</h2>
+	</div>
+
+	<div class="wrap effect2">
+		<img src="../resources/images/azusa.jpg" alt="" width="600">
+	</div>
+
+
+</body>
+</html>

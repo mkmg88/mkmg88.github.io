@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link rel="stylesheet" type="text/css" href="style/base.css">
+<link rel="stylesheet" type="text/css" href="style/style.css">
+<script type="text/javascript">
+window.onload = function(){
+    var bonul = document.getElementById('bonul');	
+	var bonli = bonul.getElementsByTagName('li');
+	var picul = document.getElementById('picul');
+	var picli = picul.getElementsByTagName('li');
+	
+	var i = 0;
+	for(i = 0;i < bonli.length;i++){
+	    bonli[i].index = i;
+		bonli[i].onmouseover = function(){
+			for(i = 0;i < bonli.length;i++){
+				bonli[i].className = '';
+				picli[i].style.display = 'none';
+			}
+			this.className = 'libg1';
+			picli[this.index].style.display = 'block';
+		}
+	
+	}
+	
+}
+</script>
+</head>
+<body>
+
+
+<div class="bigboss">
+<ul class="picbox" id="picul">
+    <li style="display:block;"><img src="images/1.jpg" /></li>
+    <li><img src="images/2.jpg" /></li>
+    <li><img src="images/3.jpg" /></li>
+    <li><img src="images/4.jpg" /></li>
+    <li><img src="images/5.jpg" /></li>
+    <li><img src="images/6.jpg" /></li>
+    <li><img src="images/7.jpg" /></li>
+    <li><img src="images/8.jpg" /></li>
+    <li><img src="images/9.jpg" /></li>
+    <li><img src="images/10.jpg" /></li>
+</ul>
+<ul class="bonbox" id="bonul">
+    <li class="libg1">泉新一</li>
+    <li>MIGI</li>
+    <li>村野里美</li>
+    <li>君嶋加奈</li>
+    <li>立川裕子</li>
+    <li>铃木秋穗</li>
+    <li>田宫良子</li>
+    <li>浦上</li>
+    <li>泉一之</li>
+    <li>泉信子</li>
+</ul>
+</div>
+
+</body>
+</html>
+
+
+
+
+

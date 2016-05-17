@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>照片墙</title>
+	<link rel="stylesheet" href="style/base.css" />
+	<style>
+		#ul1 {width: 600px;margin:30px auto;padding:10px;position:relative;}
+		#ul1 li {width:180px;height:120px;margin:10px;float:left;}
+		#ul1 li img {display:block;width:180px;height:120px;}
+		#ul1 li.hover {border: 1px dotted green;}	
+	</style>
+	<script type="text/javascript" src="move.js"></script>
+	<script>
+		function addEvent( obj, type, fn ) {
+		   if ( obj.attachEvent ) {
+		      obj['e'+type+fn] = fn;
+		      obj[type+fn] = function(){obj['e'+type+fn]( window.event );}
+		      obj.attachEvent( 'on'+type, obj[type+fn] );
+		   } else
+		      obj.addEventListener( type, fn, false );
+		}
+
+		function removeEvent( obj, type, fn ) {
+		   if ( obj.detachEvent ) {
+		      obj.detachEvent( 'on'+type, obj[type+fn] );
+		      obj[type+fn] = null;
+		   } else
+		      obj.removeEventListener( type, fn, false );
+		}
+
+		window.onload = function(){
+			var oUl = document.getElementById('ul1');
+			var aLi = oUl.getElementsByTagName('li');
+			var mZIndex = 1;
+			var aLipos = [];
+
+			for(var i = 0; i < aLi.length; i++){
+				aLi[i].style.left = aLi[i].offsetLeft + 'px';
+				aLi[i].style.top = aLi[i].offsetTop + 'px';
+				aLipos.push( {left:parseInt(aLi[i].style.left), top: parseInt(aLi[i].style.top)} ); //储存初始位置
+			}
+			for(var i = 0; i < aLi.length; i++){
+				aLi[i].index = i;
+				aLi[i].style.position = 'absolute';
+				aLi[i].style.margin = 0 + 'px';
+
+				drag(aLi[i]);
+			} 
+
+			//1.图片拖拽
+			function drag(obj){
+				addEvent(obj,'mousedown',function(e){
+					if(e.preventDefault){
+						e.preventDefault();
+					}
+					
+					obj.style.zIndex = mZIndex++;
+
+					var x = e.clientX - this.offsetLeft;
+					var y = e.clientY - this.offsetTop;
+					
+					addEvent(document,'mousemove',move);
+	            	addEvent(document,'mouseup',up);
+					
+					function move(e){
+						var l = e.clientX - x;
+						var t = e.clientY - y;
+						obj.style.left = l + 'px';
+						obj.style.top = t + 'px';
+						if(obj.setCapture){
+							obj.setCapture();
+						};
+
+						//鼠标移动的时候检测是否碰到图片
+						for(var i = 0; i < aLi.length; i++){
+							aLi[i].className = '';
+						}
+						var oNear = findNearest(obj);
+						if(oNear){
+							oNear.className = 'hover';
+						}
+					}
+
+					function up(){
+		                removeEvent(this,'mousemove',move);
+		                removeEvent(this,'mouseup',up);
+		                if(this.releaseCapture){
+		                    this.releaseCapture();
+		                }
+
+		                //手表松开,交换位置
+		                var oNear = findNearest(obj);
+
+		                if(oNear){   //碰到的情况，
+		                	//图片分别交换初始位置
+		                	starMove(oNear,aLipos[obj.index]);   
+		                	starMove(obj,aLipos[oNear.index]);
+		                	
+		                	//并且序号也交换
+		                	var itmp = 0;
+		                	itmp = oNear.index;
+		                	oNear.index = obj.index;
+		                	obj.index = itmp;
+
+		                	//样式
+		                	oNear.style.zIndex = mZIndex++;
+		                	obj.style.zIndex = mZIndex++;
+		                	oNear.className = '';
+
+						}else{
+		                	starMove(obj,aLipos[obj.index]);   //没有碰到的情况，图片回到初始位置
+		                }
+		            }
+				});
+			}
+
+			//2.碰撞检测
+			function pzjc(obj1,obj2){
+				var l1 = obj1.offsetLeft;
+				var r1 = obj1.offsetLeft + obj1.offsetWidth;
+				var t1 = obj1.offsetTop;
+				var b1 = obj1.offsetTop + obj1.offsetHeight;
+
+				var l2 = obj2.offsetLeft;
+				var r2 = obj2.offsetLeft + obj1.offsetWidth;
+				var t2 = obj2.offsetTop;
+				var b2 = obj2.offsetTop + obj1.offsetHeight;
+				if(r1 < l2 || b1 < t2 || l1 > r2 || t1 > b2){
+					return false;
+				}else{
+					return true;
+				}
+			}
+
+			//3.计算两张图片之间的距离
+			function getDis(obj1,obj2){
+				var a = obj2.offsetLeft - obj1.offsetLeft;
+				var b = obj1.offsetTop - obj2.offsetTop;
+				return Math.sqrt(a*a + b*b);
+			}
+
+			//4.找到碰上并且最近的图片
+			function findNearest(obj){
+				var iMin = 99999999;
+				var iMinIndex = -1;
+
+				for(var i = 0; i < aLi.length; i++){
+					if(obj == aLi[i]) continue;
+					if(pzjc(obj,aLi[i])){    //有碰上
+						var dis = getDis(obj,aLi[i]);  //计算距离
+						if(iMin > dis){
+							iMin = dis;  //算出最小值，即最近的图片
+							iMinIndex = i;  //得到最近的图片的序号
+						}
+					}
+				}
+				if(iMinIndex == -1){
+					return null;
+				}else{
+					return aLi[iMinIndex];   //返回最近的图片
+				}
+			}
+
+
+
+		}
+
+		
+
+		
+
+
+	</script>
+</head>
+<body>
+	<ul id="ul1">
+		<li><img src="images/1.jpg" alt=""></li>
+		<li><img src="images/2.jpg" alt=""></li>
+		<li><img src="images/3.jpg" alt=""></li>
+		<li><img src="images/4.jpg" alt=""></li>
+		<li><img src="images/5.jpg" alt=""></li>
+		<li><img src="images/6.jpg" alt=""></li>
+		<li><img src="images/7.jpg" alt=""></li>
+		<li><img src="images/8.jpg" alt=""></li>
+		<li><img src="images/9.jpg" alt=""></li>
+		<li><img src="images/10.jpg" alt=""></li>
+	</ul>
+</body>
+</html>

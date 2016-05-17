@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+</style>
+<script>
+
+function createXHR(){
+	if(typeof XMLHttpRequest != 'undefined'){
+		return new XMLHttpRequest();
+	}else if(typeof ActiveXObject != 'undefined'){
+		var version = [
+			'MSXML2.XMLHttp.6.0',
+			'MSXML2.XMLHttp.3.0',
+			'MSXML2.XMLHttp'
+		];
+		for(var i = 0; i < version.length; i++){
+			try{
+				return new ActiveXObject(version[i]);
+			}catch(e){
+				
+			}
+		}
+	}else{
+		throw new Error('您的浏览器不支持XHR对象！');
+	}
+}
+
+
+window.onload = function(){
+	var aLink = document.getElementsByTagName('a');
+	var oUl = document.getElementById('data');
+	
+
+	
+
+	for(var i = 0; i < aLink.length; i++){
+		aLink[i].index = i;
+
+		aLink[i].onclick = function(){
+			var _this = this;
+			var xhr = createXHR();
+			oUl.innerHTML = '';
+			xhr.onreadystatechange = function(){
+				if(xhr.status == 200 && xhr.readyState == 4){
+					var atr = eval(xhr.responseText);   //获取JSON中的数据
+					for(var i = 0; i < atr.length; i++){
+						var nLi = document.createElement('li');
+						var nSt = document.createElement('strong');
+						var nStTxt = document.createTextNode(atr[i].user);   //遍历JSON中的user
+						nSt.appendChild(nStTxt);
+						var nI = document.createElement('i');
+						var nITxt = document.createTextNode(atr[i].age);    //遍历JSON中的age
+						nI.appendChild(nITxt);
+						nLi.appendChild(nSt);
+						nLi.appendChild(nI);
+						oUl.appendChild(nLi);
+					}
+				}
+			}
+			xhr.open('get','page' + ( this.index + 1 ) + '.json?t=' + new Date().getTime(),true);
+			xhr.send(null);
+		}
+	}
+	
+
+}
+</script>
+</head>
+<body >
+<ul id="data">
+
+</ul>
+<a href="javascript:;">1</a>
+<a href="javascript:;">2</a>
+<a href="javascript:;">3</a>
+</body>
+</html>

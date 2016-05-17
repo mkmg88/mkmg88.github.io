@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link rel="stylesheet" type="text/css" href="style/base.css" >
+<style>
+*{margin:0;padding:0;}
+ul{list-style:none;}
+body{color:#fff;}
+#box{width:300px;height:250px;padding:0 5px;margin:10px auto;border:1px solid #ccc;overflow: hidden;}
+#box div{color:#000;line-height:24px;border-bottom:1px dashed #ccc;overflow: hidden;filter:alpha(opacity:0);opacity:0;}
+</style>
+
+<script type="text/javascript" src="move.js"></script>
+<script type="text/javascript">
+window.onload = function(){
+	var otext = document.getElementById('text');
+	var btn = document.getElementById('btn');
+	var box = document.getElementById('box');
+	
+	
+	btn.onclick = function(){
+		var newD = document.createElement('div');
+		var newT = document.createTextNode(otext.value);
+		var boxD = box.getElementsByTagName('div');
+
+		newD.appendChild(newT);
+
+		if(boxD.length == 0){
+			box.appendChild(newD);
+		}else{
+			box.insertBefore(newD,boxD[0]);
+		}
+
+		//获取真实的高度，再把高度设为0
+		var iHeight = newD.offsetHeight;
+		newD.style.height = 0;
+
+		//高度从0开始变成真实高度
+		starMove(newD,{height:iHeight},function(){
+			starMove(newD,{opacity:100})
+		})
+
+		otext.value = '';
+	}
+}
+</script>
+
+</head>
+
+<body>
+<textarea style="width:300px;height:100px;" id="text"></textarea><br/>
+<input type="button" id="btn" value="发表微博"> 
+
+<div id="box">	
+</div>
+
+
+
+
+</body>
+</html>
+
+
+
+
+
