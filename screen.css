@@ -1,0 +1,301 @@
+@charset "utf-8";
+/*
+Theme Name : 『君と彼女と彼女の恋。』プレイングマニュアル
+ */
+/* *********************************************************
+screen.css
+Author   : Nitroplus Web Team
+********************************************************* */
+/* リセットCSS
+================================================== */
+body {
+	font-size: small;
+	font-weight: normal;
+}
+h1,h2,h3,h4,h5,h6 {
+	font-size: 100%;
+	font-weight: normal;
+}
+select,input,button,textarea {
+	font-size: 99%;
+}
+pre,code,kbd,samp {
+	font-family: san-serif;
+	font-size: 100%;
+}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,p,blockquote,th,td {
+	margin: 0;
+	padding: 0;
+}
+table {
+	font-size: inherit;
+	font: 100%;
+	border-collapse: collapse;
+	border-spacing: 0;
+	empty-cells: show;
+}
+th {
+	font-weight: normal;
+	text-align: left;
+}
+th,td {
+	vertical-align: top;
+}
+address,cite,dfn,em,var {
+	font-style: normal;
+}
+ol,ul {
+	list-style: none;
+}
+fieldset,abbr{
+	border: 0;
+}
+ins {
+	text-decoration: none;
+}
+del {
+	text-decoration: line-through;
+}
+a {
+	text-decoration: underline;
+}
+strong {
+	font-weight: bold;
+}
+img,object,param {
+	border: 0;
+	outline: 0;
+	vertical-align: bottom;
+}
+q:before,q:after {
+	content: "";
+}
+hr {
+	display: none;
+}
+html,button,input,select,textarea {
+	font-family: "メイリオ","Meiryo","ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","ＭＳ Ｐゴシック","Osaka",sans-serif;
+}
+
+/* ページデザイン
+================================================== */
+body {
+	background: #fff;
+	color: #333;
+	font-size: 81.3%; /* 13px */
+	line-height: 1.5;
+	word-wrap: break-word; /* 必要に応じて単語の途中で改行(日本語には対応していない) */
+	word-break: normal;
+	letter-spacing: 0; /* IE7：ページの拡大によるレイアウト崩れを防ぐ */
+}
+a {
+	color: #5944a0;
+	outline: 0; /* 点線を消す */
+}
+a:hover,
+a:focus {
+	text-decoration: none;
+}
+/* メインコンテンツ
+-------------------------------------------------- */
+.wrapper {
+	width: 660px;
+	padding: 10px 25px;
+	font-size: 107.7%; /* 14px */
+	line-height: 1.75;
+}
+h1 {
+	margin-bottom: 30px;
+	padding-bottom: 10px;
+	border-bottom: 4px solid #4c4c4c;
+	text-align: center;
+}
+h2 {
+	margin-bottom: 20px;
+	padding: .8em 0;
+	border-radius: 50px;
+	background: #333;
+	color: #fff;
+	font-size: 114.3%; /* 16px */
+	line-height: 1;
+	text-align: center;
+}
+h3 {
+	margin-bottom: .5em;
+	font-weight: bold;
+	color: #5944a0;
+}
+h3:before {
+	content: "\005b\005b\005b\005b\005b\005b";
+}
+h3:after {
+	content: "\005d\005d\005d\005d\005d\005d";
+}
+h4 {
+	font-weight: bold;
+}
+.br05 {
+	margin-bottom: .5em;
+}
+.br10 {
+	margin-bottom: 1em;
+}
+.br15 {
+	margin-bottom: 1.5em;
+}
+.br20 {
+	margin-bottom: 2em;
+}
+.br25 {
+	margin-bottom: 2.5em;
+}
+.notes {
+	color: #5944a0;
+}
+.attention {
+	color: #c90000;
+}
+.txtCenter {
+	text-align: center; 
+}
+.copyright {
+	padding-top: 1.5em;
+}
+.section {
+	margin-bottom: 3.5em;
+}
+.section p img {
+	margin: .5em 0;
+	padding: 4px;
+	border: 1px solid #cacaca;
+}
+.list li {
+	padding-top: .25em;
+	padding-left: 1em;
+	text-indent: -1em;
+	line-height: 1.4;
+}
+/* home */
+#home h1 {
+	border-bottom: 0;
+}
+.bannerList {
+	padding-top: 1.5em;
+}
+.bannerList li {
+	display: inline;
+}
+.bannerList img {
+	border: 1px solid #cacaca;
+}
+/* manual */
+.manualTable {
+	width: 100%;
+}
+.manualTable th,
+.manualTable td {
+	padding: 12px 9px;
+	border: 1px solid #717171;
+	line-height: 1.4;
+}
+.manualTable th {
+	color: #5944a0;
+	white-space: nowrap;
+	border: 1px solid #5944a0;
+}
+#manual .manualTable th {
+	width: 15%;
+}
+/* play */
+#play .manualTable th {
+	width: 35%;
+}
+/* story */
+#story .wrapper {
+	background: url(img/bg_story.jpg) no-repeat;
+	min-height: 880px;
+}
+/* credit */
+.staffTable th,
+.staffTable td {
+	padding-bottom: .2em;
+}
+.staffTable th {
+	color: #5944a0;
+	white-space: nowrap;
+}
+.staffTable td {
+	padding-left: 1em;
+	text-indent: -1em;
+}
+.staffTable td:before {
+	content: "\00ff0f";
+	color: #5944a0;
+}
+/* agreement */
+.agreementContents {
+	padding: 1.8em 25px .3em;
+	border: 1px solid #333;
+	font-size: 92.9%; /* 13px */
+}
+.agreementContents p {
+	margin-bottom: 1.5em;
+}
+/* 左メニュー
+-------------------------------------------------- */
+#menu {
+	background: #333;
+	color: #fff;
+	padding: 10px;
+}
+#menu h1 {
+	margin-bottom: 30px;
+	border-bottom: 0;
+	text-align: center;
+}
+#menu a {
+	color: #fff;
+}
+#menu a:hover,
+#menu a:focus {
+	color: #aeaef2;
+}
+#nav h2 {
+	margin-bottom: 0;
+	font-size: 100%;
+	text-align: center;
+}
+#nav h2 a {
+	display: block;
+	width: 100%;
+	padding: .5em 0;
+	border-radius: 50px;
+	background: #fff;
+	color: #333;
+	text-decoration: none;
+}
+#nav h2 a:hover,
+#nav h2 a:focus {
+	background: #aeaef2;
+	color: #000;
+}
+#nav li {
+	margin-bottom: 1.2em;
+}
+#nav dl {
+	margin-top: .3em;
+	margin-bottom: .9em;
+}
+#nav dt {
+	margin-bottom: .3em;
+}
+#nav dt:before {
+	content: "\0025a0";
+	color: #adadad;
+}
+#nav dd {
+	margin-bottom: .3em;
+	padding-left: 1em;
+	text-indent: -1em;
+	line-height: 1.35;
+}

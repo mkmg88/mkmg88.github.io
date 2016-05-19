@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>project spark</title>
+<link type="text/css" rel="stylesheet" href="screen.css" media="screen,print" />
+<style>
+#box{width:100px;height:100px;position:absolute;left:0;bottom:0px;}
+#box img{width:100px;height:100px;}
+</style>
+</head>
+
+<body id="home">
+<div class="wrapper">
+<h1 style="font-size: 40px;">project spark</h1>
+<img src="resources/images/azusa.jpg" alt="" width="600"/>
+</div>
+
+<div id="box"><img src="resources/images/ball.png"></div>
+
+<script type="text/javascript">
+window.onload = function(){
+   var lastX = 0;
+   var lastY = 0;
+   
+
+   var ball = document.getElementById('box');
+   ball.onmousedown = function(evt){
+      clearInterval(timer);
+      var e = evt || event;
+      var iCurX = e.clientX - ball.offsetLeft;
+      var iCurY = e.clientY - ball.offsetTop;
+      document.onmousemove = function(evt){
+         var e = evt || event;
+
+         //l和t数据最先更新
+         var l = e.clientX - iCurX;
+         var t = e.clientY - iCurY;
+         
+         ball.style.left = l + 'px';
+         ball.style.top = t + 'px';
+
+         //更新的中间算速度
+         iSpeedX = l - lastX;
+         iSpeedY = t - lastY;
+         
+         //last数据最后更新
+         lastX = l;
+         lastY = t;
+
+      };
+      document.onmouseup = function(evt){
+         var e2 = evt || event;
+         
+         document.onmousemove = null;
+         document.onmouseup = null;
+         starMove(ball);
+
+      };
+      return false;
+   }
+}
+
+
+var iSpeedY = 0;
+var iSpeedX = 0;
+var timer = null;
+
+function starMove(obj){
+   //拖拽结束后的速度：
+   clearInterval(timer);
+   timer = setInterval(function(){
+      //重力，数值为3
+      iSpeedY += 3;
+      var l = obj.offsetLeft + iSpeedX;
+      var t = obj.offsetTop + iSpeedY;
+
+      if(t >= document.documentElement.clientHeight - obj.offsetHeight ){
+         iSpeedY *= -0.8;
+         iSpeedX *= 0.8;
+         t = document.documentElement.clientHeight - obj.offsetHeight;
+      }else if(t <= 0){
+         iSpeedY *= -0.8;
+         iSpeedX *= 0.8;
+         t = 0;
+      }
+      if(l >= document.documentElement.clientWidth - obj.offsetWidth){
+         iSpeedX *= -0.8;
+         iSpeedY *= 0.8;
+         l = document.documentElement.clientWidth - obj.offsetWidth;
+      }else if(l <= 0){
+         iSpeedX *= -0.8;
+         iSpeedY *= 0.8;
+         l = 0;
+      }
+
+      
+      if(Math.abs(iSpeedX)<1) iSpeedX=0;
+      if(Math.abs(iSpeedY)<1) iSpeedY=0;
+
+      
+      if(iSpeedX == 0 && iSpeedY == 0 && t == document.documentElement.clientHeight - obj.offsetHeight){
+         clearInterval(timer);
+      }else{
+         obj.style.top = t + 'px';
+         obj.style.left = l + 'px'; 
+      }
+   },30)
+}
+
+
+</script>
+</body>
+</html>
