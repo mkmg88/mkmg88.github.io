@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>canvas</title>
+    <style>
+        body {
+            background: #ccc;
+        }
+        canvas {
+            background: #fff;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas" width="800" height="800"></canvas>
+
+    <script>
+        var canvas = document.getElementById('canvas');
+        var context = canvas.getContext('2d');
+
+
+        context.beginPath();
+        context.fillStyle = '#f60';
+        context.fillRect(20,20,200,200);
+        context.closePath();
+        
+        context.beginPath();
+        context.fillStyle = 'blue';
+        context.font = "40px/1.8 Î¢ÈíÑÅºÚ";
+        context.fillText('welcome',200,200);
+        context.closePath();
+    </script>
+</body>
+</html>

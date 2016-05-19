@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>星空</title>
+    <style>
+        body {
+            background: #ccc;
+        }
+        canvas {
+            background: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="canvas" width="1200" height="800"></canvas>
+
+    <script>
+    window.onload = function(){
+        var canvas = document.querySelector('#canvas');
+        var context = canvas.getContext('2d');
+        var width = canvas.width;
+        var height = canvas.height;
+
+        var linearGrad = context.createLinearGradient(0,0,0,height);
+        linearGrad.addColorStop(0,'#2f6b9a');
+        linearGrad.addColorStop(1,'#3fb97b');
+        context.fillStyle = linearGrad;
+        context.fillRect(0,0, width, height);
+
+        for(var i=0; i<100; i++){
+            var x = Math.random() * width;
+            var y = Math.random() * height/2;
+            var r = Math.random()*2 + 2;
+            var rot = Math.random() * 360;
+
+            drew(context, x,y,r,rot,starPatn);
+        }
+    }
+    
+
+    function drew(cxt, x, y, r, rot, path){
+        cxt.strokeStyle = '#d2d001';
+        
+        cxt.save();
+
+        cxt.translate(x,y);
+        cxt.rotate( rot * Math.PI/180);
+        cxt.scale(r,r);
+        
+        path(cxt);
+
+        cxt.fill();
+        cxt.stroke();
+        cxt.restore();
+    }
+
+    function starPatn(cxt){
+        cxt.beginPath();
+        for(var i=0; i<5; i++){
+            cxt.lineTo( Math.cos( (18 + 72*i)/180*Math.PI ),-Math.sin( (18 + 72*i)/180*Math.PI ));
+            cxt.lineTo( Math.cos( (54 + 72*i)/180*Math.PI )*0.5 ,-Math.sin( (54 + 72*i)/180*Math.PI )*0.5);
+        }
+        cxt.closePath();
+    }
+
+    </script>
+</body>
+
+</html>

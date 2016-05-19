@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>mouseup</title>
+	<style>
+	body {
+		background: #ccc;
+	}
+	canvas {
+		background: #fff;
+		padding: 20px;
+	}
+	</style>
+</head>
+<body>
+	<h2>绘制扇形</h2>
+	<input type="number" placeholder="请输入百分比(0~100)" id="text">
+	<input type="button" value="绘制" id="button">
+	<br><br>
+	<canvas id="canvas" width="200" height="200"></canvas>
+
+	<script>
+		var text = document.getElementById('text');
+		var button = document.getElementById('button');
+		var canvas = document.getElementById('canvas');
+		var context = canvas.getContext('2d');
+		var timer = null;
+
+		context.font = "bold 20px/1.8 微软雅黑";
+		context.textAlign = 'center';
+		context.textBaseline = 'middle';
+
+		button.addEventListener('click', draw, false);
+
+		function draw(){
+			var radio = text.value || 0;
+			radio = radio > 100 ? 100 : radio;
+			var currentRadio = 0;
+			var x = 100,
+			 	y = 100,
+			 	r = 100;
+
+			(function(curR){
+				clearInterval(timer);
+				timer = setInterval(function(){
+					if(curR < radio){
+						curR++;
+						context.clearRect(0,0,canvas.width,canvas.height);
+						drawFan(curR,x,y,r);
+						drawRound(x,y,r/2);
+						drawText(curR + '%',x,y);
+					}else{
+						console.log('end',curR);
+						curR = 0;
+						clearInterval(timer);
+					}
+				},10);
+			})(currentRadio);
+		}
+
+		function drawFan(radio,x,y,r,color){
+			context.beginPath();
+			context.fillStyle = color || '#77D2A0';
+			context.save();
+
+			context.translate(x, y);
+			context.rotate(-90*Math.PI/180);
+			context.translate(-x, -y);
+
+			context.arc(x,y,r,0,2*Math.PI*radio/100);
+			context.lineTo(x,y);
+
+			context.restore();
+			context.closePath();
+			context.fill();
+		}
+
+		function drawRound(x,y,r,color){
+			context.beginPath();
+			context.fillStyle = color || '#4D4B96';
+			context.arc(x,y,r,0,2*Math.PI);
+			context.closePath();
+			context.fill();
+		}
+
+		function drawText(text,x,y,color){
+			context.beginPath();
+			context.fillStyle = color || '#fff';
+			context.fillText(text,x,y);
+			context.closePath();
+			context.fill();
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>canvas</title>
+    <style>
+        body {
+            background: #ccc;
+        }
+        canvas {
+            background: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="canvas" width="500" height="500"></canvas>
+
+    <script>
+    var canvas = document.querySelector('#canvas');
+    var context = canvas.getContext('2d');
+
+    //第一条路径
+    context.beginPath();
+    context.moveTo(400,100);
+    context.lineTo(100,100);
+    context.lineTo(400,400);
+    context.lineTo(100,400);
+
+    context.strokeStyle = '#d14e15';
+    context.lineWidth = 10;
+    context.stroke();
+
+    //第二条路径
+    context.beginPath();
+    context.lineTo(200,50);
+    context.lineTo(200,450);
+
+    //第三条路径
+    context.moveTo(300,50);
+    context.lineTo(300,450);
+
+    context.strokeStyle = '#f60';
+    context.stroke();
+
+    </script>
+</body>
+
+</html>

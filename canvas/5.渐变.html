@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>渐变</title>
+    <style>
+        body {
+            background: #ccc;
+        }
+        canvas {
+            background: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="canvas" width="800" height="800"></canvas>
+
+    <script>
+    var canvas = document.getElementById('canvas');
+    var context = canvas.getContext('2d');
+
+    //线性渐变
+    context.beginPath();
+    var linearGrad = context.createLinearGradient(400,400,800,800);
+    linearGrad.addColorStop(0,'#59dccb');
+    linearGrad.addColorStop(1,'#ff77da');
+    context.fillStyle = linearGrad;
+    context.fillRect(400,400,800,800);
+    context.closePath();
+
+    //径向渐变
+    context.beginPath()
+    var radialGrad = context.createRadialGradient(200,200,0,200,200,400);
+    radialGrad.addColorStop(0,'#2f6b9a');
+    radialGrad.addColorStop(1,'#3fb97b');
+    context.fillStyle = radialGrad;
+    context.fillRect(0,0,400,400);
+    context.closePath();
+
+    //图片平铺
+    context.beginPath()
+    var img = new Image();
+    img.src = './images/pic.jpg';
+    img.onload = function(){
+        var pattern = context.createPattern(img,'repeat');
+        context.fillStyle = pattern;
+        context.fillRect(0,400,400,800);
+        context.fillRect(400,0,800,400);
+    }
+    context.closePath();
+
+    </script>
+</body>
+
+</html>
