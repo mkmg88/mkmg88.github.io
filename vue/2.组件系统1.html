@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>hello vue</title>
+	<style>
+	body {
+		font-size: 28px;
+		font-family: "微软雅黑";
+	}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<my-component></my-component>
+		<parent-component></parent-component>
+	</div>
+	
+	<script src="vue.js"></script>
+	<script>
+	
+		//全局注册1
+		Vue.component('my-component',{
+			template: '<h2>vue component it\'s {{msg}}!</h2>',
+			data: function(){
+				return {
+					msg: '鹅妹颈'
+				}
+			}
+		});
+	
+		//全局注册2
+		var Parent = Vue.extend({
+			template: '<h3>这是一个{{msg}}的世界！</h3>',
+			data: function(){
+				return {
+					msg: '疯狂'
+				}
+			}
+		});
+		Vue.component('parent-component', Parent);
+	
+		var vue = new Vue({
+			el: '#box'
+		});
+	</script>
+</body>
+</html>

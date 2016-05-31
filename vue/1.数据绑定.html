@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>hello vue</title>
+	<style>
+	body {
+		font-size: 28px;
+		font-family: "微软雅黑";
+	}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<p>hello {{ message }}</p>
+		<ul v-if="code">
+			<li v-for="todo in todos">
+				{{ todo.text }}
+			</li>
+		</ul>
+	</div>
+	
+	<script src="jquery.min.js"></script>
+	<script src="vue.js"></script>
+	<script>
+
+		var vueData = {
+				code: '',
+				message : 'loading',
+				todos: []
+		}
+
+		$.getJSON('./data.json',{},function(data){
+			vueData.todos = data.result;
+			vueData.message = data.message;
+			vueData.code = data.code;
+		});
+
+
+		var exampleVM = new Vue({
+			el: '#box',
+			data: vueData
+		});
+		
+	</script>
+</body>
+</html>

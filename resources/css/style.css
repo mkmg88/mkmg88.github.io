@@ -1,0 +1,43 @@
+@charset "utf-8";
+*{
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background: #fff;
+	color: #333;
+	font-size: 81.3%;
+	line-height: 1.5;
+	word-wrap: break-word; 
+	word-break: normal;
+	letter-spacing: 0;
+}
+a {
+	color: #5944a0;
+	outline: 0; 
+}
+a:hover,
+a:focus {
+	text-decoration: none;
+}
+
+.nav {
+	position: absolute;
+	left: 0px;
+	top: 0;
+	bottom: 0;
+	width: 200px;
+	background: #474747;
+	color: #fff;
+}
+.nav a { 
+	color: #fff;
+}
+.wrapper {
+	position: absolute;
+	left: 200px;
+	right: 0;
+	top: 0;
+	bottom: 0;
+}

@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>hello vue</title>
+	<style>
+	body {
+		font-size: 28px;
+		font-family: "微软雅黑";
+	}
+	</style>
+</head>
+<body>
+	<template id=myTemp>
+		<h2>vue component it's {{msg1}}!</h2>
+		<h3>这是一个{{msg2}}的世界！</h3>
+	</template>
+
+	<div id="box">
+		<app></app>	
+	</div>
+	
+	<script src="vue.js"></script>
+	<script>
+
+		Vue.component('app',{
+			template: '#myTemp',  //对应template的选择器
+
+			data: function(){
+				return {
+					msg1: '额美景',
+					msg2: '飘渺'
+				}
+			}
+		});
+		
+		var vue = new Vue({
+			el: '#box'
+		});
+	</script>
+</body>
+</html>
