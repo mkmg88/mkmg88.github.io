@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+	var sale = {
+		clientList : [],
+		listen : function(fn){
+			this.clientList.push(fn);
+		},
+		trigger : function(){
+			for(var i=0,fn; fn = this.clientList[i++];){
+				fn.apply(this, arguments);
+			}
+		} 
+	}
+
+	sale.listen(function(p,sq){
+		console.log(1,p,sq);
+	});
+
+	sale.listen(function(p,sq){
+		console.log(2,p,sq);
+	});
+
+
+	</script>
+</body>
+</html>

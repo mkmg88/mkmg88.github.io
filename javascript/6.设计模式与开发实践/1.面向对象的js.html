@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		//多态1
+		var makeSound = function(animal){
+			if(animal instanceof Duck){
+				console.log('ggg');
+			}else if(animal instanceof Chicken){
+				console.log('guoguo');
+			}
+		}
+
+		var Duck = function(){}
+		var Chicken = function(){}
+
+		makeSound(new Duck);
+		makeSound(new Chicken);
+
+		//多态2
+		var makeSoundPlus = function(animal){
+			animal.sound();
+		}
+
+		var Duck2 = function(){}
+		Duck2.prototype.sound = function(){
+			console.log('ggg');
+		}
+
+		var Chicken2 = function(){}
+		Chicken2.prototype.sound = function(){
+			console.log('guoguo');
+		}
+
+		makeSoundPlus(new Duck2);
+		makeSoundPlus(new Chicken2);
+
+		//3
+		var renderMap = function(obj){
+			if(typeof obj.show === 'function' ){
+				obj.show();
+			}
+		}
+
+		//prototype
+		function Person(name){
+			this.name = name;
+		}
+		Person.prototype.getName = function(){
+			return this.name;
+		}
+
+		var objectFactory = function(){
+			var obj =  {}; //1.创建一个空对象
+
+			var Constructor = [].shift.call(arguments);  //arguemts去掉第一位Person，并返回Person
+
+			obj.__proto__ = Constructor.prototype;  //2.将boj的原型链指向Person的原型属性
+			Constructor.apply(obj, arguments); //3.将arguments剩下的属性值付给obj
+ 
+			return obj; //返回obj
+		}
+
+		var aa = objectFactory(Person, 'seaver');
+	</script>
+</body>
+</html>
