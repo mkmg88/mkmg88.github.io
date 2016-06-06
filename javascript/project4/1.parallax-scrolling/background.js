@@ -2,32 +2,17 @@
   var Background = (function() {
     var that;
 
-    function Background(target,bgs) {
+    function Background(target) {
       var ua = navigator.userAgent.toLowerCase();
       if (/msie 8./.test(ua)) {
         return;
       }
       this.$window = $(window);
       this.$bgLeaf = $(target);
-      this.bgs = bgs;
 
-      this.bindStyle();
       this.bindEvents();
       that = this;
     }
-
-    Background.prototype.bindStyle = function() {
-        var imgs = this.bgs,bgsAr = [];
-
-        for(var i=0; i<imgs.length; i++){
-            bgsAr.push('url(' + imgs[i] +') repeat 0px 0px');
-        }
-        
-        this.$bgLeaf.css({
-            'transition': '0.6s cubic-bezier(0.39, 0.575, 0.565, 1)',
-            'background':  bgsAr.join(',')
-        });
-    };
 
     Background.prototype.bindEvents = function() {
       return this.$window.on('scroll',this.parallaxLeaf);
