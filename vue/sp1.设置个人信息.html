@@ -67,11 +67,11 @@
     </template>
 
 	<div style="padding: 20px;line-height: 2;">
-		<li><a href="setnum_vue.html?type=qq">设置QQ号码</a></li>
-		<li><a href="setnum_vue.html?type=phone">设置电话号码</a></li>
-		<li><a href="setnum_vue.html?type=mimi">设置米米号码</a></li>
-		<li><a href="setnum_vue.html?type=duoduo">设置多多号码</a></li>
-		<li><a href="setnum_vue.html?type=address">设置地址</a></li>
+		<li><a href="sp1.设置个人信息.html?type=qq">设置QQ号码</a></li>
+		<li><a href="sp1.设置个人信息.html?type=phone">设置电话号码</a></li>
+		<li><a href="sp1.设置个人信息.html?type=mimi">设置米米号码</a></li>
+		<li><a href="sp1.设置个人信息.html?type=duoduo">设置多多号码</a></li>
+		<li><a href="sp1.设置个人信息.html?type=address">设置地址</a></li>
 	</div>
     
     
@@ -96,7 +96,7 @@
         ClientAPI.onJsGetAddress = function(){
         	TopicApp.onJsGetAddressCallBack('福建 厦门');
         };
-        TopicApp.onGetDataCallBack = function(id,data){
+        TopicApp.onJsGetDataCallBack = function(id,data){
             data = JSON.parse(data);
             ClientAPI.onJsToast(data.message);
             if(data.code == 100){
@@ -107,14 +107,6 @@
         };
         TopicApp.onJsGetAddressCallBack = function(data){
         	vueAdd.$children[0].region = data;
-        };
-        TopicApp.onJsGetDataCallBack = function(id,data){
-        	if( id == 'bindInfo' ){
-        		vueAdd.$children[0].phoneNum = data.phoneNum;
-        		vueAdd.$children[0].qq = data.qq;
-        	}else{
-        		vueAdd.$children[0].region = data;
-        	}
         };
 
 
@@ -215,14 +207,6 @@
                     }
                 }
             },
-            init: function(){
-            	ClientAPI.onJsGetData({
-            	    id: 'bindInfo',
-            	    type: 'get',
-            	    url:'',
-            	    data:{}
-            	});
-            },
             methods: {
             	selRegion: function(e){
             		ClientAPI.onJsGetAddress();
@@ -242,22 +226,17 @@
             		}
 
             		var Pdata = {};
+                    Pdata.phone = this.phoneNum + '';
+            		Pdata.qq = this.qq + '';
 
-            		if(!this.defaultPhoneNum){
-            			Pdata.phoneNum = this.phoneNum + '';
-            			if(!tools.isPhone(Pdata.phoneNum)){
-	    		            ClientAPI.onJsToast('请输入11位数的手机号');
-	    		            return false;
-	    		        }
-            		}
-            		if(this.qq && !this.defaultQq){
-            			Pdata.qq = this.qq + '';
-            			if( !tools.isQQ(Pdata.qq)  ){
-	    		            ClientAPI.onJsToast('QQ号格式有误');
-	    		            return false;
-	    		        }
-            		}
-            		
+                    if(!tools.isPhone(Pdata.phone)){
+                        ClientAPI.onJsToast('请输入11位数的手机号');
+                        return false;
+                    }
+        			if( Pdata.qq && !tools.isQQ(Pdata.qq)  ){
+    		            ClientAPI.onJsToast('QQ号格式有误');
+    		            return false;
+    		        }
             		Pdata.name = this.name;
             		Pdata.address = this.region.replace(/\s/g,'') + this.address.trim();
             		
