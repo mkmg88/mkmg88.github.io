@@ -1,0 +1,55 @@
+{
+	"data": 100,
+	"result": [
+		{
+			"title": "初音未来",
+			"pic": "images/game/01.jpg",
+			"question": "图中人物是谁？"
+		},
+		{
+			"title": "怪物猎人",
+			"pic": "images/game/02.jpg",
+			"question": "图片人物出自哪个游戏系列？"
+		},
+		{
+			"title": "栗山未来",
+			"pic": "images/game/03.jpg",
+			"question": "图中少女的名字是什么？"
+		},
+		{
+			"title": "生化危机",
+			"pic": "images/game/04.jpg",
+			"question": "图中小女孩来自哪个游戏系列"
+		},
+		{
+			"title": "生化危机",
+			"pic": "images/game/05.jpg",
+			"question": "图中小女孩来自哪个游戏系列"
+		},
+		{
+			"title": "水星领航员",
+			"pic": "images/game/06.jpg",
+			"question": "图中人物来自哪部动漫"
+		},
+		{
+			"title": "悠久之翼",
+			"pic": "images/game/07.jpg",
+			"question": "图中人物来自哪部动漫"
+		},
+		{
+			"title": "猎人",
+			"pic": "images/game/08.jpg",
+			"question": "图中人物来自哪部动漫"
+		},
+		{
+			"title": "我不受欢迎怎么想都是你们的错",
+			"pic": "images/game/09.jpg",
+			"question": "图中人物来自哪部动漫"
+		},
+		{
+			"title": "本间芽衣子",
+			"pic": "images/game/10.jpg",
+			"question": "图中人物叫什么名字？"
+		}
+	]
+}

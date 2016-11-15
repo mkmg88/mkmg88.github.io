@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+	<section class="g-game" id="j-game">
+		<div v-if="isInit">
+			<div class="m-score" v-if="over">
+				总分：{{score}}	
+				<a href="javascript:;" @click="location.reload()">再来</a>
+			</div>
+			<div v-else>
+				<div class="m-num">
+					{{id + 1}}/{{result.length}}
+				</div>
+
+				<div class="m-ans">
+					<img v-bind:src="result[id].pic" alt="">
+					<p>{{result[id].question}}</p>
+				</div>	
+
+				<div class="m-title">
+					<p class="answer" :class="{'i-over': error, 'i-succ': success}" v-bind:style="{ width: result[id].title.length * 25 + 'px' }">
+						{{answer}}
+						<a href="javascript:;" class="del" v-show="answer && !error && !success" @click="delete">消除</a>
+					</p>
+					
+					<p v-if="error">{{result[id].title}}</p>
+				</div>
+				
+				<ul class="m-seles">
+					<li v-for="(index, sel) in alternative" track-by="$index">
+						<a href="javascript:;" @click="select(index)" :class="{'i-ed': selected[index].isSel }">{{sel}}</a>
+					</li>
+				</ul>
+				
+				<div class="m-btns" v-if="overbtn">
+					<a href="javascript:;" class="next"  @click="gameover">完成</a>
+				</div>
+				<div class="m-btns" v-else>
+					<a href="javascript:;" class="sub" v-if="!error && !success" @click="submit">提交</a>
+					<a href="javascript:;" class="next" v-if="error || success" @click="nextQuestion">下一题</a>
+				</div>
+			</div>
+		</div>
+		<div class="m-score" v-else>
+			<p>loading...</p>
+		</div>
+	</section>
+
+	<script src="js/vue.js"></script>
+	<script src="js/vue-resource.min.js"></script>
+	<script>
+		var g = new Vue({
+			el: '#j-game',
+			data: {
+				id: 0,
+				score: 0,
+				result: [],
+				allTitle: '',
+				answer: '',
+				alternative: '',
+				selected: [],
+				selectIndex: [],
+				error: false,
+				success: false,
+				isInit: false,
+				over: false,
+				overbtn: false
+			},
+			created: function(){
+				this.getResult();
+			},
+			methods: {
+				getResult: function(){
+					this.$http.get('./ajax/data.json').then(function(res){
+						this.$set('result',res.body.result);
+						this.initData(0);
+						this.isInit = true;
+
+						this.allTitle = '';
+						this.result.forEach(function(val,index){
+							this.allTitle += val.title;
+						});
+					});
+				},
+				initData: function(index){
+					this.id = index;
+
+					this.answer = '';
+					this.alternative = this.getAlternative();
+
+					this.selected = [];
+					for(var i=0; i<this.alternative.length; i++){
+						this.selected.push({isSel: 0});
+					};
+
+					this.selectIndex = [];
+					this.error = false;
+					this.success = false;
+				},
+				getAlternative: function(){
+					var currTitle = this.result[this.id].title,
+						titles = this.allTitle;
+
+					titles = titles.replace( new RegExp('[' + currTitle +']','g'),'');
+					titles = this.rendomText( titles, 15 - currTitle.length );
+					
+					titles = this.rendomText( titles + currTitle, 15 );
+					
+					return titles;
+				},
+				rendomText: function(text,num){
+					var arr = text.split(''),
+						m = arr.length,
+						n = num,
+						t,
+						i;
+					while (n){
+						i = Math.floor(Math.random() * m--);
+						t = arr[m];
+						arr[m] = arr[i];
+						arr[i] = t;
+						n--;
+					};
+					return arr.slice(arr.length - num,arr.length).join('');
+				},
+				select: function(index){
+					if(!this.selected[index].isSel && this.answer.length < this.result[this.id].title.length && !this.error && !this.success){
+						this.answer += this.alternative[index];
+						this.selected[index].isSel = 1;
+						this.selectIndex.push(index);
+					}
+				},
+				delete: function(){
+					var index = this.selectIndex.length - 1;
+					this.selected[ this.selectIndex[index] ].isSel = 0;
+					this.answer = this.answer.substr(0,this.answer.length - 1);
+					this.selectIndex.pop();
+				},
+				submit: function(){
+					if( this.answer === this.result[this.id].title){
+						this.success = true;
+						this.score++;
+					}else{
+						this.error = true;
+					};
+				
+					if(this.id + 1 >= this.result.length){
+						this.overbtn = true;
+					};
+				},
+				nextQuestion: function(){
+					this.initData(this.id + 1)
+				},
+				gameover: function(){
+					this.over = true;
+				}
+			}
+		});
+	</script>
+</body>
+</html>
