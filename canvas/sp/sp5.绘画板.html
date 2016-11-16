@@ -70,9 +70,10 @@
 		<h3>橡皮檫</h3>
 		<a href="javascript:;" id="clear">檫</a>
 	</div>
+	<a href="javascaript:;" id="createImage">导出</a>
+
 
 	<script>
-
 		var Draw = function(){
 			/*绘制*/
 			var canvas = document.getElementById('canvas');
@@ -99,6 +100,10 @@
 			for(var i=0; i<colorControls.length;i++){
 				colorControls[i].addEventListener('click',colorControl,false);
 			}
+
+			/*导出图片*/
+			var formElement = document.getElementById('createImage');
+			formElement.addEventListener('click',createImageData,false);
 
 			function mousedown(e){
 				var x = e.clientX - canvas.getBoundingClientRect().left;
@@ -168,6 +173,11 @@
 					}
 				}
 				return sibs;
+			}
+
+			function createImageData(){
+				console.log(canvas.toDataURL());
+				window.open( canvas.toDataURL(), "canvasImage", "left=0,top=0,width=" + canvas.width + ",height=" + canvas.height + ",toolbar=0,resizable=0" );
 			}
 		}
 

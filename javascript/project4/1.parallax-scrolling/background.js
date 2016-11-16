@@ -23,7 +23,6 @@
       
       y = this.scrollY;
       ref = that.$bgLeaf;
-      results = [];
       for (var i = 0; i < ref.length; i++) {
         elem = ref[i];
         y_1 = y * .8;
@@ -32,9 +31,8 @@
         pos_bg_1 = '0px ' + y_1 + 'px,';
         pos_bg_2 = '0px ' + y_2 + 'px,';
         pos_bg_3 = '0px ' + y_3 + 'px';
-        results.push(elem.style.backgroundPosition = pos_bg_1 + pos_bg_2 + pos_bg_3);
+        elem.style.backgroundPosition = pos_bg_1 + pos_bg_2 + pos_bg_3;
       }
-      return results;
     };
 
     return Background;

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+    body {
+        background: #ccc;
+    }
+    canvas {
+        background: #fff;
+    }
+    </style>
+</head>
+<body>
+    <canvas id="cav" width="600" height="600"></canvas>
+
+    <script>
+        var canvas = document.getElementById('cav');
+        context = canvas.getContext('2d');
+
+        context.beginPath();
+        context.arc(300,300,200,0,3*Math.PI);
+        context.stroke();
+        context.closePath();
+
+        for(var i=0; i<12; i++){
+            context.beginPath();
+            context.save();
+            context.moveTo(300,105);
+            context.lineTo(300,125);
+            rad=18*i*Math.PI/90;
+            context.stroke();
+            context.transform(Math.cos(rad),Math.sin(rad),-Math.sin(rad),Math.cos(rad),0,0);
+          
+            context.restore();
+            context.closePath();
+        }
+  
+    </script>
+</body>
+</html>

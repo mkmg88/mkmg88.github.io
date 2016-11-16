@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <title>签到</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=1, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="release/css/style.css">
+</head>
+<body>
+    <section class="g-signArea">
+        <a class="f-signBtn" data-status="0" id="j-signBtn" href="javascript:;"> <!-- z-signDis -->
+            <span class="state">签到</span>
+            <span class="num">+500盒币</span>
+        </a>
+        <p class="tip">今日已有<span id="j-todayUsers">65465465</span>人签到</p>
+
+        <ul class="m-process clearfix" id="j-process">
+            <li class="light">
+                <span>+10</span>
+                <p>1天</p>
+            </li>
+            <li class="light">
+                <span>+15</span>
+                <p>2天</p>
+            </li>
+            <li class="light">
+                <span>+15</span>
+                <p>2天</p>
+            </li>
+            <li class="light">
+                <span>+15</span>
+                <p>2天</p>
+            </li>
+            <li class="light">
+                <span>+15</span>
+                <p>2天</p>
+            </li>
+            <li class="light">
+                <span>+15</span>
+                <p>2天</p>
+            </li>
+            <li class="">
+                <span>+15</span>
+                <p>2天</p>
+            </li>
+        </ul>
+    </section>
+
+    <section class="g-calendar" id="j-calendar">
+        <table class="myui_calendar_table">
+            <caption>
+                2016年五月
+                <div class="i_left j-left i-arw_l_gay" data-max="<{$maxOffset}>"><i></i></div>
+                <div class="i_right j-right <{if $offset == 0}>i-arw_r_gay<{/if}>"><i></i></div>
+            </caption>
+            <thead>
+                <tr>
+                    <th>日</th>
+                    <th>一</th>
+                    <th>二</th>
+                    <th>三</th>
+                    <th>四</th>
+                    <th>五</th>
+                    <th>六</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="t_unday"><span>28</span></td>
+                    <td class="t_sign"><span>1</span></td>
+                    <td class="t_unsign"><span>3</span></td>
+                    <td class="t_today"><span>4</span></td>
+                    <td class=""><span>2</span></td>
+                    <td class=""><span>2</span></td>
+                    <td class=""><span>2</span></td>
+                </tr>
+                <tr>
+                    <td class="t_sign"><span>1</span></td>
+                    <td class="t_sign"><span>1</span></td>
+                    <td class="t_sign"><span>2</span></td>
+                    <td class="t_sign t_today"><span>2</span></td>
+                    <td class="t_unsign"><span>2</span></td>
+                    <td class="t_unsign"><span>2</span></td>
+                    <td class="t_unsign"><span>2</span></td>
+                </tr>
+                <tr>
+                    <td class=""><span>1</span></td>
+                    <td class=""><span>1</span></td>
+                    <td class=""><span>2</span></td>
+                    <td class=""><span>2</span></td>
+                    <td class=""><span>2</span></td>
+                    <td class=""><span>2</span></td>
+                    <td class="t_unsign"><span>2</span></td>
+                </tr>
+                <tr>
+                    <td class=""><span>1</span></td>
+                    <td class=""><span>1</span></td>
+                    <td class=""><span>20</span></td>
+                    <td class="t_unday"><span>2</span></td>
+                    <td class="t_unday"><span>2</span></td>
+                    <td class="t_unday"><span>2</span></td>
+                    <td class="t_unday"><span>2</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section class="g-morelist">
+        <h2>签到后还可以</h2>
+        <ul class="m-list">
+            <li class="u-link">
+                <a href="javascript:;" data-id="0000" class="clearfix" class="j-game">
+                    <img class="u-gameicon" src="http://f1.img4399.com/sj~53070_logo_56d6bc3947fbb.jpg" alt="火柴人联盟">
+                    <h4 class="u-title j-gameColor">柴人联盟试玩火柴人联盟试人联盟试玩火柴人联盟</h4>
+                    <p class="u-info">武器大师登场！</p>
+                </a>
+            </li>
+            <li class="u-link">
+                <a href="javascript:;" class="clearfix" class="j-mission">
+                    <h4 class="u-title">赚零花钱</h4>
+                    <p class="u-info">武器大师登场！</p>
+                </a>
+            </li>
+            <li class="u-unlink">
+                <h4 class="u-title">签到提醒</h4>
+                <p class="u-info">每晚20：00点提示签到</p>
+                <div class="u-remind">
+                    <input type="checkbox" class="u-remindCheckbox" id="remind-checkbox" checked>
+                    <label for="remind-checkbox" id="j-alarm"></label>
+                </div>
+            </li>
+        </ul>
+    </section>
+
+    <script src="release/js/zepto.min.js"></script>
+    <script src="release/js/client.js"></script>
+    <script>
+        /*客户端方法*/
+        var ClientAPI = ClientAPI || {};
+        ClientAPI.onLoadCookieForJs = onLoadCookieForJs;
+        ClientAPI.getUniqueId = getUniqueId;
+        ClientAPI.onJsGetDeviceId = onJsGetDeviceId;
+        ClientAPI.isOpenDailySignAlarm = isOpenDailySignAlarm;
+        ClientAPI.onJsSwitchDialyAlert = onJsSwitchDialyAlert;
+        ClientAPI.toast = toast;
+        ClientAPI.onJsDailySign = onJsDailySign;
+        ClientAPI.jumpToHomePage = jumpToHomePage;
+        ClientAPI.jumpToGameDetails = jumpToGameDetails;
+
+        var SignCon = function(){
+            var obj = this;
+            var dom = {
+                $signBtn : $('#j-signBtn'),
+                $process: $('#j-process'),
+                $todayUsers: $('#j-todayUsers'),
+                $alarm: $('#j-alarm'),
+                $calendar: $('#j-calendar'),
+                $gameColor: $('.j-gameColor')
+            };
+            var calendarIndex = 0,
+                calendarDateMax = $(".j-left").attr("data-max"),
+                calendarCache = [];
+
+            var _config = {
+                scookie: ClientAPI.onLoadCookieForJs(),
+                udid: ClientAPI.getUniqueId(),
+                deviceId: ClientAPI.onJsGetDeviceId(),
+                alarmOpen: ClientAPI.isOpenDailySignAlarm()
+            };
+
+            var _url = {
+                //sign: '/service/signin.html'
+                sign: 'json/sign.json',
+                //calendar: '/service/signin-calendar.html'
+                calendar: '/json/calendar.html'
+            };
+
+
+            this.init = function(){
+                this.event();
+
+                calendarCache[0] = dom.$calendar.html();
+
+                dom.$gameColor.html(dom.$gameColor.html().replace(/(《\S+》)/,'<span style="color: #ffa401;">$1</span>'));
+                /*闹钟状态*/
+                if(parseInt(_config.alarmOpen) == 1) {
+                    dom.$alarm.attr("data-status", "1").siblings('input').attr("checked",'checked');
+                }else {
+                    dom.$alarm.attr("data-status", "0").siblings('input').removeAttr("checked");
+                }
+            };
+            this.event = function(){
+                /*签到*/
+                $(document).on('click','#j-signBtn',obj.sign);
+
+                /*闹钟*/
+                $(document).on('change','#remind-checkbox',obj.alarm);
+
+                /*跳转到赚零花钱页面*/
+                $(document).on('click','.j-mission',function() {
+                    ClientAPI.jumpToHomePage('indexDianle');
+                });
+
+                /*跳转游戏详情*/
+                $(document).on('click','.j-game',function() {
+                    var gameId = $(this).data('id');
+                    ClientAPI.jumpToGameDetails(gameId);
+                });
+
+                /*日历left*/
+                $(document).on('click','.j-left',function() {
+                    if (calendarIndex == calendarDateMax) {
+                        return;
+                    };
+                    calendarIndex++;
+                    obj.getCalendar(calendarIndex);
+                });
+                /*日历right*/
+                $(document).on('click','.j-right',function() {
+                    if (calendarIndex == calendarDateMax) {
+                        return;
+                    };
+                    calendarIndex--;
+                    obj.getCalendar(calendarIndex);
+                });
+            };
+            /*签到请求*/
+            this.sign = function(){
+                
+                $.ajax({
+                    url: _url.sign,
+                    data: {
+                        scookie: _config.scookie,
+                        udid: _config.udid,
+                        deviceId: _config.deviceId
+                    },
+                    dataType: "json",
+                    timeout: 10000,
+                    success: function(data) {
+                        if (data.code == 799) {
+                            window.login.onJSIvoke();
+                            return false;
+                        }else if (data.code == 100) {
+                            obj.signSuccess(data.result);
+                        } else {
+                            ClientAPI.toast(data.message);
+                        }
+                    },
+                    error: function(a, b, c) {
+                        if (b == "timeout" || b == "abort") {
+                            tipDialog("请检查您的网络");
+                        }
+                    }
+                });
+            };
+            /*签到成功*/
+            this.signSuccess = function(result){
+                /*日历标记*/
+                $(".t_today").removeClass('t_unsign').addClass("t_sign");
+                if($(".t_today").size() > 0){
+                    calendarCache[0] = dom.$calendar.html();
+                }else{
+                    calendarCache[0] = '';
+                }
+
+                /*签到按钮修改*/
+                dom.$signBtn.addClass("z-signDis").attr("data-status", "1");
+                dom.$signBtn.find('.state').text("明日签到");
+
+                /*tips*/
+                dom.$signBtn.find('.num').prepend('签到成功，').addClass('succTips').on('webkitAnimationEnd',function(){
+                    $(this).remove();
+                });
+
+                /*显示签到天数*/
+                var lightNum = dom.$process.find('.light').length;
+                if (lightNum >= 7) {
+                    dom.$process.children('li').removeClass("light").eq(0).addClass("light");
+                } else {
+                    dom.$process.children('li').eq(+(result.signnum) - 1).addClass("light");
+                };
+
+                /*今日签到的用户数量*/
+                dom.$todayUsers.html(result.todayUsers);
+
+                /*传递签到时间给客户端*/
+                ClientAPI.onJsDailySign(result.time);
+            };
+            /*闹钟提醒*/
+            this.alarm = function(){
+                var status = $(this).is(':checked');
+                if ( !status ) {
+                    ClientAPI.onJsSwitchDialyAlert(0, '72000');
+                } else {
+                    ClientAPI.onJsSwitchDialyAlert(1, '72000');
+                };
+            };
+            /*获取日历信息*/
+            this.getCalendar = function(index){
+                if(calendarCache[index]){
+                    dom.$calendar.html(calendarCache[index]);
+                }else{
+                    $.get(_url.calendar, {
+                        index: index,
+                        scookie: _config.scookie
+                    }, function(result) {
+                        dom.$calendar.html($(result));
+                        calendarCache[index] = result;
+                    });
+                }
+            };
+        };
+
+        $(function(){
+            (new SignCon()).init();
+            document.body.addEventListener('touchstart',function(){},false);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+@charset "utf-8";
+@import "reset";
+/*
+ * 帮助页面
+ */
+
+body {
+    background-color: $write;
+}
+.f-heardbg {
+    width: px(511);
+    height: px(743);
+    background: url(../images/sign-help.png);
+    background-size: cover;
+    margin: px(20) auto;
+}
+.f-shopheardbg {
+    width: px(410);
+    height: px(720);
+    background: url(../images/shop-help.png);
+    background-size: cover;
+    margin: px(30) auto;
+}
+.f-dianleheardbg {
+    width: px(410);
+    height: px(810);
+    background: url(../images/dianle-help.png);
+    background-size: cover;
+    margin: px(30) auto;
+}
+.f-signtext {
+    margin-left: px(30); 
+    border-top: 1px solid $bdc;
+    padding: px(30) px(30) px(30) 0;
+    h3 {
+        font-size: px(32);
+        margin-bottom: px(20);
+    }
+    h4 {
+        font-size: px(30);
+        color: #000;
+        margin: px(20) 0;
+    }
+    h5 {
+        font-size: px(30);
+        color: #ff6665;
+        margin: px(20) 0;
+    }
+    p {
+        color: #666;
+        line-height: 1.6;
+        margin-bottom: px(8);
+        font-size: px(28);
+        span {
+            color: #ff6665;
+        }
+    }
+    .rule {
+        color: #ffc152;
+        margin-bottom: px(20);
+        line-height: px(40);
+        font-size: px(28);
+        li {
+            padding: px(6) 0;
+        }
+        strong {
+            display: inline-block;
+            width: px(40);
+            height: px(40);
+            text-align: center;
+            background: #ffc152;
+            color: #fff;
+            margin: 0 px(5);
+            font-size: px(28);
+            border-radius: px(20);
+            font-weight: normal;
+            vertical-align: middle;
+        }
+    }
+}
