@@ -13,23 +13,40 @@
     </style>
 </head>
 <body>
+	<input type="text" id="ipt">
+	<input type="color" id="color">
+	0<input type="range" min="0" max="50" step="1" value="1">50
+
     <canvas id="canvas" width="800" height="800"></canvas>
 
     <script>
         var canvas = document.getElementById('canvas');
         var context = canvas.getContext('2d');
 
-
-        context.beginPath();
         context.fillStyle = '#f60';
-        context.fillRect(20,20,200,200);
-        context.closePath();
-        
-        context.beginPath();
-        context.fillStyle = 'blue';
-        context.font = "40px/1.8 Î¢ÈíÑÅºÚ";
-        context.fillText('welcome',200,200);
-        context.closePath();
+    	context.textAlign = 'center';
+    	context.font = '50px Microsoft Yahei';
+    	context.textBaseline = 'middle';
+
+        document.getElementById('ipt').addEventListener('input',function(e){
+        	var message = e.target.value;
+        	drawText(message);
+        },null);
+
+        function drawText(message){
+        	//context.save();
+        	context.clearRect(0,0,800,800);
+        	
+        	context.beginPath();
+	    	context.moveTo(0,400);
+	    	context.lineTo(800,400);
+	    	context.stroke();
+	    	context.closePath();
+
+        	context.fillText(message,400,400);
+        	//context.restore();
+        }
+
     </script>
 </body>
 </html>

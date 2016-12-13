@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>阴影</title>
+    <style>
+        body {
+            background: #ccc;
+        }
+        canvas {
+            background: #fff;
+        }
+    </style>
+</head>
+
+<body>
+
+    <canvas id="canvas" width="800" height="800"></canvas>
+
+    <script>
+    var canvas = document.getElementById('canvas');
+    var context = canvas.getContext('2d');
+
+    var img = new Image();
+    img.src = 'images/sprite.png';
+    img.onload = function(){
+        loop(img);
+    }
+
+    var spArr = [1,2,3,4,5,6];
+    var index = 0;
+    var spriteNum = 4;
+    var w = 132;
+    var h = 132;
+    var sx = 0;
+    var sy = 0;
+    var dx = 0;
+    var dy = 0;
+    var ADDNUM = 10;
+
+
+
+  
+    function loop(aarr){
+        drawImage();
+        setTimeout(loop,132);
+    }
+
+    function drawImage(){
+        context.clearRect(0,0,canvas.width,canvas.height);
+        context.save();
+        context.setTransform(1,0,0,1,0,0);
+        var x = Math.floor(spArr[index] % spriteNum) * w;
+        var y = Math.floor(spArr[index]/spriteNum) * w;
+
+        context.translate( sx + w/2, sy + h/2);
+        context.rotate( 180*Math.PI/180 );
+
+        sx = sx + dx;
+        sy = sy + dy
+        context.drawImage(img,x,y,132,132,-w/2,-h/2,132,132);
+
+
+
+        context.restore();
+        index++;
+        if(index >= spArr.length){
+            index = 0;
+        }
+    }
+
+    window.onkeydown = function(e){
+        console.log(e.keyCode);
+        switch(e.keyCode){
+            case 39:
+                dx = ADDNUM;
+                dy = 0;
+                break;
+            case 37:
+                dx = -ADDNUM;
+                dy = 0;
+                break;
+            case 38:
+                dy = -ADDNUM;
+                dx = 0;
+                break;
+            case 40:
+                dy = ADDNUM;
+                dx = 0;
+                break;
+        }
+    }
+    window.onkeyup = function(e){
+        dy = 0;
+        dx = 0;
+    }
+
+    </script>
+</body>
+
+</html>

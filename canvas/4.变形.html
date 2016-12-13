@@ -23,18 +23,23 @@
 
     context.save();
     context.fillStyle = '#f60';
-    context.translate( 100,100 );
-    context.scale( 1,1 );
+    context.translate( 150,150 );
+    /*context.scale( 1,1 );*/
     context.rotate( -15 * Math.PI/180);
     context.fillRect(0,0,200,200);
+
+
+    context.fillStyle = 'green';
+    context.translate( 100,100 );
+    context.fillRect(100,100,200,200);
     context.restore();
 
-    context.save();
+    /*context.save();
     context.fillStyle = 'yellow';
     context.translate( 200,200 );
     context.scale( 2,2 );
     context.fillRect(0,0,200,200);
-    context.restore();
+    context.restore();*/
 
 
     </script>

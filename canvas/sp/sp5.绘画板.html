@@ -47,28 +47,38 @@
 		background: #f60;
 
 	}
+
+	.control input[type=color] {
+		padding: 0;
+		border: none;
+		width: 100px;
+		height: 30px;
+		outline: none;
+	}
+
+	.control input[type=range] {
+		padding: 0;
+		border: none;
+		width: 100px;
+	}
 	</style>
 </head>
 <body>
 	<canvas id="canvas" width="600" height="600"></canvas>
 	<div class="control" id="j-control">
-		<h3>笔尖</h3>
-		<div id="j-width">
-			<a href="javascript:;" data-width="1">1px</a>
-			<a href="javascript:;" data-width="2" class="active">2px</a>
-			<a href="javascript:;" data-width="5">5px</a>
-			<a href="javascript:;" data-width="10">10px</a>
-		</div>
+		<h3>笔尖宽度</h3>
+		<div>
+			<input type="range" id="j-width" min="1" max="30" step="1" value="1"> 
+			<span id="widthVal">1</span>px
+		</div>	
+	
 		<h3>颜色</h3>
-		<div id="j-color">
-			<a href="javascript:;" style="background: black;">&nbsp;</a>
-			<a href="javascript:;" style="background: orange;">&nbsp;</a>
-			<a href="javascript:;" style="background: red;">&nbsp;</a>
-			<a href="javascript:;" style="background: green;">&nbsp;</a>
-			<a href="javascript:;" style="background: blue;">&nbsp;</a>
-		</div>
+		<input type="color" id="j-color" > 
+
 		<h3>橡皮檫</h3>
 		<a href="javascript:;" id="clear">檫</a>
+		<a href="javascript:;" id="clearAll">清空</a>
+
 	</div>
 	<a href="javascaript:;" id="createImage">导出</a>
 
@@ -80,30 +90,36 @@
 			var context = canvas.getContext('2d');
 			var clearing = false;
 
-			context.strokeStyle = '#333';
-			context.lineWidth = 2;
+			context.strokeStyle = '#000';
+			context.lineWidth = 1;
+			context.lineCap = 'round';
+			context.lineJoin = 'round';
+
+			context.shadowColor = '#000';
+			context.shadowBlur = 0.5;
+			context.shadowOffsetX = 0;
 
 			canvas.addEventListener('mousedown',mousedown,false);
 
 			/*宽度*/
-			var Widthcontrols = document.getElementById('j-width').getElementsByTagName('a');
-			for(var i=0; i<Widthcontrols.length;i++){
-				Widthcontrols[i].addEventListener('click',widthControl,false);
-			}
+			document.getElementById('j-width').addEventListener('change',widthControl,false);
+			var widthVal = document.getElementById('widthVal');
 
 			/*橡皮檫*/
 			var clear = document.getElementById('clear');
 			clear.addEventListener('click',clearFn,false);
 
 			/*颜色*/
-			var colorControls = document.getElementById('j-color').getElementsByTagName('a');
-			for(var i=0; i<colorControls.length;i++){
-				colorControls[i].addEventListener('click',colorControl,false);
-			}
+			document.getElementById('j-color').addEventListener('change',colorControl,false);
+			
 
 			/*导出图片*/
 			var formElement = document.getElementById('createImage');
 			formElement.addEventListener('click',createImageData,false);
+
+			document.getElementById('clearAll').addEventListener('click',function(){
+				context.clearRect(0,0,canvas.width,canvas.height);
+			},false);
 
 			function mousedown(e){
 				var x = e.clientX - canvas.getBoundingClientRect().left;
@@ -121,7 +137,7 @@
 					context.lineTo(x,y);
 					context.stroke();
 				}else{
-					context.clearRect(x,y,20,20);
+					context.clearRect(x+4,y+1,16,16);
 				}
 			}
 			function mouseup(){
@@ -130,22 +146,19 @@
 				context.closePath();
 			}
 			
-			function widthControl(){
+			function widthControl(e){
 				clearOff();
-				this.className = 'active';
-				var sibs = siblings(this);
-				for( var i=0; i<sibs.length; i++){
-					sibs[i].className = '';
-				}
-				var width = this.getAttribute('data-width');
+				var width = e.target.value;
 				context.lineWidth = +width;
+				widthVal.innerHTML = width;
 			}
 
-			function colorControl(){
+			function colorControl(e){
 				clearOff();
-				var color = this.style.background;
+				var color = e.target.value;
 				console.log(color);
 				context.strokeStyle = color;
+				context.shadowColor = color;
 			}
 
 			function clearFn(){

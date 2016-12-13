@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>阴影</title>
+    <style>
+        body {
+            background: #ccc;
+        }
+        canvas {
+            background: #fff;
+        }
+    </style>
+</head>
+
+<body>
+
+    <canvas id="canvas" width="800" height="800"></canvas>
+
+    <script>
+    var canvas = document.getElementById('canvas');
+    var context = canvas.getContext('2d');
+
+    var img = new Image();
+    img.src = 'images/tiled.png';
+    img.onload = function(){
+        draw(img);
+    }
+
+
+    var tileMap = [
+        [25,28,28,28,28,28,28,28,28,28],
+        [25,28,126,105,106,107,108,109,128,28],
+        [25,28,120,105,106,107,108,109,120,28],
+        [25,28,120,113,114,115,116,117,120,28],
+        [25,28,120,121,122,123,124,125,120,28],
+        [25,28,120,75,75,34,76,76,120,28],
+        [44,58,58,77,77,58,77,77,58,58],
+        [44,44,44,29,29,29,30,31,44,44],
+        [44,44,44,29,30,31,32,32,44,44],
+        [19,19,19,19,19,19,19,19,19,19]
+    ];
+
+    var mapIndexOffset = -1;
+
+
+    function draw(img){
+        tileMap.forEach(function(rowCtr,row){
+            rowCtr.forEach(function(colCtr,col){
+                colCtr = colCtr + mapIndexOffset;
+                var x = Math.floor(colCtr % 8)*32;
+                var y = Math.floor(colCtr / 8)*32;
+
+                context.drawImage(img,x,y,32,32,col*32,row*32,32,32);
+
+            });
+        });
+
+
+    }
+ 
+
+    
+
+ 
+
+    
+
+    </script>
+</body>
+
+</html>
