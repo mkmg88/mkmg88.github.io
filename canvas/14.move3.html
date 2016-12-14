@@ -41,8 +41,8 @@
     var mass = 1;
 
     var start = {
-        speed: 5,
-        radio: 50,
+        speed: 2,
+        radio: Math.ceil( Math.random()*360),
         x: 300,
         y: 100,
         r: 15
@@ -130,11 +130,7 @@
             var dy = start.y - ball.y;
             var distance = dx*dx + dy*dy;
             if(distance <= (start.r + ballsR) * (start.r + ballsR) ){
-                /*var collisionAngle = Math.atan2(start.x,start.y);
-                var c = start.r + ballsR;
-
-                start.x = start.x + Math.cos(collisionAngle) * c;
-                start.y = start.y + Math.sin(collisionAngle) * c;*/
+              
                 retval = true;
             }
             return retval;
@@ -150,18 +146,23 @@
         collideBalls: function(ball){
             var dx = start.x - ball.x;
             var dy = start.y - ball.y;
+
             //atan2() 方法可返回从 x 轴到点 (x,y) 之间的角度。
             var collisionAngle = Math.atan2(dx,dy);
+           
+            this.drawApp();
 
+            //speed和方向
             var speed = Math.sqrt(xzz*xzz + yzz*yzz);
             var direction = Math.atan2(xzz,yzz);
+
+
 
             var xzz_1 = speed*Math.cos(direction - collisionAngle);
             var yzz_1 = speed*Math.sin(direction - collisionAngle);
 
             xzz = Math.cos(collisionAngle) * xzz_1 + Math.cos(collisionAngle + Math.PI/2) * xzz_1;
             yzz = Math.sin(collisionAngle)* yzz_1 + Math.sin(collisionAngle + Math.PI/2) * yzz_1;
-            console.log(xzz,yzz);
         }
     }
 

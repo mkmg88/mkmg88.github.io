@@ -81,10 +81,8 @@
 						this.initData(0);
 						this.isInit = true;
 
-						this.allTitle = '';
-						this.result.forEach(function(val,index){
-							this.allTitle += val.title;
-						});
+				
+						
 					});
 				},
 				initData: function(index){
@@ -104,7 +102,11 @@
 				},
 				getAlternative: function(){
 					var currTitle = this.result[this.id].title,
-						titles = this.allTitle;
+						titles = '';
+
+					this.result.forEach(function(val,index){
+						titles += val.title;
+					});
 
 					titles = titles.replace( new RegExp('[' + currTitle +']','g'),'');
 					titles = this.rendomText( titles, 15 - currTitle.length );
