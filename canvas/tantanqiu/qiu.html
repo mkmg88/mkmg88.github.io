@@ -45,6 +45,7 @@
         pos: []
     };
 
+    /*底部栏*/
     var btObs = {
         length: 6,
         y: canvas.height - canvas.height * 0.23,
@@ -56,7 +57,7 @@
         btObs.pos.push({
             x: btObs.width* i
         });
-    }
+    };
 
 
     obs.intervalx = (canvas.width - launchWidth)/(obs.balls[0].length + 1);
@@ -65,10 +66,10 @@
 
     var ball = {
         speed: 1,
-        speedX: -Math.floor( Math.random() * 35 ),
-        speedY: 0,
+        speedX: -Math.floor( Math.random() * 60 ),
+        speedY: 5,
         x: canvas.width - 100,
-        y: 30,
+        y: 20,
         r: canvas.width*0.03,
         mass: 20
     };
@@ -89,7 +90,6 @@
         /*绘制障碍*/
         drawObs: function(){
             var _this = this,x,y;
-
             obs.balls.forEach(function(oys,yIndex){
                 oys.forEach(function(ox,xIndex){
                     if(ox){
@@ -139,19 +139,17 @@
             var _this = this;
 
             /*move*/
-            setTimeout(function fn(){
-            //window.requestAnimationFrame(function fn(){
-
-                
+            //setTimeout(function fn(){
+            window.requestAnimationFrame(function fn(){
                 _this.collide();
                 _this.collideBt();
 
                 ball.speedY =  ball.speedY + 3;
-
                 ball.x = ball.x + ball.speedX;
                 ball.y = ball.y + ball.speedY;
 
                 
+
                 /*x边界*/
                 if( ball.x + ball.r > canvas.width - launchWidth){
                     ball.speedX *= -0.70;
@@ -177,8 +175,6 @@
                 if(Math.abs(ball.speedX)<1.5) ball.speedX=0;
                 if(Math.abs(ball.speedY)<1.5) ball.speedY=0;
 
-                console.log(ball.speedX, ball.speedY);
-
                 if(ball.speedX == 0 && ball.speedY == 0 && ball.y + ball.r >= canvas.height){
                     console.log('over');
                     ball.y = canvas.height - ball.r;
@@ -187,9 +183,9 @@
                    _this.drawApp();
                 }
                 
-                setTimeout(fn,500);
-                //window.requestAnimationFrame(fn);
-            },20);
+                //setTimeout(fn,50);
+                window.requestAnimationFrame(fn);
+            },50);
         },
         /*判断两球是否碰撞*/
         hitTestCircle: function(obsBall){
@@ -199,7 +195,6 @@
             var distance = dx*dx + dy*dy;
             if(distance <= (ball.r + obs.r) * (ball.r + obs.r) ){
                 retval = true;
-
             }
             return retval;
         },
@@ -208,10 +203,27 @@
         collide: function(){
             for(var i=0; i<obs.pos.length; i++){
                 if(this.hitTestCircle(obs.pos[i])){
-                    ball.speedX *= -1;
+                    this.collideBalls(obs.pos[i]);
+                    //debugger;
                     break;
                 }
             }
+        },
+
+        collideBalls: function(obsBall){
+            var dx = ball.x - obsBall.x;
+            var dy = ball.y - obsBall.y;
+            var R = ball.r + obs.r;
+
+            var lv = Math.sqrt(dx*dx + dy+dy);
+            var collisionAngle = Math.atan2(dy,dx);
+
+            if( lv < R ){
+                ball.x = Math.ceil(ball.x + Math.cos(collisionAngle) * ( R - lv ));
+                ball.y = Math.ceil(ball.y + Math.sin(collisionAngle) * ( R - lv ));
+                this.drawApp();
+            }
+            ball.speedX *= -1;
         },
 
         hitTextCircleBt: function(obsLine){
@@ -236,7 +248,7 @@
         collideBt: function(){
             for(var i=0; i<btObs.pos.length; i++){
                 if(this.hitTextCircleBt(btObs.pos[i]) ){
-                    ball.speedX *= 1;
+                    ball.speedX *= -1;
                     break;
                 }
             }
