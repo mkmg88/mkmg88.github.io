@@ -58,29 +58,29 @@ var timer = null;
 
 function starMove(obj){
    //拖拽结束后的速度：
-   clearInterval(timer);
-   timer = setInterval(function(){
+   //clearInterval(timer);
+   requestAnimationFrame(function fn(){
       //重力，数值为3
       iSpeedY += 3;
       var l = obj.offsetLeft + iSpeedX;
       var t = obj.offsetTop + iSpeedY;
 
       if(t >= document.documentElement.clientHeight - obj.offsetHeight ){
-         iSpeedY *= -0.8;
-         iSpeedX *= 0.8;
+         iSpeedY *= -0.85;
+         iSpeedX *= 0.85;
          t = document.documentElement.clientHeight - obj.offsetHeight;
       }else if(t <= 0){
-         iSpeedY *= -0.8;
-         iSpeedX *= 0.8;
+         iSpeedY *= -0.85;
+         iSpeedX *= 0.85;
          t = 0;
       }
       if(l >= document.documentElement.clientWidth - obj.offsetWidth){
-         iSpeedX *= -0.8;
-         iSpeedY *= 0.8;
+         iSpeedX *= -0.85;
+         iSpeedY *= 0.85;
          l = document.documentElement.clientWidth - obj.offsetWidth;
       }else if(l <= 0){
-         iSpeedX *= -0.8;
-         iSpeedY *= 0.8;
+         iSpeedX *= -0.85;
+         iSpeedY *= 0.85;
          l = 0;
       }
 
@@ -90,11 +90,14 @@ function starMove(obj){
 
       
       if(iSpeedX == 0 && iSpeedY == 0 && t == document.documentElement.clientHeight - obj.offsetHeight){
-         clearInterval(timer);
+         //clearInterval(timer);
+         return;
       }else{
          obj.style.top = t + 'px';
          obj.style.left = l + 'px'; 
       }
+
+      requestAnimationFrame(fn);
    },30)
 }
 

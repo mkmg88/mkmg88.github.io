@@ -27,7 +27,6 @@
     var canvas = document.getElementById('canvas');
     var context = canvas.getContext('2d');
 
-    context.fillStyle = '#333';
 
     var balls = [
         [0,1,0,1,0,1,0,1,0],
@@ -37,17 +36,19 @@
     ];
     var ballsPosition = [];
     var ballsR = 10;
+    var ballsMass = 10;
     var first = 0;
-    var mass = 1;
+    
 
     var start = {
-        speed: 2,
+        speed: 10,
         radio: Math.ceil( Math.random()*360),
         x: 300,
         y: 100,
-        r: 15
+        r: 15,
+        mass: 20
     };
-    var radians,xzz,yzz;
+    var xzz,yzz;
 
 
     function App(){
@@ -82,24 +83,34 @@
             this.createZzs();
             this.drawBall(start.x,start.y,start.r,'red');
         },
+        /*根据角度计算X轴和Y轴每次要移动的量*/
         updataBall: function(){
-            radians = start.radio*Math.PI/180;
+            var radians = start.radio*Math.PI/180;
             xzz = Math.cos(radians)*start.speed;
             yzz = Math.sin(radians)*start.speed;
+
         },
+
         move: function(){
             var _this = this;
+            yzz += 3;
+            
+
             this.updataBall();
             start.x = start.x + xzz;
             start.y = start.y + yzz;
+
             this.drawApp();
 
-            setTimeout(function fn(){
+            window.requestAnimationFrame(function fn(){
+
                 _this.collide();
+
                 start.x = start.x + xzz;
                 start.y = start.y + yzz;
                 _this.drawApp();
 
+                /*x边界*/
                 if( start.x + start.r > canvas.width){
                     start.x = canvas.width - start.r;
                     start.radio = 180 - start.radio;
@@ -109,6 +120,8 @@
                     start.radio = 180 - start.radio;
                     _this.updataBall();
                 }
+
+                /*y边界*/
                 if( start.y + start.r > canvas.height ){
                     start.y = canvas.height - start.r; 
                     start.radio = 360 - start.radio;
@@ -120,7 +133,7 @@
                 }
                 
 
-                setTimeout(fn,13);
+                window.requestAnimationFrame(fn);
             },13);
         },
         /*判断两球是否碰撞*/
@@ -135,6 +148,7 @@
             }
             return retval;
         },
+        /*循环遍历每个碰撞点*/
         collide: function(){
             for(var i=0; i<ballsPosition.length; i++){
                 if(this.hitTestCircle(ballsPosition[i])){
@@ -143,12 +157,24 @@
                 }
             }
         },
+
+        /*碰撞函数*/
         collideBalls: function(ball){
             var dx = start.x - ball.x;
             var dy = start.y - ball.y;
+            var R = start.r + ballsR;
+            var lv = Math.sqrt(dx*dx + dy+dy);
 
             //atan2() 方法可返回从 x 轴到点 (x,y) 之间的角度。
-            var collisionAngle = Math.atan2(dx,dy);
+            var collisionAngle = Math.atan2(dy,dx);
+
+            if( lv < R ){
+                start.x = Math.ceil(start.x + Math.cos(collisionAngle) * ( R - lv ));
+                start.y = Math.ceil(start.y + Math.sin(collisionAngle) * ( R - lv ));
+                dx = start.x - ball.x;
+                dy = start.y - ball.y;
+            }
+
            
             this.drawApp();
 
@@ -156,10 +182,11 @@
             var speed = Math.sqrt(xzz*xzz + yzz*yzz);
             var direction = Math.atan2(xzz,yzz);
 
-
-
             var xzz_1 = speed*Math.cos(direction - collisionAngle);
             var yzz_1 = speed*Math.sin(direction - collisionAngle);
+
+            /*var fanal_xzz_1 = ((start.mass - ballsMass) * xzz_1 + (ballsMass + ballsMass)*xzz_1 )/(start.mass + ballsMass);
+            var fznal_yzz_1 = yzz_1;*/
 
             xzz = Math.cos(collisionAngle) * xzz_1 + Math.cos(collisionAngle + Math.PI/2) * xzz_1;
             yzz = Math.sin(collisionAngle)* yzz_1 + Math.sin(collisionAngle + Math.PI/2) * yzz_1;
