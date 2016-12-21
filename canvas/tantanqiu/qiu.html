@@ -55,7 +55,8 @@
     btObs.width = (canvas.width - launchWidth)/btObs.length;
     for(var i=0; i<btObs.length; i++){
         btObs.pos.push({
-            x: btObs.width* i
+            x: btObs.width* i,
+            x2: btObs.width* (i+1)
         });
     };
 
@@ -64,10 +65,17 @@
     obs.offt = canvas.height * 0.26;
     obs.intervaly = canvas.height * 0.14;
 
+
+    /*  1: -18,-5
+        2: -15,y:-8
+        3: x-15,y:-8
+        4: x-8,y:10
+        5: x-15,y:8
+    */
     var ball = {
         speed: 1,
-        speedX: -Math.floor( Math.random() * 60 ),
-        speedY: 5,
+        speedX: -15,
+        speedY: -8,
         x: canvas.width - 100,
         y: 20,
         r: canvas.width*0.03,
@@ -82,9 +90,12 @@
     }
     App.prototype = {
         init: function(){
+            var _this = this;
             this.drawApp(ball.x,ball.y);
             first = 1;
-            this.move();
+            setTimeout(function(){
+                _this.move();
+            },1000);
         },
 
         /*绘制障碍*/
@@ -114,7 +125,7 @@
             for(var i=0; i<btObs.pos.length; i++){
                 context.beginPath();
                 context.fillStyle = 'green';
-                context.rect(btObs.pos[i].x,btObs.y, 5, canvas.height - btObs.y);
+                context.rect(btObs.pos[i].x2,btObs.y, 2, canvas.height - btObs.y);
                 context.fill();
                 context.closePath();
             }
@@ -142,33 +153,33 @@
             //setTimeout(function fn(){
             window.requestAnimationFrame(function fn(){
                 _this.collide();
-                _this.collideBt();
 
                 ball.speedY =  ball.speedY + 3;
                 ball.x = ball.x + ball.speedX;
                 ball.y = ball.y + ball.speedY;
 
+                _this.collideBt();
                 
 
                 /*x边界*/
                 if( ball.x + ball.r > canvas.width - launchWidth){
-                    ball.speedX *= -0.70;
-                    ball.speedY *= 0.70;
+                    ball.speedX *= -0.95;
+                    ball.speedY *= 0.95;
                     ball.x = canvas.width - ball.r - launchWidth;
                 }else if(ball.x - ball.r < 0){
-                    ball.speedX *= -0.70;
-                    ball.speedY *= 0.70;
+                    ball.speedX *= -0.95;
+                    ball.speedY *= 0.95;
                     ball.x = 0 + ball.r;
                 };
 
                 /*y边界*/
                 if( ball.y + ball.r > canvas.height ){
-                    ball.speedY *= -0.70;
-                    ball.speedX *= 0.70;
+                    ball.speedY *= -0.95;
+                    ball.speedX *= 0.95;
                     ball.y = canvas.height - ball.r; 
                 }else if(ball.y - ball.r < 0){
-                    ball.speedY *= -0.70;
-                    ball.speedX *= 0.70;
+                    ball.speedY *= -0.95;
+                    ball.speedX *= 0.95;
                     ball.y = ball.r;
                 };
 
@@ -235,10 +246,10 @@
 
             if( ball.y + ball.r > y ){
                 if( ball.x - ball.r < x1 &&  ball.x + ball.r > x1 ){
-                    ball.x = x1 + ball.r;
+                    ball.x = x1 + ball.r + 3;
                     retval = true;
                 }else if(ball.x + ball.r > x2 && ball.x - ball.r  < x2){
-                    ball.x = x2 - ball.r;
+                    ball.x = x2 - ball.r - 3;
                     retval = true;
                 }
             }
@@ -248,14 +259,16 @@
         collideBt: function(){
             for(var i=0; i<btObs.pos.length; i++){
                 if(this.hitTextCircleBt(btObs.pos[i]) ){
-                    ball.speedX *= -1;
+                    ball.speedX *= -0.9;
                     break;
                 }
             }
         }
     }
 
-    new App();
+  
+        new App();
+    
 
     
 
