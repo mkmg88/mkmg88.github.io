@@ -13,15 +13,22 @@
 
     <div class="g-gamebox" id="j-gamebox">
         <canvas id="canvas"></canvas>
-    </div>
 
+        <div class="m-spcc">
+            <span id="j-spcc" style="width:0%;"></span>
+        </div>
+
+        <a class="m-btn" href="javascript:;" id="j-btn">长按蓄力</a>
+    </div>
 
     <script src="js/zepto.min.js"></script>
     <script>
 
 
-    var gamebox = $('#j-gamebox');
- 
+    var app;
+
+     var gamebox = $('#j-gamebox');
+
     var canvas = document.getElementById('canvas');
     var context = canvas.getContext('2d');
 
@@ -31,6 +38,51 @@
     var launchWidth = canvas.width*0.15;
 
 
+
+    /*spriing*/
+    var spring = {
+        left: canvas.width * 0.85,
+        width: canvas.width * 0.13,
+        height: canvas.height * 0.29
+    }
+    spring.top = canvas.height - spring.height - 2;
+    var springImg = new Image();
+    springImg.src = 'http://f1.img4399.com/ma~241_20161222141938_585b707a63775.png?t=1482387578';
+
+
+
+
+    var spcc = $('#j-spcc');
+    var spccWidth = 0;
+    var spccTimer = false;
+    var spccAdd = true;
+
+    $('#j-btn').on('touchstart',function(){
+        spccWidth = 0;
+        spccTimer = setTimeout(function fn(){
+            if( spccAdd && spccWidth >= 100 ){
+                spccAdd = false;
+            }else if(!spccAdd && spccWidth <= 0){
+                spccAdd = true;
+            }
+            if(spccAdd){
+                spccWidth ++;
+            }else{
+                spccWidth --;
+            }
+
+            app.drawSpring( spring.height - (spring.height * spccWidth/200) );
+            spcc.width(spccWidth + '%');
+            spccTimer = setTimeout(fn,13);
+        },13);
+        return false;
+    });
+
+    $('#j-btn').on('touchend',function(){
+        clearTimeout(spccTimer);
+        app.drawSpring( spring.height );
+        //app.move()
+    });
 
     /*障碍小球*/
     var obs = {
@@ -51,7 +103,6 @@
         y: canvas.height - canvas.height * 0.23,
         pos: []
     };
-
     btObs.width = (canvas.width - launchWidth)/btObs.length;
     for(var i=0; i<btObs.length; i++){
         btObs.pos.push({
@@ -75,15 +126,17 @@
     var ball = {
         speed: 1,
         speedX: -15,
-        speedY: -8,
+        speedY: -3,
         x: canvas.width - 100,
         y: 20,
         r: canvas.width*0.03,
         mass: 20
     };
-    
+
+
     var first = 0;
     var xzz,yzz;
+
 
     function App(){
         this.init();
@@ -93,9 +146,6 @@
             var _this = this;
             this.drawApp(ball.x,ball.y);
             first = 1;
-            setTimeout(function(){
-                _this.move();
-            },1000);
         },
 
         /*绘制障碍*/
@@ -131,11 +181,23 @@
             }
         },
 
+        drawSpring: function(height){
+            context.beginPath();
+            if(height){
+                context.clearRect(spring.left,0 ,spring.width, canvas.height);    
+            }
+            height = height || spring.height;
+            var top = canvas.height - height;
+            context.drawImage(springImg,spring.left,top,spring.width,height);
+            context.closePath();
+        },
+
         /*绘制整个画布*/
         drawApp: function(){
             context.clearRect(0,0,canvas.width,canvas.height);
             this.drawObs();
-            this.drawLine();
+            //this.drawLine();
+            this.drawSpring();
             this.drawBall(ball.x,ball.y,ball.r,'#17d6e2');
         },
 
@@ -148,7 +210,6 @@
 
         move: function(){
             var _this = this;
-
             /*move*/
             //setTimeout(function fn(){
             window.requestAnimationFrame(function fn(){
@@ -159,7 +220,7 @@
                 ball.y = ball.y + ball.speedY;
 
                 _this.collideBt();
-                
+
 
                 /*x边界*/
                 if( ball.x + ball.r > canvas.width - launchWidth){
@@ -176,7 +237,7 @@
                 if( ball.y + ball.r > canvas.height ){
                     ball.speedY *= -0.95;
                     ball.speedX *= 0.95;
-                    ball.y = canvas.height - ball.r; 
+                    ball.y = canvas.height - ball.r;
                 }else if(ball.y - ball.r < 0){
                     ball.speedY *= -0.95;
                     ball.speedX *= 0.95;
@@ -193,7 +254,7 @@
                 }else{
                    _this.drawApp();
                 }
-                
+
                 //setTimeout(fn,50);
                 window.requestAnimationFrame(fn);
             },50);
@@ -266,11 +327,13 @@
         }
     }
 
-  
-        new App();
-    
+    springImg.onload = function(){
 
-    
+        app = new App();
+    }
+
+
+
 
     </script>
 </body>

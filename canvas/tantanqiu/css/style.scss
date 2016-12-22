@@ -50,5 +50,33 @@ body{
 	background: url(../images/bg.png);
 	background-size: px(570) px(350);
 	border: 1px solid #ec4b48;
-	
+
+    .m-spcc {
+        width: px(200);
+        height: px(20);
+        background: red;
+        float: left;
+        margin-top: px(20);
+        margin-right: px(40);
+        overflow: hidden;
+        span {
+            display: block;
+            height: px(20);
+            background: pink;
+            width: 0;
+        }
+    }
+    .m-btn {
+        display: block;
+        width: px(100);
+        height: px(60);
+        line-height: px(60);
+        color: #fff;
+        float: right;
+        background: orange;
+        &:active {
+            background: #f60;
+        }
+    }
 }
+
