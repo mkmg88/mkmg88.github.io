@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>svg</title>
+
+    <style>
+        .cat {
+            width: 200px;
+            height: 200px;
+            background: url(cat.svg);
+            background-size: 100% 100%;
+        }
+
+line {
+    stroke: #000;
+    stroke-width: 10;
+    stroke-opacity: 0.5;
+    stroke-dasharray: 10,5;
+}
+
+rect {
+    fill: #d45;
+    opacity: 0.8;
+    stroke: yellow;
+    stroke-width: 4;
+}
+
+
+body {
+    font-family: microsoft yahei;
+}
+svg {
+    display: block;
+    width: 600px;
+    height: 600px;
+    background: #f0f0f0;
+}
+
+circle,ellipse,polygon {
+    fill: #f60;
+    opacity: 0.8;
+    stroke: yellow;
+    stroke-width: 5;
+}
+
+polygon {
+    fill-rule: nonzero; /*默认*/
+    fill-rule: evenodd;
+}
+
+polyline {
+    fill: none;
+    stroke: red;
+    stroke-width: 10;
+
+    stroke-linecap: round;  /*butt（默认） 、round（圆角）、square（长方形）*/
+
+    stroke-linejoin: round; /*miter（尖的）、round（圆角）、bevel（平的）*/
+}
+
+
+    </style>
+</head>
+<body>
+
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" >
+    <line x1="0" y1="0" x2="600" y2="600" />
+    <line x1="600" y1="0" x2="0" y2="600" />
+
+<defs>
+    <g id="shank">
+        <rect x="10" y="10" width="200" height="200" rx="20" ry="20"/>
+        <image xlink:href="pic.jpg" x="60" y="60" width="100" height="100"/>
+    </g>
+</defs>
+
+
+<!-- <use xlink:href="#shank" transform="translate(100,100)"/> -->
+<use xlink:href="#shank" transform="skewX(15) skewY(15)"/>
+
+
+
+ </svg>
+
+</body>
+</html>

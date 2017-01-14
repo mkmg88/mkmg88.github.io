@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="200px" height="200px">
+    <title>标题</title>
+    <desc>描述</desc>
+    <!-- 开始绘制图像 -->
+    <circle cx="70" cy="95" r="50" style="stroke: black; fill: none;" />
+ </svg>
