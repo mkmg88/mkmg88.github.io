@@ -39,8 +39,8 @@
             //this.driftY Y轴的偏移总量
             if (ops.targetEl) {
                 this.targetRect = _$(ops.targetEl)[0].getBoundingClientRect();
-                this.driftX = toInteger(this.targetRect.left) - this.elOriginalLeft;
-                this.driftY = toInteger(this.targetRect.top) - this.elOriginalTop;
+                this.driftX = this.targetRect.left - this.elOriginalLeft;
+                this.driftY = this.targetRect.top - this.elOriginalTop;
             } else {
                 this.driftX = ops.offset[0];
                 this.driftY = ops.offset[1];
