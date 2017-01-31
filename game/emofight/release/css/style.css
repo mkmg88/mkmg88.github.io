@@ -300,7 +300,7 @@ body {
       border-left: 0.15rem solid transparent; }
 
 .m-pos {
-  position: absolute;
+  position: fixed;
   right: 1.5rem;
   bottom: 4.2rem;
   width: 0.8rem;
