@@ -29,13 +29,18 @@
             }
             this.$el = _$(ops.el);
             this.timerId = null;
-            this.elOriginalLeft = toInteger(this.$el.css("left"));
-            this.elOriginalTop = toInteger(this.$el.css("top"));
+
+            this.elRect = this.$el[0].getBoundingClientRect();
+
+            this.elOriginalLeft = this.elRect.left;
+            this.elOriginalTop = this.elRect.top;
+
             // this.driftX X轴的偏移总量
             //this.driftY Y轴的偏移总量
             if (ops.targetEl) {
-                this.driftX = toInteger(_$(ops.targetEl).css("left")) - this.elOriginalLeft;
-                this.driftY = toInteger(_$(ops.targetEl).css("top")) - this.elOriginalTop;
+                this.targetRect = _$(ops.targetEl)[0].getBoundingClientRect();
+                this.driftX = toInteger(this.targetRect.left) - this.elOriginalLeft;
+                this.driftY = toInteger(this.targetRect.top) - this.elOriginalTop;
             } else {
                 this.driftX = ops.offset[0];
                 this.driftY = ops.offset[1];

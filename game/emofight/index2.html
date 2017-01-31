@@ -9,6 +9,11 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black" />
 <title>再见</title>
 <link rel="stylesheet" href="release/css/style.css">
+<script>
+     window.onerror = function(a,b,c){
+        alert(a+b+c);
+    }
+</script>
 </head>  
 <body>
     <section class="g-diacon" id="j-diacon">
@@ -210,7 +215,9 @@
     <script src="release/js/music.js"></script>
     
     <script>
-        ;(function(){
+   
+
+        $(function(){
             /*dw*/
             var myParabola = new Parabola();
 
@@ -422,6 +429,7 @@
 
                                 if(obj.fastFight){
                                     setTimeout(function(){
+
                                         _.dwTip(function(){
                                             obj.playerAddIng = 1;
                                         });
@@ -487,7 +495,7 @@
             new AppPlay();
 
 
-        })();
+        });
 
 
        
