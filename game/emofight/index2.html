@@ -28,10 +28,14 @@
     </div>
 
     <!-- 提示豆娃 -->
-    <div class="m-dw showtip" id="j-dw" style="display: none;">
+    <div class="m-dw " id="j-dw" >
         <p class="pop">直接点击图片发送表情</p>
         <div class="bg"></div>
     </div>
+
+    <div class="m-pos" id="j-pos"></div>
+
+
     
     <script type="text/template" id="j-emoTemp">
         <ul class="clearfix">
@@ -199,16 +203,34 @@
         });
     </script>
     
-    
-
-
     <script src="release/js/zepto.min.js"></script>
     <script src="release/js/baiduTemplate.js"></script>
     <script src="release/js/zepto.scroll.js"></script>
     <script src="release/js/p.js"></script>
+    <script src="release/js/music.js"></script>
     
     <script>
         ;(function(){
+            /*dw*/
+            var myParabola = new Parabola();
+
+            var _url = {
+                emoList: 'json/emolist.json',
+                staffPic: 'json/staff.json',
+                fight: 'json/fight.json',
+                redpack: 'json/redpack.json',
+                SentMessage: 'release/images/message.mp3'
+            };
+
+            var _dom = {
+                diaCon: $('#j-diacon'),
+                emoBox : $('#j-emolist'),
+                dw: $('#j-dw'),
+                pos: $('#j-pos')
+            };
+
+            Resource.addSound("SentMessage", _url.SentMessage, 1);
+
             var _ = {};
             _.dialog = function(html){
                 if($("#j-dialog").length>0){
@@ -236,28 +258,58 @@
             _.dialogue = function(diaData){
                 var html = baidu.template('j-diaTemp' , diaData )
                 _dom.diaCon.append(html);
+                Resource.playSound("SentMessage");
                 //滚动到到底部
                 $("body").scrollTo({
                     toT:document.documentElement.scrollHeight,
                     durTime: 550
                 })
             };
+
+            _.dwDown = function(callback){
+               _dom.dw.addClass('down');
+               setTimeout(function(){
+                    callback && callback();
+                   _dom.dw.removeClass('down');
+               },300);
+            };
+            _.dwPlay = function(callback){
+                myParabola.initialize({
+                    el: _dom.dw[0],
+                    targetEl: _dom.pos,
+                    curvature: 0.01,
+                    duration: 500,
+                    callback: function(){
+                        _.dwDown(function(){
+                            callback && callback(); 
+                        });
+                    }
+                }).start();
+            };
             //豆娃提示
             _.dwTip = function(callback){
-
-                callback && callback();
+                _.dwPlay(function(){
+                    if(_.lddd){
+                        return;
+                    };
+                    setTimeout(function(){
+                        _dom.dw.addClass('showtip');
+                        _dom.pos.css('right', -_dom.dw.width()*2 );
+                        callback && callback();
+                    },800);
+                });
             };
 
-            var _url = {
-                emoList: 'json/emolist.json',
-                staffPic: 'json/staff.json',
-                fight: 'json/fight.json',
-                redpack: 'json/redpack.json'
-            };
-
-            var _dom = {
-                diaCon: $('#j-diacon'),
-                emoBox : $('#j-emolist')
+            _.dwLeave = function(callback){
+                _dom.dw.removeClass('showtip');
+                setTimeout(function(){
+                    _dom.dw.addClass('right');
+                    setTimeout(function(){
+                        _.dwPlay();
+                        _.lddd = 1;
+                        callback && callback();
+                    },1000);
+                },500);
             };
 
             function AppPlay(){
@@ -282,9 +334,12 @@
                             type: 'player',
                             img: obj.emoData[_id-1].small
                         });
+
                         if(obj.fastFight){
-                            obj.fightResult(_id);
-                            obj.fastFight = false;
+                            _.dwLeave(function(){
+                                obj.fightResult(_id);
+                                obj.fastFight = false;
+                            });
                         }else{
                             obj.staffPlay(_id);
                         }
@@ -366,9 +421,11 @@
                                 });
 
                                 if(obj.fastFight){
-                                    _.dwTip(function(){
-                                        obj.playerAddIng = 1;
-                                    });
+                                    setTimeout(function(){
+                                        _.dwTip(function(){
+                                            obj.playerAddIng = 1;
+                                        });
+                                    },1000);
                                 }else{
                                     setTimeout(function(){
                                         obj.succ(data.result.succ);
@@ -423,6 +480,9 @@
 
                 this.init();
             };
+
+
+            window._ = _;
 
             new AppPlay();
 

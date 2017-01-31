@@ -1,0 +1,74 @@
+// SCSS variables are information about icon's compiled state, stored under its original file name
+//
+// .icon-home {
+//   width: $icon-home-width;
+// }
+//
+// The large array-like variables contain all information about a single icon
+// $icon-home: x y offset_x offset_y width height total_width total_height image_path;
+//
+// At the bottom of this section, we provide information about the spritesheet itself
+// $spritesheet: width height image $spritesheet-sprites;
+
+@mixin d0 {
+    background-position: -717/(38-759)*100% -154/(38-450)*100%;
+    width: px(38);
+    height: px(38);
+}
+@mixin d1 {
+    background-position: -261/(140-759)*100% -204/(144-450)*100%;
+    width: px(140);
+    height: px(144);
+}
+@mixin d2 {
+    background-position: -499/(260-759)*100% 0/(150-450)*100%;
+    width: px(260);
+    height: px(150);
+}
+@mixin d3 {
+    background-position: 0/(234-759)*100% 0/(200-450)*100%;
+    width: px(234);
+    height: px(200);
+}
+@mixin d4 {
+    background-position: -499/(130-759)*100% -154/(212-450)*100%;
+    width: px(130);
+    height: px(212);
+}
+@mixin dw {
+    background-position: -633/(80-759)*100% -262/(102-450)*100%;
+    width: px(80);
+    height: px(102);
+}
+@mixin dw0 {
+    background-position: -633/(80-759)*100% -154/(104-450)*100%;
+    width: px(80);
+    height: px(104);
+}
+@mixin emo_l {
+    background-position: 0/(275-759)*100% -371/(79-450)*100%;
+    width: px(275);
+    height: px(79);
+}
+@mixin emo_r {
+    background-position: -279/(92-759)*100% -371/(79-450)*100%;
+    width: px(92);
+    height: px(79);
+}
+@mixin redpacked {
+    background-position: 0/(257-759)*100% -204/(163-450)*100%;
+    width: px(257);
+    height: px(163);
+}
+@mixin redpacket {
+    background-position: -238/(257-759)*100% 0/(163-450)*100%;
+    width: px(257);
+    height: px(163);
+}
+%spritesheet {
+    background-image: url('../images/sprite.png');
+    background-repeat: no-repeat;
+    background-size: px(759) px(450);
+}
+
+

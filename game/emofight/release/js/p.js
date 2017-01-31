@@ -135,7 +135,6 @@
             }
             if(window.requestAnimationFrame){
                 timerId = requestAnimationFrame(fn,13);
-                
             }else{
                 setTimeout(fn,13);
             }
