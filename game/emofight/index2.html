@@ -7,13 +7,8 @@
 <meta name="format-detection" content="telephone=no">
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-<title>再见</title>
+<title>斗表情</title>
 <link rel="stylesheet" href="release/css/style.css">
-<script>
-     window.onerror = function(a,b,c){
-        alert(a+b+c);
-    }
-</script>
 </head>  
 <body>
     <section class="g-diacon" id="j-diacon">
@@ -208,6 +203,7 @@
         });
     </script>
     
+    <script src="release/js/vconsole.min.js"></script>
     <script src="release/js/zepto.min.js"></script>
     <script src="release/js/baiduTemplate.js"></script>
     <script src="release/js/zepto.scroll.js"></script>
@@ -215,9 +211,7 @@
     <script src="release/js/music.js"></script>
     
     <script>
-   
-
-        $(function(){
+        ;(function(){
             /*dw*/
             var myParabola = new Parabola();
 
@@ -359,10 +353,10 @@
 
                             if(obj.redPackNum == 0){
                                 obj.getRedPack();
-                            }else if(obj.redPackNum > 0 && obj.redPackNum < 5){
+                            }else if(obj.redPackNum > 0 && obj.redPackNum <= 5){
                                 //付费开红包
                                 _.dialog( $('#j-diaTwo').html() );
-                            }else if(obj.redPackNum >= 5){
+                            }else if(obj.redPackNum > 5){
                                 //次数已过
                                 _.dialog( $('#j-diaNoNum').html() );
                             };
@@ -429,7 +423,6 @@
 
                                 if(obj.fastFight){
                                     setTimeout(function(){
-
                                         _.dwTip(function(){
                                             obj.playerAddIng = 1;
                                         });
@@ -495,7 +488,7 @@
             new AppPlay();
 
 
-        });
+        })();
 
 
        
