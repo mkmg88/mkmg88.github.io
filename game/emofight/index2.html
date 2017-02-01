@@ -203,7 +203,7 @@
         });
     </script>
     
-    <script src="release/js/vconsole.min.js"></script>
+    
     <script src="release/js/zepto.min.js"></script>
     <script src="release/js/baiduTemplate.js"></script>
     <script src="release/js/zepto.scroll.js"></script>
@@ -308,9 +308,9 @@
                     setTimeout(function(){
                         _.dwPlay();
                         _.lddd = 1;
-                        callback && callback();
-                    },1000);
+                    },500);
                 },500);
+                callback && callback();
             };
 
             function AppPlay(){
@@ -430,9 +430,9 @@
                                 }else{
                                     setTimeout(function(){
                                         obj.succ(data.result.succ);
-                                    },2000);
+                                    },1000);
                                 }
-                            },2000);
+                            },1000);
                         }else{
                             alert(data.message);
                         }
@@ -461,8 +461,8 @@
                             });
 
                             obj.playerAddIng = 1;
-                        },2000);
-                    },2000);
+                        },1000);
+                    },1000);
 
                     
                 };
