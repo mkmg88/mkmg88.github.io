@@ -1,0 +1,496 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+<meta name="format-detection"content="telephone=no">
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<title>再见</title>
+<link rel="stylesheet" href="release/css/index.css">
+</head>  
+<body>
+    <section class="g-hearder">
+        <span class="m-logo"></span>
+        <p>
+            <span class="num">已有4399人参与</span>
+            <span class="nick">欢迎您，5个字符宏</span>
+        </p>
+    </section>
+
+    <section class="g-jiangli">
+        <div class="m-md">
+            <div>iphone 7</div>
+            <dl>
+                <dt>3.0大礼包（限量先到先得）</dt>
+                <dd class="jp1">甜口美食皮肤</dd>
+                <dd class="jp2">徽章</dd>
+                <dd class="jp3">盒币</dd>
+            </dl>
+        </div>
+    </section>
+
+    <section class="g-gamebox g-cbox">
+        <div class="m-top">3.0游戏区</div>
+        <div class="m-ccon">
+            <div class="m-game" id="j-gamebox">
+                <div id="j-lvbox"></div>
+            
+                <div class="m-zz j-zz" style="display: none;">
+                    <a href="javascript:;" class="i-mon"></a>
+                </div>
+
+                <!-- 道具 -->
+                <div class="grenadebox">
+                    <span class="j-sldnum">X0</span>
+                    <a href="javascript:;" class="j-addSld">增加手榴弹</a>
+                </div>
+                
+                <!-- start -->
+                <div class="m-start m-zz">
+                    <a href="javascript:;" class="j-startGame"></a>
+                    <p>点击怪兽投掷手榴弹</p>
+                </div>
+            </div>
+            <div class="m-ttbox">
+                <p class="m-tt">打败全部怪兽将获得勇士徽章</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="g-bth">
+        <a href="javascript:;" class="m-gl" id="j-rule">获奖攻略</a>
+        <a href="javascript:;" class="m-my" id="j-prize">我的奖励</a>
+    </section>
+
+    <section class="g-question g-cbox" id="j-feedbox">
+        <div class="m-top">3.0游戏区</div>
+        <div class="m-ccon">
+            <p class="m-tt">游戏盒3.0新版本来袭，体验过程中有哪些意见及建议，<br>
+            写下来反馈给我们吧~优质回答者有机会获得iphone7噢~</p>
+            <div class="m-testarea">
+                <textarea id=""></textarea>
+                <span>(600字以内)</span>
+            </div>
+            <a href="javascript:;" class="m-btn">提交反馈</a>
+        </div>
+    </section>
+
+    <section class="g-top g-cbox">
+        <div class="m-top">分享排行区</div>
+        <div class="m-ccon">
+            <p class="m-tt">每日分享最多即可登录</p>
+            <ol class="clearfix">
+                <li>
+                    <img src="lib/avast.jpg" alt="">
+                    <i>1</i>
+                    <span>三的的</span>
+                </li>
+                <li>
+                    <img src="lib/avast.jpg" alt="">
+                    <i>2</i>
+                    <span>三的的</span>
+                </li>
+                <li>
+                    <img src="lib/avast.jpg" alt="">
+                    <i>3</i>
+                    <span>三的的</span>
+                </li>
+                <li>
+                    <img src="lib/avast.jpg" alt="">
+                    <i>4</i>
+                    <span>三的的</span>
+                </li>
+                <li>
+                    <img src="lib/avast.jpg" alt="">
+                    <i>5</i>
+                    <span>三的的</span>
+                </li>
+                <li>
+                    <img src="lib/avast.jpg" alt="">
+                    <i>3</i>
+                    <span>三的的</span>
+                </li>
+                <li>
+                    <img src="lib/avast.jpg" alt="">
+                    <i>4</i>
+                    <span>三的的</span>
+                </li>
+                <li>
+                    <img src="lib/avast.jpg" alt="">
+                    <i>5</i>
+                    <span>三的的</span>
+                </li>
+                <li>
+                    <img src="lib/avast.jpg" alt="">
+                    <i>9</i>
+                    <span>三的的</span>
+                </li>
+            </ol>
+        </div>
+    </section>
+
+    <footer>
+        <p>本活动最终解释权归4399官方所有<br>&copy;2004-2016四三九九网络股份有限公司</p>
+    </footer>
+
+    <script type="text/template" id="j-lvtemp">
+        <%if( mission == 1 ) { %>
+        <!-- lv1 -->
+        <div class="m-lv m-lv1">
+            <span class="dw">
+                <i class="j-sld"></i>
+            </span>
+            <span class="monster">
+                <span class="blood">
+                    <i style="width: 100%;"></i>
+                </span>
+                <span class="titi j-tips">点击怪兽<br>投掷手榴弹</span>
+            </span>
+            <span class="m-smoke"></span>
+            <div class="dptext">
+                <p class="dwtt">豆娃：游戏盒可以换肤啦~</p>
+            </div>
+        </div>
+        <%}else if( mission == 2 ) {%>
+        <!-- lv2 -->
+        <div class="m-lv m-lv2">
+            <span class="dw">
+                <i class="j-sld"></i>
+            </span>
+            <span class="monster">
+                <span class="blood">
+                    <i style="width: 50%;"></i>
+                </span>
+            </span>
+            <span class="m-smoke"></span>
+            <div class="dptext">
+                <p class="dwtt">豆娃：个人主页徽章可以多个展示啦~</p>
+            </div>
+        </div> 
+        <%}else if( mission == 3 ) {%>
+        <!-- lv3 -->
+        <div class="m-lv m-lv3">
+            <span class="dw">
+                <i class="j-sld"></i>
+            </span>
+            <span class="monster">
+                <span class="blood">
+                    <i style="width: 50%;"></i>
+                </span>
+            </span>
+            <span class="m-smoke"></span>
+            <div class="dptext">
+                <p class="dwtt">豆娃：动态gif图自动播放更好玩~</p>
+            </div>
+        </div>
+        <%}else if( mission == 4 ) {%>
+        <!-- lv4 -->
+        <div class="m-lv m-lv4">
+            <span class="dw">
+                <i class="j-sld"></i>
+            </span>
+            <span class="monster">
+                <span class="blood">
+                    <i style="width: 50%;"></i>
+                </span>
+            </span>
+            <span class="m-smoke"></span>
+        </div>
+        <%}else if( mission == 5 ) {%>
+        <!-- lv5 -->
+        <div class="m-lv m-lv5">
+            <span class="dw">
+                <i class="j-sld"></i>
+            </span>
+            <span class="monster">
+                <span class="blood">
+                    <i style="width: 100%;"></i>
+                </span>
+            </span>
+            <span class="m-smoke"></span>
+        </div>
+        <%}else if( mission == 6 ) {%>
+        <div class="m-lv m-lv5">
+            <span class="dw">
+                <i class="j-sld"></i>
+            </span>
+            <span class="monster monster-die">
+                <span class="blood">
+                    <i style="width: 0%;"></i>
+                </span>
+            </span>
+        </div>
+        <%}%>
+    </script>
+
+    <script type="text/template" id="j-lvmission">
+        <div class="m-addgrenade m-zz">
+            <p>选择以下方式均可增加手榴弹</p>
+            <a href="javascript:;" class="close j-addclose">×</a>
+            <ul class="j-task">
+                <li class="ms1 msd"><a href="javascript:;" data-id="1">任务<br>一</a></li>
+                <li class="ms2"><a href="javascript:;" data-id="2">任务<br>二</a></li>
+                <li class="ms3"><a href="javascript:;" data-id="3">任务<br>三</a></li>
+                <li class="ms4"><a href="javascript:;" data-id="4">任务<br>四</a></li>
+                <li class="ms5"><a href="javascript:;" data-id="5">任务<br>五</a></li>
+            </ul>
+        </div>
+    </script>
+
+    <script type="text/template" id="j-gameEndTemp">
+        <div class="m-over m-zz">
+            <p>您已经打倒全部怪兽啦~<br>写完体验反馈还有机会获得<span>iPhone7</span>噢~ </p>
+        </div>
+    </script>
+
+    <script type="text/template" id="j-nosldtemp">
+        <div class="m-diacon m-nosld">
+            <a href="javascript:;" class="m-close j-close"></a>
+            <p>呜，没有手榴弹了，快去增加<br>手榴弹打倒怪兽吧~</p>
+            <a href="javascript:;" class="m-btn j-addSld">增加手榴弹</a>
+        </div>
+    </script>
+
+    <script type="text/template" id="j-misTemp">
+        <%if( mission == 3 ) { %>
+        <div class="m-diacon m-mis3">
+            <a href="javascript:;" class="m-close j-nextMission"></a>
+            <%if( status == 1 ) { %>
+            <p>恭喜你，获得“甜口美食诱惑”<br>
+            （价值xx盒币）主题皮肤，<br>
+            快去下载使用吧！~</p>
+            <a href="javascript:;" class="m-btn">立即使用</a>
+            <%}else{%>
+            <p>“甜扣美食诱惑”主题皮肤<br>
+            已全部被领取完毕，没关系，<br>
+            打败下一级怪兽还有盒币奖励噢~</p>
+            <a href="javascript:;" class="m-btn j-nextMission">继续打怪兽</a>
+            <%}%>
+        </div>
+        <%}else if( mission == 4 ){%>
+        <div class="m-diacon m-mis4">
+            <a href="javascript:;" class="m-close j-close j-nextMission"></a>
+            <p>恭喜你打败四级怪兽，<br>
+            获得5盒币奖励！~</p>
+            <a href="javascript:;" class="m-btn j-nextMission">继续打怪兽</a>
+        </div>
+        <%}else if( mission == 5 ){%>
+        <div class="m-diacon m-mis5">
+            <a href="javascript:;" class="m-close j-feedback"></a>
+            <h5>恭喜你，获得<span>勇士徽章！</span></h5>
+            <p>现在去写反馈提bug，还有机会<br>
+            获得<span>iPhone7</span>噢！</p>
+            <a href="javascript:;" data-feed="1" class="m-btn j-feedback">马上反馈</a>
+        </div>
+        <%}%>
+    </script>
+
+    <script type="text/template" id="j-taskTemp">
+        <%if( task == 1 ) { %>
+        <div class="m-diacon m-task">
+            <a href="javascript:;" class="m-close j-close"></a>
+            <h2>任务一</h2>
+            <h5>一键分享本活动</h5>
+            <p>3.0新版来袭，快把这个消息告诉好友吧~</p>
+            <ul class="sharebtn">
+                <li><a href="javascript:;" data-type="qq">QQ</a></li>
+                <li><a href="javascript:;" data-type="qzone">空间</a></li>
+                <li><a href="javascript:;" data-type="wx">微信</a></li>
+            </ul>
+        </div>
+        <%}else if( task == 2 ){%>
+        <div class="m-diacon m-task">
+            <a href="javascript:;" class="m-close j-close"></a>
+            <h2>任务二</h2>
+            <h5>更换主题皮肤</h5>
+            <p>新增换肤功能，让界面更加生动~</p>
+            <a href="javascript:;" class="m-btn j-addSld">立即体验</a>
+        </div>
+        <%}else if( task == 3 ){%>
+        <div class="m-diacon m-task">
+            <a href="javascript:;" class="m-close j-close"></a>
+            <h2>任务三</h2>
+            <h5>发布一个gif动图</h5>
+            <p>动态支持自动播放gif动图啦~</p>
+            <a href="javascript:;" class="m-btn j-addSld">去发布</a>
+        </div>
+        <%}else if( task == 4 ){%>
+        <div class="m-diacon m-task">
+            <a href="javascript:;" class="m-close j-close"></a>
+            <h2>任务四</h2>
+            <h5>更换个人主页背景</h5>
+            <p>个人主页背景图更加人性化~</p>
+            <a href="javascript:;" class="m-btn j-addSld">去发布</a>
+        </div>
+        <%}else if( task == 5 ){%>
+        <div class="m-diacon m-task">
+            <a href="javascript:;" class="m-close j-close"></a>
+            <h2>任务五</h2>
+            <h5>下载一款喜欢的游戏</h5>
+            <p>下载详情页新增视频解说~</p>
+            <ul class="gamedown">
+                <li>
+                    <a href="javascript:;" class="pic">
+                        <img src="lib/avast.jpg" alt="">
+                    </a>
+                    <a href="javascript:;" class="down">去下载</a>
+                </li>
+                <li>
+                    <a href="javascript:;" class="pic">
+                        <img src="lib/avast.jpg" alt="">
+                    </a>
+                    <a href="javascript:;" class="down">去下载</a>
+                </li>
+                <li>
+                    <a href="javascript:;" class="pic">
+                        <img src="lib/avast.jpg" alt="">
+                    </a>
+                    <a href="javascript:;" class="down">去下载</a>
+                </li>
+            </ul>
+        </div>
+        <%}%>
+    </script>
+
+    <script type="text/template" id="j-ruleTemp">
+        <div class="m-diacon m-rule">
+            <a href="javascript:;" class="m-close j-close"></a>
+            <dl>
+                <dt>◆ 活动规则</dt>
+                <dd>
+                    <ol>
+                        <li>每个用户默认拥有1枚手榴弹，点击怪兽即可进行攻击。</li>
+                        <li>一共有5级怪兽，攻击不同的怪兽所需要的手榴弹数也不同。打败三级怪兽可获得限量主题皮肤，打败四级怪兽即可获盒币奖励！全部打败将获得“勇士”徽章。</li>
+                        <li>增加手榴弹：完成不同的任务将获得不同的手榴弹数。</li>
+                    </ol>
+                </dd>
+                <dt>◆ 活动奖励</dt>
+                <dd>
+                    <ol>
+                        <li>3.0大礼包（限量 先到先得）：主题皮肤+徽章+盒币奖励。</li>
+                        <li>优质内测者将获得iphone7一部！</li>
+                    </ol>
+                </dd>
+                <dd>
+                    优质内测者评定标准：<br>
+                    ①完成全部任务；<br>    
+                    ②提交优质意见反馈。
+                </dd>
+            </dl>
+        </div>
+    </script>
+
+    <script type="text/template" id="j-prizeTemp">
+        <div class="m-diacon m-prize">
+            <a href="javascript:;" class="m-close j-close j-nextMission"></a>
+            <h4>我的奖励</h4>
+            <%if( task == 1 ) { %>
+            <ul>
+                <li>
+                    <span>三级怪兽奖励</span>
+                    <span>甜口美食主题皮肤</span>
+                    <span>已领取</span>
+                </li>
+                 <li>
+                    <span>四级怪兽奖励</span>
+                    <span>+5盒币</span>
+                    <span>已领取</span>
+                </li>
+                <li>
+                    <span>五级怪兽奖励</span>
+                    <span>勇士徽章</span>
+                    <span>已领取</span>
+                </li>
+            </ul>
+            <%}else if( task == 3 ){%>
+            <p class="nodata">
+                您还没有获得奖励噢~<br>快去打怪兽领取奖励吧~
+            </p> 
+            <a href="javascript:;" class="m-btn">继续打怪兽</a>
+            <%}%>
+        </div>
+    </script>
+
+    <script src="release/js/zepto.min.js"></script>
+    <script src="release/js/baiduTemplate.js"></script>
+    <script src="release/js/gameBox.js"></script>
+    <script>
+        var _url = {
+            play: 'json/play.json'
+        };
+
+        var Monster = function(){
+            var obj = this;
+
+            this.globe = new GlobeAr();
+
+            this.init = function(){
+                this.getDate();
+                this.bindEvent();
+            };
+
+            this.getDate = function(){
+                var dataObj = {};
+                $.getJSON(_url.play,{},function(data){
+                    if(data.code == 100){
+                        dataObj.mission = data.result.mission;
+                        dataObj.slNum = data.result.slNum;
+                        dataObj.blood = data.result.blood;
+                        new GameBox(dataObj).init(); 
+                    }else{
+                        alert(data.message);
+                    }
+                });
+            };
+
+            this.bindEvent = function(){
+                $('#j-rule').on('tap',function(){
+                    obj.globe.dialog($('#j-ruleTemp').html());
+                });
+
+                $('#j-prize').on('tap',function(){
+                    obj.globe.dialog(  baidu.template('j-prizeTemp' , {task : 1} ) );
+                });
+
+                $(document).on('click','.j-close',function(){
+                    obj.globe.closeDialog();
+                });
+            };
+        };
+
+
+        /* TOOL */
+        var GlobeAr = function(){};
+
+        GlobeAr.prototype.dialog = function(html){
+            if($("#j-dialog").length>0){
+                $("#j-dialog").remove();
+            }
+            var $result = $('<div class="g-dialog" id="j-dialog"></div>');
+            $result.append(html).appendTo($('body'));
+            var $con = $result.children('.m-diacon');
+            var tipLeft = $con.width()/2;
+            var tipTop = $con.height()/2;
+            $con.css({
+                "marginLeft": -tipLeft,
+                "marginTop": -tipTop
+            });
+            $(document).on('touchmove.zz',function(e){
+                e.preventDefault();
+            });
+        };
+
+        GlobeAr.prototype.closeDialog = function(){
+            $('#j-dialog').remove();
+            $(document).off('touchmove.zz')
+            return false;
+        };
+
+        $(function(){
+            new Monster().init();
+        });
+    </script>
+</body>
+</html>
