@@ -1,0 +1,436 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+<meta name="format-detection" content="telephone=no">
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<title>再见</title>
+<link rel="stylesheet" href="release/css/index.css">
+<script>
+    window.onerror = function(){
+        alert(Array.prototype.slice.call(arguments, 0));
+    }
+</script>
+</head>  
+<body>
+
+   <section class="g-share" style="display: none;">
+       <div class="m-diacon m-prize">
+           <div class="m-heard">
+               <div class="heard heard1">
+                   <p>喊更多小伙伴来<br>领取盒币和绝版徽章吧！<br>记得返回游戏盒~</p>
+               </div>
+           </div>
+           <div class="context">
+               <span class="huizang"></span>
+               <p class="tip">
+                   专属徽章+盒币奖励<br>
+                   <span>小贴士：在游戏盒中看视频并分享活动才能得奖励哦~</span>
+               </p>
+           </div>
+           <div class="m-btn">
+               <h4>分享拿奖励</h4>
+               <div id="j-sharebtn">
+                   <a href="javascript:;" data-type="qq">QQ</a>
+                   <a href="javascript:;" data-type="qzone">空间</a>
+                   <a href="javascript:;" data-type="wx">微信</a>
+                   <a href="javascript:;" data-type="feed">动态</a>
+               </div>
+               
+           </div>
+       </div>
+   </section>
+
+
+    <section class="g-welcome" id="j-welcome">
+        <h1 class="m-logo m-dx">游戏盒陪你走过的2016</h1>
+        <div class="m-message m-dx" >
+            <div class="con">
+                <span class="logo"></span>
+                <dl>
+                    <dt>4399游戏盒<span>13:14</span></dt>
+                    <dd>豆娃邀请你加入“4399游戏盒大家庭”</dd>
+                </dl>
+            </div>
+        </div>
+        <div class="m-bg m-dx"></div>
+        <span class="m-arrow">上划解锁</span>
+    </section>
+
+    <section class="g-message">
+        <div class="m-messbg">
+            <a href="javascript:;" class="m-message" id="j-message">
+                <span class="m-tips"></span>
+            </a>
+        </div>
+    </section>
+
+    <section class="g-section">
+        <header>
+            <div>4399游戏盒大家庭</div>
+        </header>
+
+        <div class="g-diacon" id="j-diacon">
+            
+            <div class="m-pos" id="j-pos"></div>
+
+            <div class="m-dw" id="j-dw">
+                <p class="pop">带你回顾游戏盒2016</p>
+                <div class="bg"></div>
+            </div>
+
+            <!-- 1 -->
+            <p class="m-time m-anim j-anim1">12:12</p>
+
+            <div class="m-invite m-anim j-anim1">
+                <span>豆娃</span>邀请<span>豆大爷、运营喵、设计狮、花儿来了、动漫姐姐、蓝蓝路Tic丨zero.、鹿岛岛主、肆号、怪兽叔、4399喵叔、我是小然</span>进入家族
+            </div>
+
+            <div class="m-pop m-anim j-anim1-pop">
+                <div class="sface sfacedw">
+                    <i id="j-dwtoui"></i>
+                </div>
+                <p class="nick"><span>【族长】</span>豆娃</p>
+                <div class="bubbles" id="j-pop1">
+                    欢迎游戏盒的同学们和新同学豆大爷<i></i>
+                </div>
+            </div>
+
+            <!-- 2 -->
+            <div class="m-pop m-anim j-anim2">
+                <img class="sface" src="lib/动漫姐姐.png" alt="">
+                <p class="nick">动漫姐姐</p>
+                <div class="bubbles" id="j-pop2">
+                    快看我的游戏盒新皮肤，更新3.0就能换了~<i></i>
+                </div>
+            </div>
+
+            <!-- 3 -->
+            <div class="m-pop m-anim j-anim3">
+                <img class="sface" src="lib/动漫姐姐.png" alt="">
+                <p class="nick">动漫姐姐</p>
+                <div class="bubbles bubbimg1" id="j-pop3">
+                    <div class="m-helptip2"></div>
+                </div>
+            </div>
+
+            <!-- 4 -->
+            <div class="m-pop m-anim j-anim4">
+                <img class="sface" src="lib/怪兽叔.png" alt="">
+                <p class="nick">怪兽叔</p>
+                <div class="bubbles" id="j-pop4">
+                    我在游戏盒直播快来看哦！ 
+                </div>
+            </div>
+            
+            <!-- 5 -->
+            <div class="m-pop m-anim" id="j-anim5">
+                <img class="sface" src="lib/怪兽叔.png" alt="">
+                <p class="nick">怪兽叔</p>
+                <div class="bubbles bubbimg2" id="j-pop5" style="background-image: url('release/images/img2.jpg')">
+                </div>
+            </div>
+            
+            <!-- 6 -->
+            <div class="m-pop m-anim" id="j-anim6">
+                <img class="sface" src="lib/4399喵叔.png" alt="">
+                <p class="nick">4399喵叔</p>
+                <div class="bubbles" id="j-pop6">
+                    商城有我很多喜欢的商品啊，盒币不够用我要去充值！
+                </div>
+            </div>
+            
+            <!-- 7 -->
+            <div class="m-dwczzzzzz m-anim" id="j-dwzzz">
+                <div class="qzb"></div>
+                <div class="dw"></div>
+                <div class="text">
+                    <span></span>
+                </div>
+            </div>
+
+            <div class="m-pop m-anim" id="j-anim7">
+                <img class="sface" src="lib/花儿姐姐.png" alt="">
+                <p class="nick">花儿姐姐</p>
+                <div class="bubbles" id="j-pop7"> 
+                    每周的动态抽奖会免费送游戏盒商城多样的商品，可以随时用盒币兑换！</div>
+            </div>
+
+            <div class="m-prize m-anim" id="j-prize">
+                <span class="house"></span>
+                <span class="green"></span>
+                <span class="pink"></span>
+                <span class="yellow"></span>
+                <span class="purple"></span>
+            </div>
+
+            <div class="m-pop m-popr m-anim" id="j-myanim1">
+                <img class="sface" src="lib/dw.png" alt="">
+                <div class="bubblesr">
+                    哇，好棒啊，我也要去换皮肤换商品~
+                </div> 
+            </div>
+
+            <div class="m-pop m-anim" id="j-anim8">
+                <img class="sface" src="lib/蓝蓝路.png" alt="">
+                <p class="nick">蓝蓝路Tic丨zero.</p>
+                <div class="bubbles" id="j-pop8">
+                    象征身份的2016绝版徽章，想要吗？</div>
+            </div>
+
+            <div class="m-pop m-anim" id="j-wenzn">
+                <img class="sface" src="lib/设计师.png" alt="">
+                <p class="nick">设计师</p>
+                <div class="wenzn"></div>
+            </div>
+
+            <div class="m-pop m-popr m-anim" id="j-myanim2">
+                <img class="sface" src="lib/dw.png" alt="">
+                <div class="bubblesr" id="j-mypop2">
+                    想要想要！
+                </div> 
+            </div>
+
+            <div class="m-pop m-anim" id="j-anim9">
+                <img class="sface" src="lib/肆号.png" alt="">
+                <p class="nick">肆号</p>
+                <div class="bubbles" id="j-pop9">
+                    等一下，我先给大家发盒币红包！</div>
+            </div>
+
+            <div class="m-pop m-anim" id="j-hongbao">
+                <img class="sface" src="lib/肆号.png" alt="">
+                <p class="nick">肆号</p>
+                <div class="bubbles bubbimg3" id="j-hongbaopop">
+                    <div class="m-helptip3"></div>
+                </div>
+            </div>
+
+            <div class="m-hbtip m-anim" id="j-hongbaoTip">
+                <p>恭喜你抢到<span>1盒币</span></p>
+            </div>
+
+            <div class="m-pop m-popr m-anim" id="j-myanim3">
+                <img class="sface" src="lib/dw.png" alt="">
+                <div class="bubblesr">
+                    我抢到1盒币了，谢谢游戏盒
+                </div> 
+            </div>
+
+            <div class="m-pop m-anim" id="j-anim10">
+                <img class="sface" src="lib/我是小然.png" alt="">
+                <p class="nick">我是小然</p>
+                <div class="bubbles" id="j-pop10">
+                    看完下面游戏盒团队为大家精心准备的“游戏盒陪你走过的2016”视频并喊好友就可以免费拿到盒币和徽章哦~
+                </div> 
+            </div>
+
+            <div class="m-pop m-anim" id="j-video">
+                <img class="sface" src="lib/我是小然.png" alt="">
+                <p class="nick">我是小然</p>
+                <div class="bubbles bubbimg4" id="j-popvideo">
+                    <a href="javascript:;"></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="g-btinput m-anim">
+            <div class="m-cn clearfix">
+                <span class="m-icon"></span>
+                <div class="m-input">
+                    <span id="j-input">请输入内容</span>
+                </div>
+                <a href="javascript:;" class="m-btn" id="j-submit">
+                    <span>发送</span>
+                    <div class="m-helptip"></div>
+                </a>
+            </div> 
+            <div class="m-keybod" id="j-keybod" style="display: none;"></div>
+        </div>
+    </section>  
+
+    <script type="text/template" id="j-hongbaoTemp">
+        <div class="m-diacon m-hongbao">
+            <%if(num) {%>
+                <div class="heard">
+                    <h3>恭喜获得<span><%=hebi%></span>盒币</h3>
+                    <p>来自4399游戏盒，请继续支持和陪伴</p>
+                </div>
+                <ul>
+                    <li>
+                        <img src="lib/avast.jpg" alt="">
+                        <span>运营喵</span>
+                        <p>1盒币</p>
+                    </li>
+                    <li>
+                        <img src="lib/avast.jpg" alt="">
+                        <span>运营喵</span>
+                        <p>1盒币</p>
+                    </li>
+                    <li>
+                        <img src="<%=sface%>" alt="<%=nick%>">
+                        <span><%=nick%></span>
+                        <p><%=num%>盒币</p>
+                    </li>
+                </ul>
+                <p class="tips">小贴士：在游戏盒中看视频并分享活动才能得盒币哦~</p>
+                <div class="m-btn">
+                    <a href="javascript:;" id="j-close">确定</a>
+                </div>
+            <%}else{%>
+                <div class="heard"></div>
+                <div class="end">
+                    <p>今日的盒币已全部抢完，<br>明天早点来抢呦~</p>
+                </div>
+                <div class="m-btn">
+                    <a href="javascript:;" id="j-close">确定</a>
+                </div>
+                <br>
+            <%}%>
+        </div>
+    </script>
+
+    <script type="text/template" id="j-prizeTemp">
+        <%if(type == 1) {%>
+            <div class="m-diacon m-prize">
+                <div class="heard heard1">
+                    <p>喊更多小伙伴来<br>领取盒币和绝版徽章吧！<br>记得返回游戏盒~</p>
+                </div>
+                <div class="context">
+                    <span class="huizang"></span>
+                </div>
+                <div class="m-btn">
+                    <a href="javascript:;" id="j-closePrize">确定</a>
+                    <p class="tip">
+                        小贴士：在游戏盒中看视频并分享活动才能得奖励哦~
+                    </p>
+                </div>
+            </div>
+        <%}else if(type == 2){%>
+            <div class="m-diacon m-prize">
+                <div class="heard heard2">
+                </div>
+                <div class="context">
+                    <p>
+                        感谢您的参与，<br>马上查看盒币和徽章~
+                    </p>
+                </div>
+                <div class="m-btn">
+                    <a href="javascript:;" id="j-closePrize">查看</a>
+                    <p class="tip">
+                        小贴士：在游戏盒中看视频并分享活动才能得奖励哦~
+                    </p>
+                </div>
+            </div>
+        <%}else if(type == 3){%>
+            <div class="m-diacon m-prize">
+                <div class="heard heard2">
+                </div>
+                <div class="context">
+                    <p>
+                        你已经获得该活动全部奖励，<br>奖励不重复获得
+                    </p>
+                </div>
+                <div class="m-btn">
+                    <a href="javascript:;" id="j-close">继续体验</a>
+                </div>
+            </div>
+        <%}else if(type == 4){%>
+            <div class="m-diacon m-prize">
+                <div class="heard heard2">
+                </div>
+                <div class="context">
+                    <p>
+                        只有在游戏盒中参与活动<br>才能获得盒币和绝版徽章哟~
+                    </p>
+                </div>
+                <div class="m-btn m-btn2">
+                    <a href="javascript:;" class="or j-close">继续体验</a>
+                    <a href="javascript:;" class="j-close">下载游戏盒</a>
+                </div>
+            </div>
+        <%}%>
+    </script>
+
+    <script>
+        var _config = {
+            userInfo:  {
+                "uid":"1429204874", 
+                "nick":"mkmg",      
+                "sex":"0",          
+                "sface":"http://a.img4399.com/1429204874/middle"
+            },
+            scookie: '1',
+            isTake: 0,
+            hebi: 0,
+            medal: 0
+        };
+
+        var _url = {
+            userInfo: 'json/userInfo.json',
+            welfare: 'json/welfare.json'
+        };
+    </script>
+    <script src="release/js/preloadjs.min.js"></script>
+    <script src="release/js/soundjs.min.js"></script>
+    <script src="release/js/zepto.min.js"></script>
+    <script src="release/js/baiduTemplate.js"></script>
+    <script src="release/js/p.js"></script>
+    <script src="release/js/toucher.js"></script>
+    <script src="release/js/zhounian.js"></script>
+    <script>
+        function Zhounian(){
+            var obj = this;
+
+            var _dom = {
+                welcome: $('#j-welcome'),
+                message: $('#j-message')
+            };
+
+            this.init = function(){
+                setTimeout(function () {
+                    _dom.welcome.find('.m-message').addClass('show');
+                    createjs.Sound.play("smsreceived1");
+                }, 800);
+                _config.scookie && this.getUserInfo();
+                this.bindEvent();
+            };
+
+            this.bindEvent = function(){
+                util.toucher(_dom.welcome[0]).on('swipeUp',function(e){
+                    if(_config.scookie){
+                        
+                        $(this).addClass('hide').on('webkitTransitionEnd',function(){
+                            $(this).remove();
+                        });
+                    }
+                });
+
+                $('#j-message').on('tap',function(){
+                    $(this).parents('.g-message').remove();
+                    (new DwPlay).play_1();
+                
+                });
+
+                $('#j-closePrize').on('click',function(){
+                    _.dialog( baidu.template('j-prizeTemp' , {type: 4} ) );
+                });
+            };
+
+            this.getUserInfo = function(){
+                _config.isTake = 0;
+            
+            };
+        };
+
+
+
+        $(function(){
+            new Zhounian().init();
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+<meta name="format-detection" content="telephone=no">
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<title>无标题文档</title>
+<link rel="stylesheet" href="release/css/index.css">
+</head>
+<body>
+
+
+
+<div class="g-btinput m-anim">
+    <div class="m-cn clearfix">
+        <span class="m-icon"></span>
+        <div class="m-input" id="input">
+            <span >请输入内容</span>
+        </div>
+        <a href="javascript:;" class="m-btn">发送</a>
+    </div> 
+</div>
+
+<script src="release/js/jquery-1.9.1.js"></script>
+<script src="release/js/p.js"></script>
+<script type="text/javascript">
+function input(text,target,interval){
+    var i = 0;
+    text = text.split('');
+    target.html('').addClass('input');
+
+    setTimeout(function fn(){
+        target.append(text[i]);
+        i++;
+
+        if(!text[i]){
+            return;
+        }
+
+        setTimeout(fn,interval);
+    },interval);
+}
+
+input('啊沙发沙发发沙发发沙发沙发我Safari是',$('#input span'),300);
+</script>
+</body>
+</html>
+
+
+
+
+

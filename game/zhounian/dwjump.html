@@ -1,0 +1,150 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+<meta name="format-detection" content="telephone=no">
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<title>无标题文档</title>
+<style>
+* {
+   margin: 0;
+   padding: 0;
+}
+
+html,body {
+   height: 100%;
+}
+body {
+   background: url(lib/bg.jpg) center bottom;
+}
+#box{
+   width:80px;height:102px;  
+   position:absolute;
+   left:100px;
+   top:100px;
+}
+#dw {
+   width:80px;height:102px;
+   background:url(./release/images/dw.png);
+   transform: scale(1,1);
+   transform-origin: center bottom;
+   transition: all .2s ease-out;
+}
+#dw.down {
+   transform: scale(1.05,0.95);
+}
+.linel,.liner {
+   width: 60%;
+   height: 100px;
+   background: orange;
+   margin-top: 200px;
+
+}
+.linel {
+   float: left;
+
+}
+.liner {
+   float: right;
+
+}
+.liner:after {
+   content: '';
+   clear: both;
+   display: table;
+}
+</style>
+</head>
+<body>
+<input type="button" id="left" value="left">  
+<input type="button" id="right" value="right">  
+
+<div id="box">
+   <div id="dw"></div>
+</div>
+
+<div class="linel" id="line1"></div>
+<div class="liner" id="line2"></div>
+<div class="linel" id="line3"></div>
+<br><br>
+<br>
+<br><br>
+<br>
+
+<script src="release/js/zepto.min.js"></script>
+<script src="release/js/jump.js"></script>
+<script type="text/javascript">
+
+
+var box = document.getElementById('box');
+var line1 = document.getElementById('line1');
+var line2 = document.getElementById('line2');
+var line3 = document.getElementById('line3');
+
+
+var jump = new Jump(box, [line1,line2,line3]);
+
+
+var $dw = $('#dw');
+function dwDown(){
+   $dw.addClass('down');
+   setTimeout(function(){
+      $dw.removeClass('down');
+   },200);
+};
+
+$(window).on('keyup',function(e){
+   if(e.keyCode == 37){
+      jump.jump({
+         speedX: -5,
+         complete: dwDown
+      });
+
+   }else if(e.keyCode == 39){
+      jump.jump({
+         speedX: 5,
+         complete: dwDown
+      });
+
+   }else if(e.keyCode == 38){
+      jump.jump({
+         speedX: 0,
+         speedY: -30,
+         complete: dwDown
+      });
+
+   }else if(e.keyCode == 40){
+      jump.jump({
+         speedX: 0,
+         speedY: -10,
+         complete: dwDown
+      });
+      jump.down();
+   }
+});
+
+$('#right').on('click',function(){
+   jump.jump({speedX: 30,speedY: -80},dwDown);
+});
+$('#left').on('click',function(){
+   jump.jump({speedX: -30,speedY: -80},dwDown);
+});
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>
+
+
+
+
+

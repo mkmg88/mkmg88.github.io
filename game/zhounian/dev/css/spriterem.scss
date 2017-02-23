@@ -1,0 +1,135 @@
+/*
+SCSS variables are information about icon's compiled state, stored under its original file name
+
+.icon-home {
+  width: $icon-home-width;
+}
+
+The large array-like variables contain all information about a single icon
+$icon-home: x y offset_x offset_y width height total_width total_height image_path;
+
+At the bottom of this section, we provide information about the spritesheet itself
+$spritesheet: width height image $spritesheet-sprites;
+*/
+            @mixin dia_dw1 {
+                background-position: 0 -415/(273-898)*100%;;
+                width: px(227);
+                height: px(273);
+            }
+            @mixin dia_dw2 {
+                background-position: -952/(226-1324)*100% -203/(162-898)*100%;;
+                width: px(226);
+                height: px(162);
+            }
+            @mixin dia_dw3 {
+                background-position: -701/(247-1324)*100% -203/(168-898)*100%;;
+                width: px(247);
+                height: px(168);
+            }
+            @mixin dia_heard {
+                background-position: 0 0;
+                width: px(600);
+                height: px(199);
+            }
+            @mixin dw {
+                background-position: -324/(80-1324)*100% -692/(102-898)*100%;;
+                width: px(80);
+                height: px(102);
+            }
+            @mixin dw0 {
+                background-position: -240/(80-1324)*100% -692/(104-898)*100%;;
+                width: px(80);
+                height: px(104);
+            }
+            @mixin dw1 {
+                background-position: -492/(80-1324)*100% -692/(102-898)*100%;;
+                width: px(80);
+                height: px(102);
+            }
+            @mixin dw2 {
+                background-position: -408/(80-1324)*100% -692/(102-898)*100%;;
+                width: px(80);
+                height: px(102);
+            }
+            @mixin dwzzz0 {
+                background-position: 0 -692/(206-898)*100%;;
+                width: px(116);
+                height: px(206);
+            }
+            @mixin dwzzz1 {
+                background-position: -120/(116-1324)*100% -692/(206-898)*100%;;
+                width: px(116);
+                height: px(206);
+            }
+            @mixin dwzzzqzb {
+                background-position: -348/(349-1324)*100% -203/(176-898)*100%;;
+                width: px(349);
+                height: px(176);
+            }
+            @mixin dwzzztext {
+                background-position: -420/(281-1324)*100% -415/(57-898)*100%;;
+                width: px(281);
+                height: px(57);
+            }
+            @mixin footicon1 {
+                background-position: -528/(134-1324)*100% -476/(72-898)*100%;;
+                width: px(134);
+                height: px(72);
+            }
+            @mixin footicon2 {
+                background-position: -761/(50-1324)*100% -415/(50-898)*100%;;
+                width: px(50);
+                height: px(50);
+            }
+            @mixin header {
+                background-position: -604/(720-1324)*100% 0;
+                width: px(720);
+                height: px(144);
+            }
+            @mixin helptip {
+                background-position: -705/(52-1324)*100% -415/(54-898)*100%;;
+                width: px(52);
+                height: px(54);
+            }
+            @mixin huizang {
+                background-position: -231/(185-1324)*100% -415/(187-898)*100%;;
+                width: px(185);
+                height: px(187);
+            }
+            @mixin p_green {
+                background-position: -420/(104-1324)*100% -476/(107-898)*100%;;
+                width: px(104);
+                height: px(107);
+            }
+            @mixin p_house {
+                background-position: 0 -203/(208-898)*100%;;
+                width: px(344);
+                height: px(208);
+            }
+            @mixin p_pink {
+                background-position: -240/(74-1324)*100% -800/(90-898)*100%;;
+                width: px(74);
+                height: px(90);
+            }
+            @mixin p_purple {
+                background-position: -1182/(89-1324)*100% -203/(125-898)*100%;;
+                width: px(89);
+                height: px(125);
+            }
+            @mixin p_yellow {
+                background-position: -604/(64-1324)*100% -148/(44-898)*100%;;
+                width: px(64);
+                height: px(44);
+            }
+            @mixin video {
+                background-position: -576/(88-1324)*100% -692/(88-898)*100%;;
+                width: px(88);
+                height: px(88);
+            }
+        %spritesheet {
+            background-image: url('../images/sprite.png');
+            background-repeat: no-repeat;
+            background-size: px(1324) px(898);
+        }
+
+
