@@ -1,6 +1,6 @@
 ;(function(){
 
-        /*_通用函数_*/
+        /* tool */
         var _ = {};
         _.delay = function(func, wait) {
             var args = Array.prototype.slice.call(arguments, 2);
@@ -61,7 +61,7 @@
             return false;
         };
 
-        /*p*/
+        /*parabola*/
         var myParabola = new Parabola();
 
         /*dom*/
@@ -161,6 +161,7 @@
             }
         };
 
+        /* animation play */
         function DwPlay(){
             var obj = this;
 

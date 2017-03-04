@@ -9,42 +9,8 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black" />
 <title>再见</title>
 <link rel="stylesheet" href="release/css/index.css">
-<script>
-    window.onerror = function(){
-        alert(Array.prototype.slice.call(arguments, 0));
-    }
-</script>
 </head>  
 <body>
-
-   <section class="g-share" style="display: none;">
-       <div class="m-diacon m-prize">
-           <div class="m-heard">
-               <div class="heard heard1">
-                   <p>喊更多小伙伴来<br>领取盒币和绝版徽章吧！<br>记得返回游戏盒~</p>
-               </div>
-           </div>
-           <div class="context">
-               <span class="huizang"></span>
-               <p class="tip">
-                   专属徽章+盒币奖励<br>
-                   <span>小贴士：在游戏盒中看视频并分享活动才能得奖励哦~</span>
-               </p>
-           </div>
-           <div class="m-btn">
-               <h4>分享拿奖励</h4>
-               <div id="j-sharebtn">
-                   <a href="javascript:;" data-type="qq">QQ</a>
-                   <a href="javascript:;" data-type="qzone">空间</a>
-                   <a href="javascript:;" data-type="wx">微信</a>
-                   <a href="javascript:;" data-type="feed">动态</a>
-               </div>
-               
-           </div>
-       </div>
-   </section>
-
-
     <section class="g-welcome" id="j-welcome">
         <h1 class="m-logo m-dx">游戏盒陪你走过的2016</h1>
         <div class="m-message m-dx" >
@@ -252,6 +218,33 @@
         </div>
     </section>  
 
+    <section class="g-share" style="display: none;">
+        <div class="m-diacon m-prize">
+            <div class="m-heard">
+                <div class="heard heard1">
+                    <p>喊更多小伙伴来<br>领取盒币和绝版徽章吧！<br>记得返回游戏盒~</p>
+                </div>
+            </div>
+            <div class="context">
+                <span class="huizang"></span>
+                <p class="tip">
+                    专属徽章+盒币奖励<br>
+                    <span>小贴士：在游戏盒中看视频并分享活动才能得奖励哦~</span>
+                </p>
+            </div>
+            <div class="m-btn">
+                <h4>分享拿奖励</h4>
+                <div id="j-sharebtn">
+                    <a href="javascript:;" data-type="qq">QQ</a>
+                    <a href="javascript:;" data-type="qzone">空间</a>
+                    <a href="javascript:;" data-type="wx">微信</a>
+                    <a href="javascript:;" data-type="feed">动态</a>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
     <script type="text/template" id="j-hongbaoTemp">
         <div class="m-diacon m-hongbao">
             <%if(num) {%>
@@ -378,7 +371,7 @@
     <script src="release/js/soundjs.min.js"></script>
     <script src="release/js/zepto.min.js"></script>
     <script src="release/js/baiduTemplate.js"></script>
-    <script src="release/js/p.js"></script>
+    <script src="release/js/parabola.js"></script>
     <script src="release/js/toucher.js"></script>
     <script src="release/js/zhounian.js"></script>
     <script>
