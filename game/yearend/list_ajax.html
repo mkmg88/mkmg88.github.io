@@ -1,0 +1,627 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+<meta name="format-detection"content="telephone=no">
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<title>再见</title>
+<link rel="stylesheet" href="css/ks.css">
+<link rel="stylesheet" href="css/stylesy.css">
+<link rel="stylesheet" href="css/animate.css">
+</head>  
+<body>
+
+<div class="f_loading" id="j-loading">
+    <p><i></i>加载中...</p>
+</div>
+
+<div class="wp">
+    <div class="m-music" id="j-music"></div>
+    <div id="j-flipbook" class="wp-inner flipbook">
+        <div class="page1 page clt_in"></div>
+        <div class="page2 page clt_out"></div>
+        <div class="page3 page clt_out"></div>
+        <div class="page4 page clt_out"></div>
+        <div class="page5 page clt_out"></div>
+        <div class="page6 page clt_out"></div>
+        <div class="page7 page clt_out"></div>
+        <div class="page8 page clt_out"></div>
+        <div class="page9 page clt_out"></div>
+    </div>
+    <span class="arrow" id="j-arrow"></span>
+</div>
+
+<!-- 1 -->
+<script type="text/template" id="j-page1">
+    <div class="m-lumpl m-ui"></div>
+    <div class="m-lumpr m-ui"></div>
+    <%if(isMe) { %>
+        <p class="m-text">我是第<strong class="j-numRest" id="j-p1NumRise" data-num="<%=user_rank%>" data-type="big">0</strong>个<br>加入盒子学园的盒饭</p>
+    <%}else{%>
+        <p class="m-text">他的4399游戏学园成绩单</p>
+    <%}%>
+    <div class="m-bot">
+        <div class="m-stage m-ui"></div>
+        <div class="m-box m-ui">
+            <img src="<%=user_face%>" alt="<%=user_nick%>">
+            <p><%=user_nick%></p>
+        </div>
+    </div>
+    <div class="m-flower m-ui"></div>
+</script>
+
+<!-- 2 -->
+<script type="text/template" id="j-page2">
+    <div class="m-masker animated"></div>
+    <div class="m-titler m-ui animated">入学时间</div>
+    <div class="m-calendar m-ui animated">
+        <p class="m-tl"><%=(first_login.replace(/月\d+日/,'月'))%>
+        <strong class="j-p2NumRise1 j-numRest" data-num="<%=(first_login.match(/\d+日/)[0].replace(/日/,''))%>">0</strong>
+        日</p>
+        <p class="m-tr">已经
+        <strong class="j-p2NumRise2 j-numRest" data-num="<%=used_days%>">0</strong>
+        天</p>
+    </div>
+    <p class="m-startiti animated">（盒子资历）</p>
+    <ul class="m-starww">
+        <%for(var i=0;i<flower_ruxue;i++){%>
+        <li class="m-ui animated"></li>
+        <%}%>
+    </ul>
+</script>
+
+<!-- 3 -->
+<script type="text/template" id="j-page3">
+    <%if(num_game > 0) { %>
+        <div class="m-masker animated"></div>
+        <div class="m-title m-ui animated">第一课：游戏达人课</div>
+        <div class="m-info">
+            <div class="m-rb <%if(!isMe) { %>m-rbhr<%}%> m-ui animated"></div>
+            <div class="m-rs <%if(!isMe) { %>m-rshr<%}%> m-ui animated"></div>
+            <div class="m-t1 m-ui animated">
+                <p><%=game_name%><br>玩过<strong><%=num_play%></strong>次</p>
+            </div>
+            <div class="m-t2 m-ui animated">
+                <p>玩过<strong><%=num_game%></strong>个</p>
+            </div>
+        </div>
+        <p class="m-startiti animated">（游戏资历）</p>
+        <ul class="m-starww">
+            <%for(var i=0;i<flower_game;i++){%>
+            <li class="m-ui animated"></li>
+            <%}%>
+        </ul>
+    <%}else{%>
+        <div class="m-masker animated"></div>
+        <div class="m-nodata animated">
+            <p>游戏千千万，<br><%if(isMe) { %>我<%}else{%>他<%}%>竟然没下过一款？<br>这绝逼不科学</p>
+        </div>
+    <%}%>
+</script>
+
+<!-- 4 -->
+<script type="text/template" id="j-page4">
+    <%if(num_other_quan == 0 && num_game_quan == 0) { %>
+        <div class="m-nodata animated">
+            <p>奇葩、搞笑，啥都有！<br> 没加入过圈子？ <br>弱爆了！</p>
+        </div>
+    <%}else{%>
+        <div class="m-masker animated"></div>
+        <div class="m-title m-ui animated">第二课：扎堆聊天课</div>
+        <ul class="m-info">
+            <li>
+                <div class="m-post m-post1 animated" style="height: <%=( Math.round(num_other_quan/(num_other_quan+num_game_quan)*100) )%>%;">
+                    <p class="m-tum"><span><%=num_other_quan%></span>个</p>
+                    <p class="m-name"><span>我的</span>兴趣圈</p>
+                </div>
+            </li>
+            <li>
+               <div class="m-post m-post2 animated" style="height: <%=( Math.round(num_game_quan/(num_other_quan+num_game_quan)*100) )%>%;">
+                    <p class="m-tum"><span><%=num_game_quan%></span>个</p>
+                    <p class="m-name"><span>我的</span>游戏圈</p>
+                </div>
+            </li>
+        </ul>
+        <p class="m-text animated">第一次玩的圈子：<span><%=first_quan%></span></p>
+        <p class="m-startiti animated">（圈子资历）</p>
+        <ul class="m-starww">
+            <%for(var i=0;i<flower_quan;i++){%>
+            <li class="m-ui animated"></li>
+            <%}%>
+        </ul>
+    <%}%>
+</script>
+
+<!-- 5 -->
+<script type="text/template" id="j-page5">
+    <%if(num_feed > 0) { %>
+        <div class="m-masker animated"></div>
+        <div class="m-title m-ui animated">第三课：写小纸条课</div>
+        <div class="m-phone m-ui animated">
+            <p class="animated"><span><%if(isMe) { %>我<%}else{%>他<%}%>的动态</span><br><strong id="j-p5NumRise" class="j-numRest" data-num="<%=num_feed%>">0</strong>条</p>
+        </div>
+        <p class="m-text animated">第一次发表动态：<span><%=first_feed_time%></span></p>
+        <p class="m-startiti animated">（话唠程度）</p>
+        <ul class="m-starww">
+            <%for(var i=0;i<flower_feed;i++){%>
+            <li class="m-ui animated"></li>
+            <%}%>
+        </ul>
+    <%}else{%>
+        <div class="m-nodata animated">
+            <p>动动小手<br>发发动态， <br>记录<%if(isMe) { %>你的<%}%>日常点滴</p>
+        </div>
+    <%}%>
+</script>
+
+<!-- 6 -->
+<script type="text/template" id="j-page6">
+    <%if(num_heBi > 0) { %>
+        <div class="m-masker animated"></div>
+        <div class="m-title m-ui animated">第四课：大富翁养成课</div>
+        <div class="m-infott">
+            <i class="m-ui animated"></i>
+            <p class="animated">
+                <strong>×<%=num_heBi%>个</strong>
+                （<%if(isMe) { %>我<%}else{%>他<%}%>的盒币）<br>
+                <%if(heBi_exchange.length && heBi_exchange.length > 0) { %>
+                <span>已兑换 <%for(var i=0;i< (heBi_exchange.length >=3 ? 3 : heBi_exchange.length);i++){%><%if(heBi_exchange[i]) { %><%=heBi_exchange[i].title%><%}%><%if(i != heBi_exchange.length-1 && i != 2 ) { %>/<%}%><%if(i == 2) { %>..<%}%><%}%></span>
+                  <%}else{%>
+                到游戏盒【我-兑换】里好礼多多！
+                <%}%>
+            </p>
+        </div>
+        <div class="m-chart animated" id="j-p6chart"></div>
+        <div class="m-cavchart"><canvas id="jp6Chart"></canvas></div>
+        <p class="m-chartText animated">
+            <span><%if(isMe) { %>我<%}else{%>他<%}%>打败</span>
+            <strong class="j-numRest" id="j-p6NumRise" data-num="<%=( Math.round(+heBi_percent.replace('%','')) )%>">0</strong>
+            <strong>%</strong>好友
+        </p>
+        <p class="m-startiti animated">（吸金能力）</p>
+        <ul class="m-starww">
+            <%for(var i=0;i<flower_hebi;i++){%>
+            <li class="m-ui animated"></li>
+            <%}%>
+        </ul>
+    <%}else{%>
+        <div class="m-nodata animated">
+            <p>
+                赚盒币好处多多！ <br>游币、Q币、话费想换就换<br>
+                <a href="javascript:;">到游戏盒【我-兑换】里好礼多多！</a>
+            </p>
+        </div>
+    <%}%>
+</script>
+
+<!-- 7 -->
+<script type="text/template" id="j-page7">
+    <%if(clan_id) { %>
+        <div class="m-masker animated"></div>
+        <div class="m-title m-ui animated">第五课：拉帮结派课</div>
+        <div class="m-yg m-ui">
+            <div class="m-cjl m-ui">
+                <p class="m-txt animated"><span><%if(isMe) { %>我<%}else{%>他<%}%>加入</span><%=clan_name%></p>
+                <div class="m-dfdfer m-ui animated"></div>
+            </div>
+            <div class="m-man m-ui"></div>
+            <div class="m-mostar m-ui"></div>
+            <ul class="m-starww">
+                <%for(var i=0;i<flower_clan;i++){%>
+                <li class="m-ui animated"></li>
+                <%}%>
+            </ul>
+        </div>
+    <%}else{%>
+        <div class="m-yg m-ui">
+            <div class="m-cjl m-ui">
+            </div>
+            <div class="m-man m-ui"></div>
+            <div class="m-mostar m-ui"></div>
+        </div>
+        <div class="m-nodata animated">
+            <p>
+                不做孤“单”英雄，<br>
+                马上加入<a href="javascript:;">家族</a>，<br>
+                与小伙伴一起
+            </p>
+        </div>
+    <%}%>
+</script>
+
+<!-- 8 -->
+<script type="text/template" id="j-page8">
+    <%if(num_fans > 0) { %>
+        <div class="m-masker animated"></div>
+        <div class="m-title m-ui animated">第六课：社交好友课</div>
+        <div class="m-chart animated"></div>
+        <div class="m-cavchart animated"><canvas id="j-p8Chart" data-end="35"></canvas></div>
+        <div class="m-chartText">
+            <p class="m-ct1 animated"><%if(isMe) { %>我<%}else{%>他<%}%>的<br><span>粉丝</span></p>
+            <p class="m-ct2 animated"><%if(isMe) { %>我<%}else{%>他<%}%>已<br><span>关注</span></p>
+        </div>
+        <div class="m-t1 m-ui animated">
+            <p><%if(isMe) { %>我<%}else{%>他<%}%>的粉丝人数<br><strong data-num="<%=num_fans%>" class="j-p8NumRise1">0</strong>个</p>
+        </div>
+        <div class="m-t2 m-ui animated">
+            <p><%if(isMe) { %>我<%}else{%>他<%}%>已关注的人数<br><strong data-num="<%=num_follow%>" class="j-p8NumRise2">0</strong>个</p>
+        </div>
+        <div class="m-t3 m-ui animated">
+            <p>第一个关注的是<br><strong><a href="javascript:;" class="j-sface" data-uid="<%=first_follow_uid%>"><%=first_follow_nick%></a></strong></p>
+        </div>
+        <p class="m-startiti animated">（好友指数）</p>
+        <ul class="m-starww">
+            <%for(var i=0;i<flower_friend;i++){%>
+            <li class="m-ui animated"></li>
+            <%}%>
+        </ul>
+    <%}else{%>
+        <div class="m-nodata animated">
+            <p>
+                游戏盒混了许久，有谁陪在身边？ <br><%if(isMe) { %>我<%}else{%>他<%}%>注定是个英雄，需要有人追随！<br> 
+                <a href="javascript:;">没有好友怎么行</a>
+            </p>
+        </div>
+    <%}%>
+</script>
+
+<!-- 9 -->
+<script type="text/template" id="j-page9">
+    <%if(isMe) { %>
+        <div class="m-bg m-ui">
+            <div class="m-sec1">
+                <p class="m-score"><strong><%=score%></strong>分</p>
+                <i class="m-level <%=score_grade%>"></i> 
+                <dl class="m-scmore">
+                    <dt>游戏资历：</dt>
+                    <dd class="s<%=flower_game%>"></dd>  
+                    <dt>吸金能力：</dt>
+                    <dd class="s<%=flower_hebi%>"></dd>
+                    <dt>基友指数：</dt>
+                    <dd class="s<%=flower_friend%>"></dd>
+                </dl>
+            </div>
+            <div class="m-btn m-btn1">
+                <p>学习了这么多游戏盒知识，分享给好友看看</p>
+                <a class="m-ui" href="javascript:;">晒成绩单</a>
+            </div>
+        </div>
+    <%}else{%>
+        <div class="m-bg m-ui">
+            <div class="m-sec2">
+                <p class="m-text">“<%=user_nick%>”的成绩是</p>
+                <p class="m-score"><strong><%=score%></strong>分</p>
+                <i class="m-level ap"></i> 
+            </div>
+            <div class="m-btn m-btn2">
+                <p>下载游戏盒，查看我的成绩单~</p>
+                <%if(isInYxh) { %>
+                <a class="m-ui m-lkmy" href="<%=myTranscript%>">查看我的成绩单</a>  
+                <%}else{%>  
+                <a class="m-ui m-down j-downYxh" href="javascript:;">下载游戏盒</a>
+                <%}%>
+                <p>玩游戏盒，你还可以：<span>赚钱 游戏 交友</span><br><span>（赚游币、Q币、话费)</span></p>
+            </div>
+        </div>
+    <%}%>
+</script>
+
+<script src="js/zepto.min.js"></script>
+<script src="js/zepto.fullpage.js"></script>
+<script src="js/baiduTemplate.js"></script>
+<script src="js/music.js"></script>
+<script type="text/javascript">
+
+var _url = {
+    _myTranscript: "",
+    downYxh: "http://sj2.img4399.com/v/2.6.0.3/4399Game_2.6.0.3.my4399.apk"
+}
+
+
+var Twoapp = function(){
+    var obj = this;
+    var chartSize = 0;
+
+    this.init = function(){
+        this.checkLoad();
+        this.bindEvent();
+        Resource.addSound("Sugar", "images/bg.mp3",1, .5);   /*音乐*/
+        this.playMusic();
+        
+    };
+    this.bindEvent = function(){
+            /*点击进入个人主页*/
+            $("body").delegate(".j-sface","click",function(){
+                var uid = $(this).attr('data-uid');
+                window.android.onJsToProfileDetailsByPtUid(uid+"");
+            });
+            /*分享*/
+            $('#j-share').on('click',function(){
+                android.onJsShareConfig('{"title":"' + _config.shareTitle + '","desc":' + _config.shareDesc + ',"param":"' + _config.shareParam + '"}');
+                android.onJsShare();
+            });
+            /*下载游戏盒*/
+            $("body").delegate("#j-downYxh","click",function(e){
+                AndroidConnect.launch("m4399://activityDetail?id="+_config.actId+"&url="+_url.acPage, function(){
+                    window.location.href= _url.downLoadApp;
+                });
+                e.preventDefault();
+            });
+
+            $(document).on('click','.j-login',function(){
+                window.android.onJSClickLogin();
+                return false;
+            });
+        };
+    this.checkLoad = function(){
+        $.getJSON('json/data.json',function(data){
+            if(data.code == 100){
+                setTimeout(function(){
+                    $('#j-loading').addClass('hide');
+                    setTimeout(function(){
+                        $('#j-loading').remove();
+                    },500);
+                },500);
+                obj.setData(data.result);
+                obj.book();
+            }else if(data.code == 799 ){
+                $('#j-loading p').addClass('j-login').html('<i></i>您还没有登录哦，<br />要登录了才能查看哦~<br />快去登录吧！');
+            }else{
+                $('#j-loading p').html('<i></i>加载失败..<br>请重新打开页面！');
+            }
+        });
+    };
+    this.setData = function(result){
+        obj.data_1 = {
+            "user_rank": result.user_rank,
+            "user_face":  result.user_face,
+            "user_nick":  result.user_nick,
+            "isMe": result.isMe
+        };
+        obj.data_2 = {
+            "first_login": result.first_login,
+            "used_days":  result.used_days,
+            "flower_ruxue": result.flower.ruxue
+        };
+        obj.data_3 = {
+            "game_name": result.game_name,
+            "num_play":  result.num_play,
+            "num_game":  result.num_game,
+            "flower_game": result.flower.game,
+            "isMe": result.isMe
+        };
+        obj.data_4 = {
+            "num_other_quan": result.num_other_quan,
+            "num_game_quan":  result.num_game_quan,
+            "first_quan":  result.first_quan,
+            "flower_quan": result.flower.quan
+        };
+        obj.data_5 = {
+            "isMe": result.isMe,
+            "num_feed": result.num_feed,
+            "first_feed_time":  result.first_feed_time,
+            "flower_feed":  result.flower.feed
+        };
+        obj.data_6 = {
+            "isMe": result.isMe,
+            "num_heBi": result.num_heBi,
+            "heBi_exchange" : result.heBi_exchange,
+            "heBi_percent":  result.heBi_percent,
+            "flower_hebi":  result.flower.hebi
+        };
+        obj.data_7 = {
+            "isMe": result.isMe,
+            "clan_id": result.clan.clan_id,
+            "clan_name": result.clan.info && result.clan.info.name,
+            "heBi_percent":  result.heBi_percent,
+            "flower_clan":  result.flower.clan
+        };
+        obj.data_8 = {
+            "isMe": result.isMe,
+            "num_fans": result.num_fans,
+            "num_follow": result.num_follow,
+            "first_follow_uid":  result.first_follow.pt_uid,
+            "first_follow_nick":  result.first_follow.nick,
+            "flower_friend":  result.flower.friend
+        };
+        obj.data_9 = {
+            "isMe": true || result.isMe,
+            "isInYxh": window.android && typeof window.android.onJsGetDeviceId == 'function',
+            "score": result.score,
+            "score_grade": result.score_grade,
+            "flower_game": result.flower.game,
+            "flower_hebi": result.flower.hebi,
+            "flower_friend": result.flower.friend,
+            "user_nick":  result.user_nick,
+            "myTranscript":  _url.myTranscript,
+            "downUrl":  _url.downYxh,
+        };
+    };
+    this.getDate = function(index){
+        if( $.trim($('.page' + index).html()) == '' ){
+            var html = baidu.template('j-page' + index , obj['data_'+index]);
+            $('.page' + index ).append(html);
+        }
+    };
+    this.bindEvent = function(){
+        /*点击进入个人主页*/
+        $("body").delegate(".j-sface","click",function(){
+            var uid = $(this).attr('data-uid');
+            window.android.onJsToProfileDetailsByPtUid(uid+"");
+        });
+        /*分享*/
+        $('#j-share').on('click',function(){
+            android.onJsShareConfig('{"title":"' + _config.shareTitle + '","desc":' + _config.shareDesc + ',"param":"' + _config.shareParam + '"}');
+            android.onJsShare();
+        });
+        /*下载游戏盒*/
+        $('#j-downYxh').on('click',function(e){
+            AndroidConnect.launch("m4399://activityDetail?id="+_config.actId+"&url="+_url.acPage, function(){
+                window.location.href= _url.downYxh;
+            });
+            e.preventDefault();
+        });
+    };
+    this.book = function(){
+        $('#j-flipbook').fullpage({
+            beforeChange: function (e) {
+                obj.getDate(e.next + 1);
+                if(e.next == 8){
+                    $('#j-arrow').hide();
+                }else{
+                    $('#j-arrow').show();
+                }
+            },
+            afterChange: function(e){
+                $('.page').eq(e.cur).addClass('clt_in').removeClass('clt_out').siblings().addClass('clt_out').removeClass('clt_in');
+                obj.switchPage(e.cur);
+            }
+        });
+        $('#j-arrow').on('click',function(){
+            $.fn.fullpage.moveNext(true);
+        });
+        
+    };
+    this.switchPage = function(page){
+            switch(page){
+                case 0:
+                    obj.controlled_number_rnu('#j-p1NumRise');
+                    break;
+                case 1:
+                    obj.controlled_number_rnu('.j-p2NumRise1',500);
+                    obj.controlled_number_rnu('.j-p2NumRise2',500);
+                    break;
+                case 4:
+                    obj.controlled_number_rnu('#j-p5NumRise',600);
+                    break;
+                case 5:
+                    setTimeout(function(){
+                        chartSize = $('#j-p6chart').width();
+                        obj.drawRround('jp6Chart',0,$('#j-p6NumRise').attr('data-num'),chartSize,chartSize,'#55c691');
+                    },500);
+                    obj.controlled_number_rnu('#j-p6NumRise',500,50);
+                    break;
+                case 7:
+                    if( !$('#j-p8Chart').attr('isDraw') ){
+                        chartSize = $('#j-p6chart').width();
+                        obj.drawRround('j-p8Chart',0,$('#j-p8Chart').attr('data-end'),chartSize,chartSize,'#b872f7','#b872f7');
+                        $('#j-p8Chart').attr('isDraw','1');
+                    }
+                    break;
+                case 7:
+                    obj.controlled_number_rnu('.j-p8NumRise1',1200);
+                    obj.controlled_number_rnu('.j-p8NumRise2',2000);
+                    break;
+            }
+            obj.pageReset(page);
+    };
+    this.big_number_rise = function(start, end, element,delay,diff) {
+        delay = parseInt(delay) || 60;
+        diff = parseInt(diff) || 1;
+
+        element.html(Math.round(start));
+        setTimeout(function() {
+            delay = Math.max(5, delay / 2);
+            diff += 100;
+            if (start == end) {
+                return;
+            };
+            if (start + diff > end) {
+                diff = end - start;
+            };
+            obj.big_number_rise(start + diff, end, element, delay, diff);
+        }, delay);
+    };
+    this.small_number_rise = function(start, end, element, delay) {
+        var clr = null;
+        var rand = start;
+        var dist = Math.round((end - start)/30);
+        function loop() {
+            clearTimeout(clr);
+            function inloop() {
+                element.html(rand += dist);
+                if (!(rand < end)) {
+                    element.html(end);
+                    return;
+                }
+                clr = setTimeout(inloop, (delay || 30));
+            };
+            inloop();
+        };
+        loop();
+    };
+    this.controlled_number_rnu = function(ele,time,delay){
+        time = time || 0;
+        setTimeout(function(){
+            if($(ele).attr('data-type') == 'big'){
+                obj.big_number_rise(0, $(ele).attr('data-num'), $(ele),delay);
+            }else{
+                obj.small_number_rise(0, $(ele).attr('data-num'), $(ele),delay);
+            }
+        },time);
+    };
+    this.pageReset = function(page){
+        $('.clt_out .j-numRest').each(function(index,ele){
+            $(ele).html('0');
+        });
+        if(page != 5 && obj.jp6Chart_ctx){
+            obj.jp6Chart_ctx.clearRect(0,0,chartSize,chartSize);
+            clearInterval(obj.jp6Chart_Interval);
+        }
+    };
+    this.drawRround = function(id,start,end,width,height,color1,color2){
+        var nowAngle=0,
+            start=+start || 0,
+            end=+end || 0,
+            canvas=document.getElementById(id);
+        if(!canvas){
+            return;
+        }
+        var ctx=canvas.getContext("2d"),
+            radius = width/2;
+        canvas.width = width;
+        canvas.height = height;
+        end=end>=100?100:end;
+        end=end<=0?0:end;
+        obj[id+'_Interval']=setInterval(drawC,2),
+        obj[id+'_ctx'] = ctx;
+        ctx.fillStyle= color1 || "#1A5FC5";
+        ctx.strokeStyle= color2 || 'rgba(0,0,0,0.1)';
+        ctx.lineWidth=1;
+        ctx.clearRect(0,0,width,height);
+        function drawC(){
+            ctx.beginPath();
+            ctx.moveTo(radius,radius);
+            ctx.arc(radius,radius,radius,0,start+Math.PI*2/360);
+            start+=Math.PI*2/360;
+            if(start>Math.PI*2*end/100){
+                clearInterval(obj[id+'_Interval']);
+            }
+            ctx.fill();
+            ctx.stroke();
+        }
+    };
+    this.playMusic = function(){
+        /*播放音乐*/
+        $("#j-music").on("click", function(){
+            if(obj.is_music_play){
+                obj.is_music_play = false;
+                $(this).removeClass("on").addClass("off");
+                Resource.pauseSound("Sugar");
+            } else {
+                obj.is_music_play = true;
+                $(this).removeClass("off").addClass("on");
+                Resource.playSound("Sugar", 1);
+            };
+        });
+    };
+};
+$(function(){
+    (new Twoapp).init();
+});
+</script>
+</body>
+</html>

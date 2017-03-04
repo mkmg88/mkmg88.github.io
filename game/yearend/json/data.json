@@ -1,0 +1,66 @@
+{
+    "code": 100,
+    "result": {
+        "uid": 1595312772,
+        "user_rank": "12528059",
+        "user_nick": "‭‭动漫姐姐",
+        "user_face": "http:\/\/a.img4399.com\/1595312772\/big?1469518387",
+        "first_login": "2015年05月04日",
+        "used_days": 670,
+        "num_game": 98,
+        "num_play": 87,
+        "game_name": "4399Biu乐(搞笑神器)",
+        "first_follow": {
+            "pt_uid": "1595333970",
+            "nick": "全能学霸选手",
+            "facetime": "1430895485",
+            "bface": "http:\/\/a.img4399.com\/1595333970\/big?1430895485"
+        },
+        "num_game_quan": 97,
+        "num_other_quan": 7,
+        "first_quan": "热血精灵王 ",
+        "num_heBi": 7082,
+        "heBi_percent": "99.98%",
+        "heBi_rmb": 26.38,
+        "heBi_exchange": [],
+        "num_feed": 1000,
+        "first_feed_time": "2015年05月04日",
+        "clan": {
+            "clan_id": "115211",
+            "add_time": "1472111160",
+            "info": {
+                "name": "动漫の二次元"
+            }
+        },
+        "num_fans": 176774,
+        "num_follow": 880,
+        "himRank": 0,
+        "mData": {
+            "game": 98,
+            "hebi": 7082,
+            "follow": 880,
+            "fans": 176774
+        },
+        "scoreData": {
+            "visit": 1,
+            "game": 22,
+            "hebi": 28,
+            "follow": 23,
+            "fans": 26,
+            "total": 100
+        },
+        "score": 100,
+        "score_grade": "ap",
+        "flower": {
+            "ruxue": 5,
+            "quan": 5,
+            "feed": 5,
+            "hebi": 5,
+            "clan": 3,
+            "friend": 5,
+            "game": 3
+        },
+        "isMe": false
+    },
+    "message": ""
+}

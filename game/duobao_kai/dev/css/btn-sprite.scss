@@ -1,0 +1,70 @@
+/*
+SCSS variables are information about icon's compiled state, stored under its original file name
+
+.icon-home {
+  width: $icon-home-width;
+}
+
+The large array-like variables contain all information about a single icon
+$icon-home: x y offset_x offset_y width height total_width total_height image_path;
+
+At the bottom of this section, we provide information about the spritesheet itself
+$spritesheet: width height image $spritesheet-sprites;
+*/
+            @mixin btn1 {
+                background-position: 0 0;
+                width: px(95);
+                height: px(112);
+            }
+            @mixin btn2 {
+                background-position: -99/(95-387)*100% 0;
+                width: px(95);
+                height: px(112);
+            }
+            @mixin btn3 {
+                background-position: -198/(95-387)*100% 0;
+                width: px(95);
+                height: px(112);
+            }
+            @mixin btn4 {
+                background-position: 0 -116/(112-346)*100%;;
+                width: px(95);
+                height: px(112);
+            }
+            @mixin btn5 {
+                background-position: -99/(95-387)*100% -116/(112-346)*100%;;
+                width: px(95);
+                height: px(112);
+            }
+            @mixin btn6 {
+                background-position: -198/(95-387)*100% -116/(112-346)*100%;;
+                width: px(95);
+                height: px(112);
+            }
+            @mixin medal1 {
+                background-position: -297/(90-387)*100% 0;
+                width: px(90);
+                height: px(114);
+            }
+            @mixin medal2 {
+                background-position: 0 -232/(114-346)*100%;;
+                width: px(90);
+                height: px(114);
+            }
+            @mixin medal3 {
+                background-position: -94/(90-387)*100% -232/(114-346)*100%;;
+                width: px(90);
+                height: px(114);
+            }
+            @mixin medal4 {
+                background-position: -188/(90-387)*100% -232/(114-346)*100%;;
+                width: px(90);
+                height: px(114);
+            }
+        %btn-sprite {
+            background-image: url('../images/btn-sprite.png');
+            background-repeat: no-repeat;
+            background-size: px(387) px(346);
+        }
+
+

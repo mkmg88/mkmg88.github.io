@@ -1,0 +1,44 @@
+{
+    "code": 100,
+    "result": {
+        "pagecount": 5,
+        "data": 
+        [
+            {
+                "id": 233,
+                "title": "物品标题",
+                "goods_phase": 15,
+                "lucky_feed": 11,
+                "feed_content": "动态内容xxxxxxxx尴尬女",
+                "feed_img": "lib/avast.png",
+                "feed_user_uid": 45456546,
+                "feed_user_face": "lib/ban1.png",
+                "feed_user_nick": "撒哟娜娜",
+                "feed_dateline": 1231354
+            },{
+                "id": 233,
+                "title": "物品标题",
+                "goods_phase": 15,
+                "lucky_feed": 11,
+                "feed_content": "动态内容xxxxxxxx尴尬女",
+                "feed_img": "lib/avast.png",
+                "feed_user_uid": 45456546,
+                "feed_user_face": "lib/ban1.png",
+                "feed_user_nick": "撒哟娜娜",
+                "feed_dateline": 1231354
+            },{
+                "id": 233,
+                "title": "物品标题",
+                "goods_phase": 15,
+                "lucky_feed": 11,
+                "feed_content": "动态内容xxxxxxxx尴尬女",
+                "feed_img": "lib/avast.png",
+                "feed_user_uid": 45456546,
+                "feed_user_face": "lib/ban1.png",
+                "feed_user_nick": "撒哟娜娜",
+                "feed_dateline": 1231354
+            }
+        ]
+    },
+    "message": ""
+}

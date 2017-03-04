@@ -1,0 +1,38 @@
+{
+    "code": 100,
+    "result": [
+        {
+            "rank": 1,
+            "nick": "testhuodong001",
+            "sface": "http://a.img4399.com/1723728952/middle",
+            "score": "3333",
+            "pt_uid": "1723728952",
+            "utime": "111"
+        },
+        {
+            "rank": 2,
+            "nick": "sj4399.com",
+            "sface": "http://a.img4399.com/1466037521/middle",
+            "score": "3333",
+            "pt_uid": "1466037521",
+            "utime": "222"
+        },
+        {
+            "rank": 3,
+            "nick": "sj.4399.com",
+            "sface": "http://a.img4399.com/1466037109/middle",
+            "score": "2222",
+            "pt_uid": "1466037109",
+            "utime": "5456456"
+        },
+        {
+            "rank": 4,
+            "nick": "请不要敷衍我！",
+            "sface": "http://a.img4399.com/1461800656/middle",
+            "score": "1111",
+            "pt_uid": "1461800656",
+            "utime": "111"
+        }
+    ],
+    "message": "加载错误"
+}

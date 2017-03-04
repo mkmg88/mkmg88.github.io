@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <title>盒子三周年庆 - 与你相约看现场直播</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=1, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <link href="release/css/style.css" type="text/css" rel="stylesheet" />
+</head>
+<body>
+
+<section class="g-feedbox"> 
+    <ul id="j-listwarp"></ul>
+    <p class="m-loadmore" id="j-loadtip">正在努力加载...</p>
+</section>
+
+<section class="g-predb" id="j-starttop">
+    <div class="m-follow">
+        <a href="javascript:;" class="avast"><img src="lib/avast.png" alt=""></a>
+        <p>关注“我是小然”小编号，留言互动夺宝问题、提出玩法建议、说出夺宝心愿，给大家带来最好的夺宝体验。</p>
+        <a href="javascript:;" class="btn">关注</a>
+    </div>
+</section>
+
+<footer class="g-footer">
+    本活动最终解释权归4399官方所有<br>
+    &copy;2004-2016四三九九网络股份有限公司
+</footer>
+
+<script type="text/template" id="j-listTemp">
+    <%for(var i=0;i<list.length;i++){%>
+    <li>
+        <h4><span>[第<%=list[i].goods_phase%>期]</span><%=list[i].title%><i><%=list[i].feed_dateline%></i></h4>
+        <div class="m-info">
+            <a href="javascript:;" data-uid="<%=list[i].feed_user_uid%>" class="m-avast j-sface"><img src="<%=list[i].feed_user_face%>" alt=""></a>
+            <p class="m-user"><%=list[i].feed_user_nick%></p>
+            <p class="m-infott">[第<%=list[i].goods_phase%>期]获奖者</p>
+            <div class="m-content">
+                <p><%=list[i].feed_content%></p>
+                <img src="<%=list[i].feed_img%>" alt="">
+            </div>
+        </div>
+    </li>
+    <%}%>
+</script>
+
+<script src="release/js/zepto.min.js"></script>
+<script src="release/js/baiduTemplate.js"></script>
+<script>
+    var Indiana = function(){
+        var obj = this;
+
+        var _url = {
+            luckyAjax: 'json/luckyAjax.json'
+        }
+
+        var _dom = {
+            listWarp: $('#j-listwarp'),
+            loadTip: $('#j-loadtip'),
+            startTop: $("#j-starttop")
+        }
+
+        var _config = {
+            scookie: '',
+            page: 1
+        }
+        _config.platform  = _config.isAndroid ? 1 : 2;
+
+        this.init = function(){
+            this.getLuckyAjax();
+            this.bindEvent();
+        };
+
+        this.bindEvent = function(){
+            /*点击进入个人主页*/
+            $(document).on('click','.j-sface',function(){
+                var uid = $(this).attr('data-uid');
+                Client.onJsToProfileDetails(uid);
+            });
+            /*滚动加载*/
+            $(window).on('scroll',function(){
+                clearTimeout(obj.loadSet);
+                obj.loadSet = setTimeout(function(){
+                    obj.loadMore();
+                },200);
+            });
+        };
+
+        this.getLuckyAjax = function(){
+            $.getJSON(_url.luckyAjax,{ page: _config.page },function(data){
+                if(data.code == 100){
+                    if (data.result.pagecount <= _config.page) {
+                        obj.noMore1 = 1;
+                        _dom.loadTip.text("没有了");
+                    }else{
+                        _dom.loadTip.text("滑动加载");
+                    };
+                    obj.parData(data.result);
+                    _config.page ++;
+                }else{
+                    alert(data.message);
+                }
+                obj.loadStatus = 0;
+            });
+        };
+
+        this.parData = function(res){
+            _dom.listWarp.append( baidu.template('j-listTemp',{list:res.data}) );
+        };
+
+        /*滚动加载*/
+        this.loadMore = function() {
+            if (this.noMore1 || obj.loadStatus) {
+                return false;
+            };
+            if ((+$(window).scrollTop() + $(window).height()) >= _dom.startTop.offset().top) {
+                obj.loadStatus = 1;
+                _dom.loadTip.text("正在努力加载..");
+                this.getLuckyAjax();
+            };
+        };
+
+    };
+
+   $(function(){
+        new Indiana().init();
+   });
+</script>
+</body>
+</html>

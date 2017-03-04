@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <title>盒子三周年庆 - 与你相约看现场直播</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=1, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <link href="release/css/style.css" type="text/css" rel="stylesheet" />
+</head>
+<body>
+
+<div id="j-vCon">
+    <section class="g-header">
+        <div class="m-bg">
+            <a href="javascript:;" class="avast" id="j-avast"></a>
+            <p class="num">今日参与：<span id="j-todaynum">0</span>人</p>
+        </div>
+        <div class="m-cloue"></div>
+        
+        <div class="m-btns">
+            <a href="show.html" class="show">夺宝晒图</a>
+            <a href="my.html" class="my">我的夺宝</a>
+            <a href="rule.html" class="rule">规则介绍</a>
+        </div>
+        <div class="m-radio">
+            <ul id="j-scrollul"></ul>
+        </div>
+    </section>
+
+    <section class="g-lists" >
+        <div id="j-listwarp"></div>
+        <h3>往期夺宝</h3>
+    </section>
+
+    <section class="g-predb" id="j-parwarp">
+        <div class="m-follow">
+            <a href="javascript:;" class="avast"><img src="lib/avast.png" alt=""></a>
+            <p>关注“我是小然”小编号，留言互动夺宝问题、提出玩法建议、说出夺宝心愿，给大家带来最好的夺宝体验。</p>
+            <a href="javascript:;" class="btn">关注</a>
+        </div>
+    </section>
+</div>
+
+<footer class="g-footer">
+    本活动最终解释权归4399官方所有<br>
+    &copy;2004-2016四三九九网络股份有限公司
+</footer>
+
+<section class="g-fixbtn">
+    <a href="javascript:;" class="m-home"></a>
+    <a href="javascript:;" class="m-top"></a>
+</section>
+
+<script type="text/template" id="j-listTemp">
+    <h3><%=title%></h3>
+    <ul class="m-listul">
+        <%for(var i=0;i<list.length;i++){%>
+        <li>
+            <a href="javascript:;" class="clearfix j-toDetail" data-id="<%=list[i].id%>">
+                <img class="pic" src="<%=list[i].cover%>" alt="<%=list[i].title%>">
+                <dl>
+                    <dt><%=list[i].title%></dt>
+                    <dd class="progress"><span style="width: <%=(list[i].now_num / list[i].max_num * 100)%>%;"></span></dd>
+                    <dd class="info">
+                        <%if(list[i].status == 1) {%>
+                            <p class="t1">已完成<span><%=( Math.round(list[i].now_num / list[i].max_num * 100) )%>%</span></p>
+                            <p class="t2">剩余<span><%=(list[i].max_num - list[i].now_num)%></span>人次</p>
+                        <%}else if(list[i].status == 2) {%>
+                            夺宝完成，离开奖时间<span class="j-reTime" data-sec="<%=list[i].draw_left_time%>"></span>
+                        <%}else{%>
+                            已经开奖
+                        <%}%>
+                    </dd>
+                </dl>
+                <%if(list[i].max_num > list[i].now_num && list[i].status == 1) {%>
+                <span class="btn i-get i-t1">抢</span>
+                <%}else{%>
+                <span class="btn i-end">已<br>抢完</span>
+                <%}%>
+            </a>
+        </li>
+        <%}%>
+    </ul>
+</script>
+
+<script type="text/template" id="j-parsTemp">
+    <ul class="m-lists clearfix">
+        <%for(var i=0;i<list.length;i++){%>
+        <li><a href="javascript:;" class="j-toDetail" data-id="<%=list[i].id%>"><img src="<%=list[i].cover%>" alt="<%=list[i].title%>"></a></li>
+        <%}%>
+        <li class="m_more" id="j-wqbtn"><a href="history.html"><span>查看<br>更多</span></a></li>
+    </ul>
+</script>
+
+<script src="release/js/zepto.min.js"></script>
+<script src="release/js/baiduTemplate.js"></script>
+<script src="release/js/ueApp.txtscroll.js"></script>
+<script>
+   var Indiana = function(){
+        var obj = this;
+
+        var _url = {
+            indexAjax: 'json/checkLogin.json',
+            detailPage: 'detail.html'
+        }
+
+        var _dom = {
+            listWarp: $('#j-listwarp'),
+            parsWarp: $('#j-parwarp'),
+            toDayNum: $('#j-todaynum'),
+            avast: $('#j-avast'),
+            scrollul: $('#j-scrollul')
+        }
+
+        var _config = {
+            scookie: '',
+            isAndroid: (/android/gi).test(navigator.userAgent),
+            isIDevice: (/iphone|ipad|ipod/gi).test(navigator.userAgent),
+            isLogin: 1
+        }
+        _config.platform  = _config.isAndroid ? 1 : 2;
+
+        this.init = function(){
+            this.getIndexAjax();
+            this.bindEvent();
+        };
+
+        this.bindEvent = function(){
+            $(document).on('click','.j-toDetail',function(){
+                if(_config.isLogin){
+                    window.location.href = _url.detailPage + '?id=' + $(this).attr('data-id');
+                }else{
+                    /*提示登录*/
+                }
+            });
+        };
+
+        /*加载数据*/
+        this.getIndexAjax = function(){
+            $.getJSON(_url.indexAjax,{scookie: _config.scookie,platform: _config.platform},function(data){
+                if(data.code == 100){
+                    obj.parIndexData(data.result);
+                }else{
+                    alert(data.message);
+                }
+            });
+        };
+        this.parIndexData = function(res){
+            var scrollA
+            /*人数*/
+            _dom.toDayNum.html(res.today_user_num);
+            /*头像*/
+            if(res.face){
+                var face = new Image();
+                face.src = res.face;
+                _dom.avast.html(face);
+            };
+
+            /*广播*/
+            if(res.scroll && res.scroll.length > 0){
+                var scrollArr = res.scroll.map(function(val,index){
+                    return '<li>' + val + '</li>';
+                });
+                _dom.scrollul.html(scrollArr.join(''));
+                ueApp.textScroll({
+                    target : "#j-scrollul",
+                    items : "#j-scrollul li",
+                    delay : 3000,
+                    loop: 1
+                });
+            };
+
+            /*列表*/
+            function listHtml(data,title){
+                _dom.listWarp.append( baidu.template('j-listTemp',{list:data,title: title}) );
+            };
+            if(res.hot_list && res.hot_list.length > 0){
+                listHtml(res.hot_list,'推荐商品');
+            };
+            if(res.ing_list && res.ing_list.length > 0){
+                listHtml(res.ing_list,'正在夺宝');
+            };
+            if(res.wait_list && res.wait_list.length > 0){
+                listHtml(res.wait_list,'即将揭晓');
+            };
+
+            /*时间格式化*/
+            $('.j-reTime').each(function(){
+                $(this).html( obj.arriveTimer($(this).attr('data-sec')) )
+            });
+
+            /*往期夺宝*/
+            if(res.end_list && res.end_list.length > 0){
+                if(res.end_list.length > 5){ 
+                    res.end_list.length = 5;
+                };
+                _dom.parsWarp.prepend( baidu.template('j-parsTemp',{list:res.end_list}) );
+            };
+        };
+
+        this.arriveTimer = function(s){
+            var t = '';
+            var sec = parseInt(s);
+            if (sec > -1) {
+                hour = Math.floor(sec / 3600);
+                min = Math.floor(sec / 60) % 60;
+                if (hour < 10) {
+                    t += "0";
+                };
+                t += hour + ":";
+                if (min < 10) {
+                    t += "0";
+                };
+                t += min;
+            };
+            return t;
+        };
+   };
+
+   $(function(){
+        new Indiana().init();
+   });
+</script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+{
+    "code": 100,
+    "result": {
+        "can_buy_ticket": 1
+    },
+    "message": "购买成功"
+}

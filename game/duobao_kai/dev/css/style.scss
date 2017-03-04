@@ -1,0 +1,53 @@
+@charset "utf-8";
+
+@function px($size){
+    @return ($size/100) + rem
+}
+
+html { font-size:50px; }
+@media (min-width:320px){
+    html { font-size:50px; }
+}
+@media (min-width:360px){
+    html { font-size:56.25px; }
+}
+@media (min-width:375px){
+    html { font-size:58.59375px; }
+}
+@media (min-width:414px){
+    html {font-size:64.6875px; }
+}
+
+body, dl, dd, h1, h2, h3, h4, h5, h6, p, form{ margin:0; font-weight: normal; }
+ol,ul,li { margin:0; padding:0; list-style:none; }
+article, aside, details, figcaption, figure, footer, header, menu, nav, section { display: block; }
+.clearfix:after { content: '';  display: table;  clear: both; }
+.clearfix { *zoom: 1; }
+a { border:none;text-decoration:none; }
+a,button,input{-webkit-tap-highlight-color:rgba(0,0,0,0);}
+a:active { opacity: 0.8; }
+img { border:none;}
+
+
+@import "btn-sprite";
+@import "share-sprite";
+
+$bgb1: #ebf1fc;
+$bgb2: #2f2482;
+$t1c: #666;
+$t2c: #888;
+$blue: #4690ff;
+$red: #ff5614;
+$shadow: #91490f;
+$yellow: #ffb914;
+
+body{
+    font: px(24)/1.4286 "Microsoft Yahei", "Helvetica Neue", Helvetica, STHeiTi, sans-serif;
+    color: $t1c;
+    background-color: $bgb1;
+}
+
+@import "index";
+@import "my";
+@import "rule";
+@import "detail";

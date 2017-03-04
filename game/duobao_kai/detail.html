@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <title>盒子三周年庆 - 与你相约看现场直播</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=1, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <link href="release/css/style.css" type="text/css" rel="stylesheet" />
+</head>
+<body>
+
+<div id="j-conbox">
+    <section class="g-depic">
+        <div class="banner">
+            <div class="m-slide" id="j-gallery">
+                <ul class="slide_main clearfix">
+                </ul>
+            </div>
+        </div>
+        <div class="m-info">&nbsp;</div>
+    </section>
+</div>
+
+<!-- 链接 -->
+<section class="g-delink">
+    <a href="record.html">参与记录</a>
+    <a href="rules.html">活动规则</a>
+</section>
+
+<section class="g-recommend clearfix">
+    <div class="m-recbox">
+        <h3 class="i-new">最新上架</h3>
+        <ul class="m-listul" id="j-newestWarp"></ul>
+    </div>
+    <div class="m-recbox">
+        <h3 class="i-hot">马上抢完</h3>
+        <ul class="m-listul" id="j-endingWarp"></ul>
+    </div>
+</section>
+
+<section class="g-predb">
+    <div class="m-follow">
+        <a href="javascript:;" class="avast"><img src="lib/avast.png" alt=""></a>
+        <p>关注“我是小然”小编号，留言互动夺宝问题、提出玩法建议、说出夺宝心愿，给大家带来最好的夺宝体验。</p>
+        <a href="javascript:;" class="btn">关注</a>
+    </div>
+</section>
+
+<footer class="g-footer">
+    本活动最终解释权归4399官方所有<br>
+    &copy;2004-2016四三九九网络股份有限公司
+</footer>
+
+<script type="text/template" id="j-contemp">
+    <section class="g-depic">
+        <div class="banner">
+            <div class="m-slide" id="j-gallery">
+                <ul class="slide_main clearfix">
+                    <%for(var i=0;i<banner.length;i++){%>
+                    <li><img src="<%=banner[i]%>" alt="" /></li>
+                    <%}%>
+                </ul>
+                <div class="slide_nav">
+                    <p class="m-title">
+                        <span>揭晓中</span>
+                        [第<%=phase%>期]<%=title%>
+                        <ol></ol>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="m-info">
+            <p class="info"><%=desc%></p>
+            <p class="link">
+                <%if(relate_game) {%>
+                <a href="javascript:;" class="j-toGameDetail" data-id=""><%=relate_game%></a>
+                <%}else if(relate_feed) {%>
+                <a href="javascript:;" class="j-toQuanDetail" data-id=""><%=relate_feed%></a>
+                <%}%>
+            </p>
+        </div>
+    </section>
+    <%if(status == 1) {%>
+        <!-- 夺宝按钮 -->
+        <section class="g-debtn">
+            <p class="m-titi"><span>5盒币抢一次</span><br>每一期参与人次越多，抢中宝物的几率越大！</p>
+            <a class="m-btn j-play" href="javascript:;">立即夺宝</a>
+            <div class="m-tips">
+                <ul id="j-scrollul">
+                    <%for(var i=0;i<scroll.length;i++){%>
+                    <li><%=scroll[i]%></li>
+                    <%}%>
+                </ul>
+            </div>
+        </section>
+        <%if(my_buy_count > 0) {%>
+            <!-- 概率 -->
+            <section class="g-delink">
+                <a href="javascript:;" class="j-myNum">
+                    <p>已夺宝<i><%=my_buy_count%></i>个，成功概率为<i><%=( (my_buy_count/max_num*100).toFixed(2) )%>%</i></p>
+                    <span class="j-mynum">我的号码</span>
+                </a>
+            </section>
+        <%}%>
+        <!-- 进度条 -->
+        <section class="g-deplan">
+            <h5>总需<span><%=max_num%></span>人</h5>
+            <div class="m_hdif">
+                <span style="width: <%=(now_num / max_num * 100)%>%;"></span>
+            </div>
+            <div class="m_tt clearfix">
+                <p><span><%=now_num%></span>人已参加</p>
+                <p>剩余<span><%=(max_num - now_num)%></span>个</p>
+            </div>
+        </section>
+    <%}else if(status == 2) {%>
+        <!-- 倒计时 -->
+        <section class="g-detime">
+            <div class="m-warp clearfix">
+                <div class="m-titt">
+                    <p>夺宝完成，距离揭晓获奖者还剩</p>
+                </div>
+                <div class="m-time j-time" data-sec="<%=draw_left_time%>">
+                    <!-- <i>1</i><i>0</i><span>:</span><i>6</i><i>0</i> -->
+                </div>
+            </div>
+        </section>
+        <%if(my_buy_count > 0) {%>
+            <!-- 概率 -->
+            <section class="g-delink">
+                <a href="javascript:;" class="j-myNum">
+                    <p>已夺宝<i><%=my_buy_count%></i>个，成功概率为<i><%=( Math.ceil(my_buy_count/max_num*100) )%>%</i></p>
+                    <span class="j-mynum">我的号码</span>
+                </a>
+            </section>
+        <%}%>
+    <%}else if(status == 3) {%>
+        <!-- 夺宝结果 -->
+        <section class="g-dedbres">
+            <%if(is_lucky) {%>
+            <div class="m-succ">收到奖品后请上传你与宝贝合照哦~</div>
+            <%}else{%>
+            <div class="m-fail"><p>就差一点宝物就是你的，下次请继续努力</p></div>
+            <%}%>
+            <div class="m-user clearfix">
+                <h5 class="title">本期获奖者</h5>
+                <a href="javascript:;" data-uid="<%=lucky_uid%>" class="avast"><img src="<%=lucky_avast%>" alt=""></a>
+                <div class="info">
+                    <h6><%=lucky_Nick%></h6>
+                    <p>获奖号码：<%=lucky_num%></p>
+                </div>
+                <%if(is_lucky && has_got) {%>
+                <a class="btn btned j-feed" href="javascript:;">晒图</a>
+                <%}else if(is_lucky && has_out) {%>
+                <a class="btn btnover" href="javascript:;">已过期</a>
+                <%}else if(is_lucky) {%>
+                <a class="btn j-receive" href="javascript:;">领取</a>
+                <%}%>
+            </div>
+        </section>
+    <%}%>
+</script>
+
+<script type="text/template" id="j-moreTemp">
+    <%for(var i=0;i<list.length;i++){%>
+    <li>
+        <a href="javascript:;" class="clearfix j-toDetail" data-id="<%=list[i].id%>">
+            <img class="pic" src="<%=list[i].cover%>" alt="">
+            <dl>
+                <dt><%=list[i].title%></dt>
+                <dd class="info">还剩<span><%=(list[i].max_num - list[i].now_num)%></span>人次</dd>
+            </dl>
+        </a>
+    </li>
+    <%}%>
+</script>
+
+<!-- 弹窗1 - 夺宝数量 -->
+<script type="text/template" id="j-ds1">
+    <div class="m-diacon m-ds1">
+        <h5>兰博基尼遥控车</h5>
+        <p class="m-tt j-numbox">
+            本次夺宝：0个<br>本次消耗：0盒币<br>中奖概率：0
+        </p>
+        <div class="m-setbox">
+            <a href="javascript:;" class="m-numbtn j-numbtnLess">-</a>
+            <input type="number" class="m-numipt j-numipt" placeholder="输入夺宝数量">
+            <a href="javascript:;" class="m-numbtn j-numbtnAdd">+</a>
+        </div>
+        <div class="m-checknum clearfix j-numset">
+            <a href="javascript:;" data-num="5">5次</a>
+            <a href="javascript:;" data-num="10">10次</a>
+            <a href="javascript:;" data-num="20">20次</a>
+            <a href="javascript:;" data-num="50">50次</a>
+        </div>
+        <label for="j-checkbox" class="m-isdbq"><input type="checkbox" id="j-checkbox">夺宝券</label>
+
+        <p class="m-info">留意“我是小然”私信或者“我的夺宝”页查看获奖结果</p>
+        
+        <div class="m-btntwo">
+            <a href="javascript:;" class="j-close m-cancel">取消</a>
+            <a href="javascript:;" class="j-dbajax m-ok">确定</a>
+        </div>
+    </div>
+</script>
+
+<!-- 弹窗2 - 领取奖品 -->
+<script type="text/template" id="j-ds2">
+    <div class="m-diacon m-ds2">
+        <i></i>
+        <h5>恭喜你成功获得宝物</h5>
+        <p class="m-tt2">领取奖品后记得请将你与宝贝的合照上传哦~</p>
+        
+        <div class="m-btnone">
+            <a href="javascript:;" class="m-draw j-receive">领取奖品</a>
+        </div>
+    </div>
+</script>
+
+<!-- 弹窗3 - 未填写地址 -->
+<script type="text/template" id="j-ds3">
+    <div class="m-diacon m-dsinfo">
+        <p>你还未设置联系方式和地址，<br>无法领取哦~</p>
+        <div class="m-btntwo">
+            <a href="javascript:;" class="j-close m-cancel">取消</a>
+            <a href="javascript:;" class="j-setContent m-ok">前往设置</a>
+        </div>
+    </div>
+</script>
+
+<!-- 弹窗4 - 有填写地址 -->
+<script type="text/template" id="j-dsContact">
+    <div class="m-diacon m-dscontace">
+        <div class="m-warp">
+            <h3>豆娃十二星座公仔</h3>
+            <dl>
+                <dt>收货电话：</dt>
+                <dd class="m_phone"><%=phone%></dd>
+                <dt>收货地址：</dt>
+                <dd><%=city%><%=address%></dd>
+            </dl>
+            <h5>温馨提示</h5>
+            <p>1.小编将在2个工作日内向您寄出实物；<br>
+                2.如需更改个人信息,请联系官方客服
+                QQ：1900004399.</p>
+        </div>
+        <div class="m-btntwo">
+            <a href="javascript:;" class="j-close m-cancel">取消</a>
+            <a href="javascript:;" class="j-confirm m-ok">确定</a>
+        </div>
+    </div>
+</script>
+
+<!-- 弹窗4 - ios - 有填写地址 -->
+<script type="text/template" id="j-shopSwDiaTemp">
+        <div class="m-shopswdiaCon m-diacon j-shopdiaCon">
+            <div class="m-heard">
+                <h4>
+                    确认收货信息
+                    <a href="javascript:;" class="edit j-editAddress">修改</a>
+                </h4>
+                <div class="m-address">
+                    <%if( !full_name || !phone || !address ) {%>
+                    <a href="javascript:;" class="nodata">点击填写收货信息</a>
+                    <%}else{%>
+                    <div class="data">
+                        <p>收貨人：<%=full_name%></p>
+                        <p>手机号码：<%=phone%></p>
+                        <p>收货地址：<%=city%><%=address%></p>
+                    </div>
+                    <%}%>
+                </div>
+            </div>
+            <p class="m-prompt">
+                <strong>温馨提示：</strong><br>
+                <span>1、小编将在2个工作日之内向你寄出实物</span><br>
+                2、如需更改个人信息，请联系官方客服 QQ：1900004399 
+            </p>
+            <div class="m-btn clearfix">
+                <a href="javascript:;" class="j-close">取消</a>
+                <a href="javascript:;" class="j-exchange ok" data-id="<%=key%>">确认</a>
+            </div>
+        </div>
+</script>
+
+<!-- 弹窗5 - 我的号码 -->
+<script type="text/template" id="j-dsMyNum">
+    <div class="m-diacon m-dsmynum">
+        <h3><%=title%></h3>
+        <p>
+            本次夺宝：<span><%=num%></span>个<br>
+            中奖概率：<span><%=prob%></span>%
+        </p>
+        <ul>
+            <%for(var i=0;i<nums.length;i++){%>
+            <li><%=nums[i]%></li>
+            <%}%>
+        </ul>
+        <p>夺宝结束后【<a href="#">我的夺宝</a>】可查你的号码是否中奖哦~</p>
+        <div class="m-btnone">
+            <a href="javascript:;" class="m-draw j-close">确定</a>
+        </div>
+    </div>
+</script>
+
+<!-- 弹窗6 - 晒图提示 -->
+<script type="text/template" id="j-ds6">
+    <div class="m-diacon m-ds2">
+        <i class="m_i6"></i>
+        <p class="m-tt6">发动态晒单并发送给小编 “我是小然”通过审核，即可获得<span>100</span>盒币奖励</p>
+        <div class="m-btnone">
+            <a href="javascript:;" class="m-draw">确定</a>
+        </div>
+    </div>
+</script>
+
+<!-- 弹窗6 - 晒图提示 -->
+<script type="text/template" id="j-ticketTemp">
+    <div class="m-diacon m-ticket">
+        <h5></h5>
+        <%if( isShare ) {%>
+        <p class="m-tt">每天首次分享<br>获得2盒币购买一张夺宝券的机会</p>
+        <div class="m-btntwo">
+            <a href="javascript:;" class="j-close m-cancel">下次再说</a>
+            <a href="javascript:;" class="j-share m-ok">分享到动态</a>
+        </div>
+        <%}else{%>
+        <p class="m-tt">动态分享成功<br>使用2盒币购买夺宝券吧</p>
+        <div class="m-btntwo">
+            <a href="javascript:;" class="j-close m-cancel">放弃机会</a>
+            <a href="javascript:;" class="j-confirm m-ok">立即购买</a>
+        </div>
+        <%}%>
+    </div>
+</script>
+
+<script src="release/js/zepto.min.js"></script>
+<script src="release/js/baiduTemplate.js"></script>
+<script src="release/js/m.slide.js"></script>
+<script src="release/js/ueApp.txtscroll.js"></script>
+<script>
+    var Indiana = function(){
+         var obj = this;
+
+         var _url = {
+             detailAjax: 'json/detailAjax.json',
+             play: 'json/play.json',
+             getAwardAjax: 'json/detailAjax.json',
+             getContact: 'json/getContact.json'
+         };
+
+         var _dom = {
+            conbox: $('#j-conbox'),
+            newestWarp: $('#j-newestWarp'),
+            endingWarp: $('#j-endingWarp')
+        };
+
+        var _config = {
+            scookie: '',
+            id: 0,
+            ratio: 5
+        };
+        _config.platform  = _config.isAndroid ? 1 : 2;
+
+        this.init = function(){
+
+            /*obj.dialog( baidu.template('j-ds6',{}) );*/
+            this.getId();
+            this.getDetailAjax();
+            this.bindEvent();
+        };
+
+        this.bindEvent = function(){
+            $(document).on('click','.j-toDetail',function(){
+                if(_config.isLogin){
+                    window.location.href = _url.detailPage + '?id=' + $(this).attr('data-id');
+                }else{
+                    /*提示登录*/
+                    Client.onJSIvoke();
+                }
+            });
+            /*立即夺宝弹窗*/
+            $(document).on('tap','.j-play',function(){
+                obj.dialog( $('#j-ds1').html() );
+                obj.numControl();
+            });
+
+            /*立即夺宝*/
+            $(document).on('tap','.j-dbajax',function(){
+                obj.join();
+            });
+
+            /*关闭弹窗*/
+            $(document).on('click','.j-close',function(){
+                obj.closeDialog();
+            });
+
+            /*领取奖品 - 确认收货地址*/
+            $(document).on('click','.j-receive',function(){
+                $.getJSON(_url.getContact,{ scookie: _config.scookie },function(data){
+                   if(data.code == 100){
+                       /*有填写地址*/
+                        if(navigator.userAgent.match(/iphone/i)){
+                            obj.dialog( baidu.template('j-shopSwDiaTemp',data.result) );
+                        }else{
+                            obj.dialog( baidu.template('j-dsContact',data.result) );
+                        }
+                   }else{
+                       /*没有填写地址*/
+                       obj.dialog( $('#j-ds3').html() );
+                   };
+                });
+            });
+
+            /*确认领取*/
+            $(document).on('click','.j-confirm',function(){
+                $.getJSON(_url.getAwardAjax,{ scookie: _config.scookie, id: _config.id },function(data){
+                   if(data.code == 100){
+                       Client.showTips('领取成功');
+                       setTimeout(function(){
+                            window.location.reload();
+                        },1000);
+                   }else{
+                       /*没有填写地址*/
+                       Client.showTips(data.message);
+                   };
+                });
+            });
+
+            /*我的号码*/
+            $(document).on('click','.j-mynum',function(){
+                var data = {
+                    title: obj.deData.title,
+                    num: obj.deData.my_buy_count,
+                    prob: (obj.deData.my_buy_count/obj.deData.max_num*100).toFixed(2),
+                    nums: obj.deData.my_buy_array
+                }
+
+                obj.dialog( baidu.template('j-dsMyNum',data),true );
+            });
+
+            /*设置地址*/
+            $(document).on('click','.j-setContent',function(){
+                Client.onJsSetExtensionInfo();
+            });
+
+            /*晒图*/
+            $(document).on('click','.j-feed',function(){
+                obj.dialog( baidu.template('j-ds6',data) );
+            });
+
+            /*分享*/
+            $(document).on('tap','.j-share',function(){
+                console.log('share');
+            });
+
+            $(document).on('click','.j-editAddress',function(){
+                window.jumpToEditAddressInfo && jumpToEditAddressInfo($(this).attr('data-id'));
+            });
+        };
+
+        /*夺宝数量输入*/
+        this.setDbNum = function(num){
+            var hebi = num*_config.ratio;
+            var redio = (+num /obj.deData.max_num*100).toFixed(2)  + '%'
+            var str = '本次夺宝：'+ num +'个<br>本次消耗：'+ hebi +'盒币<br>中奖概率：' + redio;
+            $('.j-numbox').html(str); 
+            $('.j-numipt').val(num);
+        };
+        this.numControl = function(){
+            var $numipt = $('.j-numipt');
+            $('.j-numbtnAdd').on('tap',function(){
+                var num = $numipt.val() ? +$numipt.val() : 0;
+                if( (num + 1) *_config.ratio > obj.deData.my_hebi){
+                    Client.showTips('你的盒币不足');
+                    return;
+                }else if((num + 1) > _config.mayNum){
+                    Client.showTips('已达可夺宝上限');
+                    return;
+                }else{
+                    num++;
+                    obj.setDbNum(num);
+                }
+            });
+            $('.j-numbtnLess').on('tap',function(){
+                var num = $numipt.val() ? $numipt.val() : 0;
+                if(num <= 0){
+                    return;
+                }else{
+                    num--;
+                    obj.setDbNum(num);
+                }
+            });
+            $('.j-numipt').on('keyup',function(){
+                var val = $(this).val();
+                if (val * _config.ratio > obj.deData.my_hebi) {
+                    Client.showTips('你的盒币不足');
+                    val = val.substr(0,val.length-1);
+                    $(this).val(val)
+                } else if (val > _config.mayNum) {
+                    Client.showTips('已达可夺宝上限');
+                }
+                obj.setDbNum(val);
+            });
+            $('.j-numset a').on('tap',function(){
+                var val = $(this).attr('data-num');
+                if (val * _config.ratio > obj.deData.my_hebi) {
+                    Client.showTips('你的盒币不足');
+                } else if (val > _config.mayNum) {
+                    Client.showTips('已达可夺宝上限');
+                }else{
+                    obj.setDbNum(val);
+                }
+            });
+            $('#j-checkbox').on('change',function(){
+                if(this.checked && obj.deData.my_ticket <= 0){
+                    console.log('没有优惠券');
+                    this.checked = false;
+                }
+            });
+        };
+        this.join = function(){
+            var num = $('.j-numipt').val();
+            var ticket = $('#j-checkbox')[0].checked ? 1 : 0;
+
+            if(!num){
+                Client.showTips('请输入夺宝数量');
+                return false;
+            }else if(num *_config.ratio > _config.maxHebi){
+                Client.showTips('你的盒币不足');
+                return false;
+            }else if(num > obj.deData.left_num){
+                Client.showTips('已达可夺宝上限');
+                return false;
+            };
+            $.getJSON(_url.play,{
+                scookie: _config.scookie, 
+                id: _config.id, 
+                num: num,
+                ticket: ticket,
+                from: _config.platform
+            },function(data){
+                if(data.code == 100){
+                    //Client.showTips('夺宝成功');
+
+                    if(data.result.can_buy_ticket){
+                        obj.dialog( baidu.template('j-ticketTemp', {isShare:true}) );
+                    }else{
+                        obj.closeDialog();
+                    }
+                    obj.getDetailAjax();
+                }else{
+                    Client.showTips(data.message);
+                }
+            });
+        };
+
+         /*获取id*/
+         this.getId = function(){
+            function getUrlParam(name){
+                var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)');
+                var r = window.location.search.substr(1).match(reg);
+                if(r !== null){
+                    return decodeURIComponent(r[2]);
+                }else{
+                    return null;
+                }
+            };
+            _config.id = getUrlParam('id');
+         };
+
+         /*获取用户信息*/
+         this.getDetailAjax = function(){
+             $.getJSON(_url.detailAjax,{ scookie: _config.scookie, id: _config.id },function(data){
+                if(data.code == 100){
+                    obj.parDetailAjax(data.result);
+                }else{
+                    alert(data.message);
+                };
+             });
+         };
+
+        /*处理用户信息*/
+        this.parDetailAjax = function(res){
+            /*内容*/
+            _dom.conbox.html( baidu.template('j-contemp', res.data) );
+
+            /*数据*/
+            obj.deData = res.data;
+
+            /*轮播图*/
+            if ($("#j-gallery .slide_main li").length > 1) {
+                new Mo.slide({
+                    items: "#j-gallery ul li",
+                    target: "#j-gallery ul",
+                    nav_target: "#j-gallery ol",
+                    width: window.innerWidth || document.documentElement.clientWidth,
+                    radio: 320 / 100,
+                    autoplay: true,
+                    delay: 3000
+                });
+            };
+
+            /*广播*/
+            if ($("#j-scrollul li").length > 1) {
+                ueApp.textScroll({
+                    target : "#j-scrollul",
+                    items : "#j-scrollul li",
+                    delay : 3000,
+                    loop: 1
+                });
+            };
+
+            /*更多推荐*/
+            _dom.newestWarp.html( baidu.template('j-moreTemp',{list: res.data.newest_list }) );
+            _dom.endingWarp.html( baidu.template('j-moreTemp',{list: res.data.ending_list }) );
+
+            /*是否中奖*/
+            if(res.data.is_lucky && !res.data.has_got &&  !localStorage['isShowDia'+ _config.id]){
+                localStorage['isShowDia'+_config.id] = 1;
+                obj.dialog( $('#j-ds2').html() );
+            }
+        };
+
+        this.dialog = function(html,isRev){
+            if($(".j-dialog").length>0){
+                $(".j-dialog").remove();
+            }
+            var $result = $('<div class="g-shopDia j-dialog"></div>');
+            $result.append(html).appendTo($('body'));
+            var $con = $result.children('.m-diacon');
+            var tipLeft = $con.width()/2;
+            var tipTop = $con.height()/2;
+            $con.css({
+                "marginLeft": -tipLeft,
+                "marginTop": -tipTop
+            });
+            if(!isRev){
+                $(document).on('touchmove.zz',function(e){
+                    e.preventDefault();
+                });
+            }
+            
+        };
+
+        this.closeDialog = function(){
+            $('.j-dialog').remove();
+            $(document).off('touchmove.zz')
+            return false;
+        };
+
+        this.showTips = function(str){
+            console.log(str);
+        }
+        
+     };
+
+    $(function(){
+         new Indiana().init();
+    });
+</script>
+</body>
+</html>
