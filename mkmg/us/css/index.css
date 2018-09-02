@@ -1,0 +1,348 @@
+body, dl, dd, h1, h2, h3, h4, h5, h6, p, form {
+  margin: 0;
+  font-weight: normal; }
+
+ol, ul, li {
+  margin: 0;
+  padding: 0;
+  list-style: none; }
+
+article, aside, details, figcaption, figure, footer, header, menu, nav, section {
+  display: block; }
+
+.clearfix:after {
+  content: '';
+  display: table;
+  clear: both; }
+
+.clearfix {
+  *zoom: 1; }
+
+a {
+  border: none;
+  text-decoration: none; }
+
+a, button, input {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
+
+a:active {
+  opacity: 0.8; }
+
+img {
+  border: none; }
+
+body {
+  font: 20px/1.4286 "arial", Helvetica, STHeiTi, sans-serif;
+  color: #404040;
+  background-color: #fff;
+  min-width: 1200px; }
+
+.g-header {
+  height: 881px;
+  background: url(../images/ban_bg.jpg) no-repeat center top; }
+  .g-header .m-topline {
+    width: 1200px;
+    height: 90px;
+    margin: 0 auto 20px; }
+    .g-header .m-topline .m-logo {
+      float: left;
+      width: 197px;
+      height: 40px;
+      background: url(../images/ban_logo.png);
+      margin-top: 22px;
+      font-size: 0; }
+    .g-header .m-topline .m-loginbox {
+      float: right;
+      height: 40px;
+      line-height: 40px;
+      margin-top: 24px; }
+      .g-header .m-topline .m-loginbox a {
+        display: inline-block;
+        width: 90px;
+        text-align: center;
+        color: #999;
+        font-size: 20px;
+        border-radius: 5px;
+        margin-left: 15px; }
+        .g-header .m-topline .m-loginbox a:hover {
+          color: #fff; }
+        .g-header .m-topline .m-loginbox a.act {
+          color: #fff;
+          background: #fd8340; }
+          .g-header .m-topline .m-loginbox a.act:hover {
+            background: #e16d2d; }
+  .g-header .m-banner {
+    position: relative;
+    height: 750px;
+    overflow: hidden; }
+    .g-header .m-banner h2 {
+      text-align: center;
+      font-style: italic;
+      color: #fff;
+      font-size: 48px;
+      font-weight: bold; }
+      .g-header .m-banner h2 span {
+        display: block;
+        font-size: 36px; }
+    .g-header .m-banner .m-phone {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      width: 406px;
+      height: 699px;
+      background: url(../images/ban_phone.png);
+      margin-left: -500px;
+      margin-top: 130px;
+      overflow: hidden; }
+      .g-header .m-banner .m-phone img {
+        width: 248px;
+        height: 446px;
+        margin: 86px 0 0 80px;
+        box-shadow: 0 0 10px inset rgba(0, 0, 0, 0.5); }
+    .g-header .m-banner .m-info {
+      position: absolute;
+      left: 50%;
+      top: 300px;
+      width: 625px; }
+      .g-header .m-banner .m-info dt {
+        color: #fd8340;
+        font-size: 38px;
+        margin-bottom: 15px; }
+      .g-header .m-banner .m-info dd {
+        font-size: 24px;
+        line-height: 38px;
+        color: #878787; }
+
+.g-howit {
+  height: 955px;
+  background: url(../images/howit_bg.jpg) no-repeat center top; }
+  .g-howit h2 {
+    text-align: center;
+    color: #fd8340;
+    font-size: 46px;
+    font-weight: bold;
+    font-style: italic;
+    padding: 105px 0 90px; }
+  .g-howit ul {
+    width: 1200px;
+    margin: 0 auto; }
+    .g-howit ul li {
+      float: left;
+      width: 380px;
+      height: 530px;
+      background: #fff;
+      margin-right: 30px;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); }
+      .g-howit ul li:last-child {
+        margin-right: 0; }
+      .g-howit ul li img {
+        width: 100%; }
+      .g-howit ul li p {
+        padding: 14px 20px;
+        font-size: 22px;
+        line-height: 32px; }
+
+.g-restaurants {
+  height: 955px;
+  background: url(../images/res_bg.jpg) no-repeat center;
+  overflow: hidden; }
+  .g-restaurants .m-rescont {
+    margin-top: 230px;
+    margin-bottom: 110px;
+    background: rgba(48, 48, 48, 0.93);
+    height: 500px;
+    text-align: center; }
+  .g-restaurants dl {
+    width: 480px;
+    padding-top: 40px;
+    display: inline-block;
+    text-align: left;
+    margin: 0 40px;
+    vertical-align: top; }
+    .g-restaurants dl dt {
+      font-size: 40px;
+      color: #e5c796;
+      font-weight: bold;
+      margin-bottom: 25px; }
+    .g-restaurants dl dd {
+      font-size: 24px;
+      color: #eee;
+      line-height: 30px;
+      margin-bottom: 30px; }
+      .g-restaurants dl dd i {
+        position: absolute;
+        margin-left: -15px; }
+  .g-restaurants .m-restt {
+    width: 1200px;
+    margin: 0 auto; }
+  .g-restaurants .m-tt {
+    font-size: 20px;
+    line-height: 30px;
+    color: #d7d7d7; }
+    .g-restaurants .m-tt.m-ttl {
+      float: left; }
+    .g-restaurants .m-tt.m-ttr {
+      float: right;
+      text-align: right; }
+
+.g-signup {
+  height: 954px;
+  background: url(../images/sign_bg.jpg) no-repeat center top;
+  overflow: hidden; }
+  .g-signup h2 {
+    margin: 30px auto 47px;
+    width: 130px;
+    height: 130px;
+    background: url(../images/sign_title.png); }
+  .g-signup .m-form {
+    width: 1200px;
+    height: 641px;
+    background: #fff;
+    margin: 0 auto;
+    border-radius: 3px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); }
+  .g-signup .m-form-one {
+    float: left;
+    height: 100%;
+    width: 50%;
+    position: relative; }
+    .g-signup .m-form-one.m-form-l h5 {
+      width: 295px;
+      background: url(../images/sign_t1.png); }
+    .g-signup .m-form-one.m-form-r h5 {
+      width: 232px;
+      background: url(../images/sign_t2.png); }
+    .g-signup .m-form-one h5 {
+      height: 34px;
+      background: pink;
+      margin: 45px auto;
+      font-size: 0; }
+    .g-signup .m-form-one .m-lbline {
+      margin-left: 70px;
+      margin-bottom: 10px; }
+    .g-signup .m-form-one label {
+      font-size: 20px;
+      color: #76787c; }
+      .g-signup .m-form-one label.req:before {
+        content: '*';
+        position: absolute;
+        font-size: 20px;
+        margin-left: -15px;
+        color: red;
+        margin-top: 4px; }
+      .g-signup .m-form-one label.m-lb-block {
+        display: block;
+        margin: 0 70px;
+        line-height: 36px;
+        margin-bottom: 10px; }
+        .g-signup .m-form-one label.m-lb-block input {
+          position: absolute;
+          width: 310px;
+          margin-top: -2px;
+          margin-left: 10px; }
+      .g-signup .m-form-one label.m-lb-ban {
+        display: inline-block;
+        width: 210px;
+        line-height: 36px;
+        margin-right: 40px; }
+        .g-signup .m-form-one label.m-lb-ban input {
+          display: block;
+          width: 190px; }
+      .g-signup .m-form-one label.m-check {
+        display: block;
+        font-size: 16px;
+        height: 50px;
+        margin-left: 350px;
+        margin-bottom: 20px; }
+        .g-signup .m-form-one label.m-check input {
+          display: none; }
+        .g-signup .m-form-one label.m-check input:checked ~ .ckbg:before {
+          left: 50%; }
+        .g-signup .m-form-one label.m-check .ckbg {
+          position: relative;
+          width: 170px;
+          height: 40px;
+          background: #c2c2c2;
+          border-radius: 20px;
+          line-height: 40px; }
+          .g-signup .m-form-one label.m-check .ckbg span {
+            position: relative;
+            z-index: 2;
+            float: left;
+            width: 50%;
+            text-align: center;
+            color: #fff; }
+          .g-signup .m-form-one label.m-check .ckbg:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            border-radius: 20px;
+            width: 50%;
+            height: 100%;
+            background: #fd8340;
+            transition: all 0.5s; }
+    .g-signup .m-form-one input {
+      background: none;
+      outline: none;
+      line-height: 30px;
+      font-size: 18px;
+      color: #76787c;
+      padding: 0 10px;
+      border: none;
+      border-bottom: 1px solid #76787c; }
+    .g-signup .m-form-one .i-wrline {
+      display: block;
+      height: 1px;
+      margin: 30px 50px 25px;
+      border-top: 1px dashed #d2d7d9; }
+    .g-signup .m-form-one .m-uplogo {
+      margin-left: 70px;
+      margin-top: 30px;
+      color: #76787c; }
+      .g-signup .m-form-one .m-uplogo .up {
+        margin-top: 5px;
+        width: 200px;
+        height: 200px;
+        border: 1px solid #d2d7d9; }
+    .g-signup .m-form-one .m-btn {
+      position: absolute;
+      width: 250px;
+      right: 30px;
+      bottom: 60px; }
+      .g-signup .m-form-one .m-btn input {
+        position: absolute;
+        margin: 4px 0 0 0; }
+      .g-signup .m-form-one .m-btn p {
+        font-size: 14px;
+        color: #343538;
+        text-indent: 22px; }
+        .g-signup .m-form-one .m-btn p span {
+          color: #fd8340; }
+      .g-signup .m-form-one .m-btn button {
+        width: 230px;
+        height: 56px;
+        line-height: 56px;
+        border: none;
+        background: #fd8340;
+        margin-top: 20px;
+        color: #fff;
+        font-size: 20px;
+        border-radius: 5px;
+        outline: none; }
+        .g-signup .m-form-one .m-btn button:hover {
+          background: #e16d2d; }
+
+.g-footer {
+  height: 400px;
+  background: #363636;
+  color: #838383;
+  font-size: 20px;
+  line-height: 30px; }
+  .g-footer .m-citext {
+    width: 1200px;
+    margin: 0 auto;
+    padding-top: 60px; }
+
+/*# sourceMappingURL=index.css.map */
