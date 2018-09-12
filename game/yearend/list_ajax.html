@@ -41,7 +41,7 @@
     <%if(isMe) { %>
         <p class="m-text">我是第<strong class="j-numRest" id="j-p1NumRise" data-num="<%=user_rank%>" data-type="big">0</strong>个<br>加入盒子学园的盒饭</p>
     <%}else{%>
-        <p class="m-text">他的4399游戏学园成绩单</p>
+        <p class="m-text">他的5400游戏学园成绩单</p>
     <%}%>
     <div class="m-bot">
         <div class="m-stage m-ui"></div>
@@ -317,7 +317,7 @@
 
 var _url = {
     _myTranscript: "",
-    downYxh: "http://sj2.img4399.com/v/2.6.0.3/4399Game_2.6.0.3.my4399.apk"
+    downYxh: "http://sj2.img5400.com/v/2.6.0.3/5400Game_2.6.0.3.my5400.apk"
 }
 
 
@@ -345,7 +345,7 @@ var Twoapp = function(){
             });
             /*下载游戏盒*/
             $("body").delegate("#j-downYxh","click",function(e){
-                AndroidConnect.launch("m4399://activityDetail?id="+_config.actId+"&url="+_url.acPage, function(){
+                AndroidConnect.launch("m5400://activityDetail?id="+_config.actId+"&url="+_url.acPage, function(){
                     window.location.href= _url.downLoadApp;
                 });
                 e.preventDefault();
@@ -459,7 +459,7 @@ var Twoapp = function(){
         });
         /*下载游戏盒*/
         $('#j-downYxh').on('click',function(e){
-            AndroidConnect.launch("m4399://activityDetail?id="+_config.actId+"&url="+_url.acPage, function(){
+            AndroidConnect.launch("m5400://activityDetail?id="+_config.actId+"&url="+_url.acPage, function(){
                 window.location.href= _url.downYxh;
             });
             e.preventDefault();

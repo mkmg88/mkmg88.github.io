@@ -7,8 +7,8 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="keywords" content="" />
     <meta name="description" content="" />
-    <title>4399游戏盒の时光盒</title>
-    <link href="//m.img4399.com/static/resource/index.css?file=huodong%2Fbase%2Fcss%2Fks%3Bhuodong%2Fy2015%2Fzhounian%2Fcss%2Ftm%2Canimate.css&v=1764627.css" type="text/css" rel="stylesheet" /> </head>
+    <title>5400游戏盒の时光盒</title>
+    <link href="//m.img5400.com/static/resource/index.css?file=huodong%2Fbase%2Fcss%2Fks%3Bhuodong%2Fy2015%2Fzhounian%2Fcss%2Ftm%2Canimate.css&v=1764627.css" type="text/css" rel="stylesheet" /> </head>
 
 <body>
     <div class="f_loading" id="j-loading">
@@ -35,7 +35,7 @@
             <p class="m-text">我是第<strong class="j-numRest" id="j-p1NumRise" data-num="<%=user_rank%>" data-type="big">0</strong>个
                 <br>加入盒子学园的盒饭</p>
             <%}else{%>
-                <p class="m-text">他的4399游戏学园成绩单</p>
+                <p class="m-text">他的5400游戏学园成绩单</p>
                 <%}%>
                     <div class="m-bot">
                         <div class="m-stage m-ui"></div>
@@ -358,7 +358,7 @@
             </div>
         </div>
     </script>
-    <script type="text/javascript" src="//m.img4399.com/static/resource/index.js?file=huodong%2Fbase%2Fjs%2Fzepto.min%2Czepto.fullpage%2CbaiduTemplate%2Ccommon%2CAndroidConnect%3Bhuodong%2Fy2015%2Fzhounian%2Fjs%2Fmusic.js&v=1764627.js"></script>
+    <script type="text/javascript" src="//m.img5400.com/static/resource/index.js?file=huodong%2Fbase%2Fjs%2Fzepto.min%2Czepto.fullpage%2CbaiduTemplate%2Ccommon%2CAndroidConnect%3Bhuodong%2Fy2015%2Fzhounian%2Fjs%2Fmusic.js&v=1764627.js"></script>
     <script type="text/javascript">
     function getUrlParam(name) {
         var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
@@ -368,14 +368,14 @@
     };
     var _config = {
         actId: getUrlParam('id'),
-        /*活动ID*/ host: "http://huodong.4399.cn"
+        /*活动ID*/ host: "http://huodong.5400.cn"
     };
     var curUid = getUrlParam('uid') || getUrlParam('u');
     var urlPart = _config.host + "/2015/zhounian";
     var _url = {
         checkLoad: 'json/data.json',
         share: urlPart + '-detail.html',
-        downLoadApp: "http://sj2.img4399.com/v/3.1.0.64/4399Game_3.1.0.64.my4399.49f1.apk",
+        downLoadApp: "http://sj2.img5400.com/v/3.1.0.64/5400Game_3.1.0.64.my5400.49f1.apk",
         /*游戏盒下载链接*/ acPage: encodeURIComponent(urlPart + '.html'),
         /*外部跳转到活动地址*/ myTranscript: urlPart + '-view.html',
         pcurl: urlPart + "-pc.html?uid=" + (getUrlParam('uid') || getUrlParam('u')),
@@ -390,7 +390,7 @@
         this.init = function() {
             this.checkLoad();
             this.bindEvent();
-            Resource.addSound("Sugar", "http://f1.img4399.com/box~diy/0/2015/12/10/09/3147_PZZuCg.mp3", 1, .5); /*音乐*/
+            Resource.addSound("Sugar", "http://f1.img5400.com/box~diy/0/2015/12/10/09/3147_PZZuCg.mp3", 1, .5); /*音乐*/
             this.playMusic();
         };
         this.bindEvent = function() { /*点击进入个人主页*/
@@ -408,9 +408,9 @@
                     };
                     var shareObj = {
                         "shareUrl": _url.share + '?uid=' + curUid,
-                        "shareTitle": "4399游戏盒&时光盒",
-                        "shareIcon": "http://f1.img4399.com/sj~4399a_9a24b25297857eaf8f4c85dec52e05e1",
-                        "shareContent": "4399游戏盒|给你一段不一样的时光体验！",
+                        "shareTitle": "5400游戏盒&时光盒",
+                        "shareIcon": "http://f1.img5400.com/sj~5400a_9a24b25297857eaf8f4c85dec52e05e1",
+                        "shareContent": "5400游戏盒|给你一段不一样的时光体验！",
                         "extra": JSON.stringify(extra)
                     };
                     shareAPI.onJsShare(JSON.stringify(shareObj));
@@ -425,9 +425,9 @@
                         $('#j-wechat').remove();
                     }, 3000);
                 } else if (isIDevice) {
-                    obj.showTips('请到4399游戏盒安卓客户端参加哦');
+                    obj.showTips('请到5400游戏盒安卓客户端参加哦');
                 } else {
-                    AndroidConnect.launch("m4399://activityDetail?id=" + _config.actId + "&url=" + _url.acPage, function() {
+                    AndroidConnect.launch("m5400://activityDetail?id=" + _config.actId + "&url=" + _url.acPage, function() {
                         window.location.href = _url.downLoadApp;
                     });
                     e.preventDefault();

@@ -53,7 +53,7 @@
             var _this = this,
                 start_time = Date.now();
 
-                this.launch_url = launch_url || 'm4399://launch';
+                this.launch_url = launch_url || 'm5400://launch';
                 this.fallback = typeof fallback === "function" ? fallback : function(){};
 
                 this.initLaunch();
