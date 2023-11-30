@@ -1,0 +1,1 @@
+let r=(()=>{const i=navigator.userAgent,n=/(?:micromessenger)/i.test(i),s=/(?:Android)/i.test(i),e=/(?:iPhone)/i.test(i),t=/(?:iPad)/i.test(i);return{isWeixin:n,isIOS:t||e,isAndroid:s,isPc:!e&&!t&&!s}})();export{r as O};
